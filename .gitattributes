@@ -1,0 +1,11 @@
+* -text
+# Runtime source hashes cover original bytes, including original line endings.
+*.py -text
+*.md text eol=lf
+*.yaml -text
+*.yml text eol=lf
+*.json -text
+*.jsonl -text
+*.csv -text
+*.zip binary
+*.svg -text

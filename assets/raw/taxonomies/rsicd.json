@@ -1,0 +1,220 @@
+{
+  "version": "t2net_reconstructed_taxonomy_v1",
+  "dataset": "rsicd",
+  "origin": "Independently authored by the current Codex assistant from class names only; not author ChatGPT-5.1 outputs",
+  "table1_examples_preserved": true,
+  "uses_image_pixels_or_scores": false,
+  "instruction_source": "T2Net section 3.2.1",
+  "classes": {
+    "center": {
+      "original_label": 0,
+      "leaf": "center",
+      "root": "Built Environment",
+      "child": "Commercial Facilities",
+      "template": "A photo of a center, belonging to the Commercial Facilities within Built Environment"
+    },
+    "farmland": {
+      "original_label": 1,
+      "leaf": "farmland",
+      "root": "Agriculture",
+      "child": "Cultivated Land",
+      "template": "A photo of a farmland, belonging to the Cultivated Land within Agriculture"
+    },
+    "baseballfield": {
+      "original_label": 2,
+      "leaf": "baseball field",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a baseball field, belonging to the Recreation & Sports within Built Environment"
+    },
+    "playground": {
+      "original_label": 3,
+      "leaf": "playground",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a playground, belonging to the Recreation & Sports within Built Environment"
+    },
+    "industrial": {
+      "original_label": 4,
+      "leaf": "industrial",
+      "root": "Industry & Energy",
+      "child": "Industrial Facilities",
+      "template": "A photo of a industrial, belonging to the Industrial Facilities within Industry & Energy"
+    },
+    "storagetanks": {
+      "original_label": 5,
+      "leaf": "storage tanks",
+      "root": "Industry & Energy",
+      "child": "Industrial Facilities",
+      "template": "A photo of a storage tanks, belonging to the Industrial Facilities within Industry & Energy"
+    },
+    "resort": {
+      "original_label": 6,
+      "leaf": "resort",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a resort, belonging to the Recreation & Sports within Built Environment"
+    },
+    "forest": {
+      "original_label": 7,
+      "leaf": "forest",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a forest, belonging to the Vegetation within Natural Geography"
+    },
+    "bridge": {
+      "original_label": 8,
+      "leaf": "bridge",
+      "root": "Transportation",
+      "child": "Bridge Structures",
+      "template": "A photo of a bridge, belonging to the Bridge Structures within Transportation"
+    },
+    "port": {
+      "original_label": 9,
+      "leaf": "port",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a port, belonging to the Ports & Airports within Transportation"
+    },
+    "railwaystation": {
+      "original_label": 10,
+      "leaf": "railway station",
+      "root": "Transportation",
+      "child": "Rail Infrastructure",
+      "template": "A photo of a railway station, belonging to the Rail Infrastructure within Transportation"
+    },
+    "sparseresidential": {
+      "original_label": 11,
+      "leaf": "sparse residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a sparse residential, belonging to the Residential Areas within Built Environment"
+    },
+    "viaduct": {
+      "original_label": 12,
+      "leaf": "viaduct",
+      "root": "Transportation",
+      "child": "Bridge Structures",
+      "template": "A photo of a viaduct, belonging to the Bridge Structures within Transportation"
+    },
+    "airport": {
+      "original_label": 13,
+      "leaf": "airport",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a airport, belonging to the Ports & Airports within Transportation"
+    },
+    "denseresidential": {
+      "original_label": 14,
+      "leaf": "dense residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a dense residential, belonging to the Residential Areas within Built Environment"
+    },
+    "school": {
+      "original_label": 15,
+      "leaf": "school",
+      "root": "Built Environment",
+      "child": "Public Institutions",
+      "template": "A photo of a school, belonging to the Public Institutions within Built Environment"
+    },
+    "mountain": {
+      "original_label": 16,
+      "leaf": "mountain",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a mountain, belonging to the Landforms within Natural Geography"
+    },
+    "park": {
+      "original_label": 17,
+      "leaf": "park",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a park, belonging to the Recreation & Sports within Built Environment"
+    },
+    "commercial": {
+      "original_label": 18,
+      "leaf": "commercial",
+      "root": "Built Environment",
+      "child": "Commercial Facilities",
+      "template": "A photo of a commercial, belonging to the Commercial Facilities within Built Environment"
+    },
+    "parking": {
+      "original_label": 19,
+      "leaf": "parking",
+      "root": "Transportation",
+      "child": "Parking Facilities",
+      "template": "A photo of a parking, belonging to the Parking Facilities within Transportation"
+    },
+    "mediumresidential": {
+      "original_label": 20,
+      "leaf": "medium residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a medium residential, belonging to the Residential Areas within Built Environment"
+    },
+    "meadow": {
+      "original_label": 21,
+      "leaf": "meadow",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a meadow, belonging to the Vegetation within Natural Geography"
+    },
+    "pond": {
+      "original_label": 22,
+      "leaf": "pond",
+      "root": "Natural Geography",
+      "child": "Water Bodies",
+      "template": "A photo of a pond, belonging to the Water Bodies within Natural Geography"
+    },
+    "river": {
+      "original_label": 23,
+      "leaf": "river",
+      "root": "Natural Geography",
+      "child": "Water Bodies",
+      "template": "A photo of a river, belonging to the Water Bodies within Natural Geography"
+    },
+    "bareland": {
+      "original_label": 24,
+      "leaf": "bare land",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a bare land, belonging to the Landforms within Natural Geography"
+    },
+    "desert": {
+      "original_label": 25,
+      "leaf": "desert",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a desert, belonging to the Landforms within Natural Geography"
+    },
+    "church": {
+      "original_label": 26,
+      "leaf": "church",
+      "root": "Built Environment",
+      "child": "Public Institutions",
+      "template": "A photo of a church, belonging to the Public Institutions within Built Environment"
+    },
+    "stadium": {
+      "original_label": 27,
+      "leaf": "stadium",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a stadium, belonging to the Recreation & Sports within Built Environment"
+    },
+    "square": {
+      "original_label": 28,
+      "leaf": "square",
+      "root": "Built Environment",
+      "child": "Commercial Facilities",
+      "template": "A photo of a square, belonging to the Commercial Facilities within Built Environment"
+    },
+    "beach": {
+      "original_label": 29,
+      "leaf": "beach",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a beach, belonging to the Landforms within Natural Geography"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "t2methods.cpta_admission.exploratory_dg3.v1",
+  "method": "CPTA",
+  "eta": 0.5,
+  "basis": "User chose CPTA eta=0.50 using the completed six-configuration three-seed exploratory DG screening; not source_selection.v2",
+  "source_selection_receipt": false,
+  "target_informed_selection": true,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "new_training": {
+    "b2n": 12,
+    "cd": 3,
+    "dg": 0,
+    "total": 15
+  },
+  "reused_dg": [
+    {
+      "seed": 1,
+      "relative_run": "outputs/t2net_dg_screen3_remote_20261010/artifacts_r1/project/runs_dg3/CPTA/candidate1/CPTA_dg3_candidate1_seed1",
+      "files": {
+        "final.pt": "ea5b9ce417b4b3ea6e55079863634334e485e63f21571c196df4090b5ce0e9dc",
+        "complete.json": "6486fd8055ac4122fb78fc98c016e7348572e5e39cca1715371127b9c5b87182",
+        "metadata.json": "f948d4a622680bf88f15d089d9e0a288fa777477d0723f9c8481b39879467b11",
+        "results.json": "63d1c301dc89d4b43b4c8d2ec2a0745a27c832d74b4acdf476986dc58f80eb4f"
+      }
+    },
+    {
+      "seed": 2,
+      "relative_run": "outputs/t2net_dg_screen3_remote_20261010/artifacts_r1/project/runs_dg3/CPTA/candidate1/CPTA_dg3_candidate1_seed2",
+      "files": {
+        "final.pt": "5e95948ed56377ee42108fceb9be86a87095fb09e19894d4f842c4efbfb79f33",
+        "complete.json": "aeb65a5fd8b474fc173b16d133139b585647daa8985d815a0d84b4e3f6a73875",
+        "metadata.json": "7a72971ca2df63896ee198fc03579c573288badd7982eeeb01a48846727213bf",
+        "results.json": "4d9172319617f6e8349ce2bdd4982de5edf4512430b4a913c2096f7edb09f3cf"
+      }
+    },
+    {
+      "seed": 3,
+      "relative_run": "outputs/t2net_dg_screen3_remote_20261010/artifacts_r1/project/runs_dg3/CPTA/candidate1/CPTA_dg3_candidate1_seed3",
+      "files": {
+        "final.pt": "06d82ca69de3566c51957204e1e0004f07760180fae67dba7a5d525283ade51e",
+        "complete.json": "f9798faa6135f4d4feed27e1b2240e4f3081ee254fa9279bae2dbbfcb3abacfe",
+        "metadata.json": "ee754c70423ccc8855d784b4780a11d8938d70a167cc5060fa349067c39f9bd8",
+        "results.json": "cfdd6e319b395c80d7c07673dc58633657edb14a9d4690cb5c9c729b1466b516"
+      }
+    }
+  ],
+  "dg_summary_sha256": "7b7dc30d20c0409e262755d55fd40af26e91cfbd75868412e4621bf6bf2fcab8",
+  "dg_backup_receipt_sha256": "68efa99078f434af7b555c1dd49d45fc669571ba933474aab286973453465339",
+  "method_algorithm_changes": false,
+  "optional_ablations": 0
+}

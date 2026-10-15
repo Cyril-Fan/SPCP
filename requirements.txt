@@ -1,0 +1,11 @@
+# Install a matching PyTorch/torchvision build for your CUDA driver first.
+# CPU verification: torch 2.4.1+cpu / torchvision 0.19.1+cpu.
+torch==2.4.1
+torchvision==0.19.1
+numpy>=1.24,<2
+Pillow>=10,<12
+PyYAML>=6,<7
+ftfy>=6,<7
+regex
+tqdm>=4
+packaging>=23

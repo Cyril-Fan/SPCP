@@ -1,0 +1,325 @@
+{
+  "version": "t2net_reconstructed_taxonomy_v1",
+  "dataset": "resisc45",
+  "origin": "Independently authored by the current Codex assistant from class names only; not author ChatGPT-5.1 outputs",
+  "table1_examples_preserved": true,
+  "uses_image_pixels_or_scores": false,
+  "instruction_source": "T2Net section 3.2.1",
+  "classes": {
+    "runway": {
+      "original_label": 0,
+      "leaf": "runway",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a runway, belonging to the Ports & Airports within Transportation"
+    },
+    "lake": {
+      "original_label": 1,
+      "leaf": "lake",
+      "root": "Natural Geography",
+      "child": "Water Bodies",
+      "template": "A photo of a lake, belonging to the Water Bodies within Natural Geography"
+    },
+    "sparse_residential": {
+      "original_label": 2,
+      "leaf": "sparse residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a sparse residential, belonging to the Residential Areas within Built Environment"
+    },
+    "wetland": {
+      "original_label": 3,
+      "leaf": "wetland",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a wetland, belonging to the Vegetation within Natural Geography"
+    },
+    "parking_lot": {
+      "original_label": 4,
+      "leaf": "parking lot",
+      "root": "Transportation",
+      "child": "Parking Facilities",
+      "template": "A photo of a parking lot, belonging to the Parking Facilities within Transportation"
+    },
+    "roundabout": {
+      "original_label": 5,
+      "leaf": "roundabout",
+      "root": "Transportation",
+      "child": "Road Networks",
+      "template": "A photo of a roundabout, belonging to the Road Networks within Transportation"
+    },
+    "terrace": {
+      "original_label": 6,
+      "leaf": "terrace",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a terrace, belonging to the Landforms within Natural Geography"
+    },
+    "sea_ice": {
+      "original_label": 7,
+      "leaf": "sea ice",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a sea ice, belonging to the Landforms within Natural Geography"
+    },
+    "baseball_diamond": {
+      "original_label": 8,
+      "leaf": "baseball diamond",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a baseball diamond, belonging to the Recreation & Sports within Built Environment"
+    },
+    "harbor": {
+      "original_label": 9,
+      "leaf": "harbor",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a harbor, belonging to the Ports & Airports within Transportation"
+    },
+    "palace": {
+      "original_label": 10,
+      "leaf": "palace",
+      "root": "Built Environment",
+      "child": "Public Institutions",
+      "template": "A photo of a palace, belonging to the Public Institutions within Built Environment"
+    },
+    "ship": {
+      "original_label": 11,
+      "leaf": "ship",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a ship, belonging to the Ports & Airports within Transportation"
+    },
+    "intersection": {
+      "original_label": 12,
+      "leaf": "intersection",
+      "root": "Transportation",
+      "child": "Road Networks",
+      "template": "A photo of a intersection, belonging to the Road Networks within Transportation"
+    },
+    "forest": {
+      "original_label": 13,
+      "leaf": "forest",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a forest, belonging to the Vegetation within Natural Geography"
+    },
+    "ground_track_field": {
+      "original_label": 14,
+      "leaf": "ground track field",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a ground track field, belonging to the Recreation & Sports within Built Environment"
+    },
+    "mobile_home_park": {
+      "original_label": 15,
+      "leaf": "mobile home park",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a mobile home park, belonging to the Residential Areas within Built Environment"
+    },
+    "commercial_area": {
+      "original_label": 16,
+      "leaf": "commercial area",
+      "root": "Built Environment",
+      "child": "Commercial Facilities",
+      "template": "A photo of a commercial area, belonging to the Commercial Facilities within Built Environment"
+    },
+    "bridge": {
+      "original_label": 17,
+      "leaf": "bridge",
+      "root": "Transportation",
+      "child": "Bridge Structures",
+      "template": "A photo of a bridge, belonging to the Bridge Structures within Transportation"
+    },
+    "island": {
+      "original_label": 18,
+      "leaf": "island",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a island, belonging to the Landforms within Natural Geography"
+    },
+    "golf_course": {
+      "original_label": 19,
+      "leaf": "golf course",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a golf course, belonging to the Recreation & Sports within Built Environment"
+    },
+    "thermal_power_station": {
+      "original_label": 20,
+      "leaf": "thermal power station",
+      "root": "Industry & Energy",
+      "child": "Energy Infrastructure",
+      "template": "A photo of a thermal power station, belonging to the Energy Infrastructure within Industry & Energy"
+    },
+    "airport": {
+      "original_label": 21,
+      "leaf": "airport",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a airport, belonging to the Ports & Airports within Transportation"
+    },
+    "mountain": {
+      "original_label": 22,
+      "leaf": "mountain",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a mountain, belonging to the Landforms within Natural Geography"
+    },
+    "overpass": {
+      "original_label": 23,
+      "leaf": "overpass",
+      "root": "Transportation",
+      "child": "Bridge Structures",
+      "template": "A photo of a overpass, belonging to the Bridge Structures within Transportation"
+    },
+    "industrial_area": {
+      "original_label": 24,
+      "leaf": "industrial area",
+      "root": "Industry & Energy",
+      "child": "Industrial Facilities",
+      "template": "A photo of a industrial area, belonging to the Industrial Facilities within Industry & Energy"
+    },
+    "tennis_court": {
+      "original_label": 25,
+      "leaf": "tennis court",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a tennis court, belonging to the Recreation & Sports within Built Environment"
+    },
+    "railway": {
+      "original_label": 26,
+      "leaf": "railway",
+      "root": "Transportation",
+      "child": "Rail Infrastructure",
+      "template": "A photo of a railway, belonging to the Rail Infrastructure within Transportation"
+    },
+    "cloud": {
+      "original_label": 27,
+      "leaf": "cloud",
+      "root": "Natural Geography",
+      "child": "Atmospheric Features",
+      "template": "A photo of a cloud, belonging to the Atmospheric Features within Natural Geography"
+    },
+    "basketball_court": {
+      "original_label": 28,
+      "leaf": "basketball court",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a basketball court, belonging to the Recreation & Sports within Built Environment"
+    },
+    "circular_farmland": {
+      "original_label": 29,
+      "leaf": "circular farmland",
+      "root": "Agriculture",
+      "child": "Cultivated Land",
+      "template": "A photo of a circular farmland, belonging to the Cultivated Land within Agriculture"
+    },
+    "meadow": {
+      "original_label": 30,
+      "leaf": "meadow",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a meadow, belonging to the Vegetation within Natural Geography"
+    },
+    "railway_station": {
+      "original_label": 31,
+      "leaf": "railway station",
+      "root": "Transportation",
+      "child": "Rail Infrastructure",
+      "template": "A photo of a railway station, belonging to the Rail Infrastructure within Transportation"
+    },
+    "river": {
+      "original_label": 32,
+      "leaf": "river",
+      "root": "Natural Geography",
+      "child": "Water Bodies",
+      "template": "A photo of a river, belonging to the Water Bodies within Natural Geography"
+    },
+    "chaparral": {
+      "original_label": 33,
+      "leaf": "chaparral",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a chaparral, belonging to the Vegetation within Natural Geography"
+    },
+    "desert": {
+      "original_label": 34,
+      "leaf": "desert",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a desert, belonging to the Landforms within Natural Geography"
+    },
+    "church": {
+      "original_label": 35,
+      "leaf": "church",
+      "root": "Built Environment",
+      "child": "Public Institutions",
+      "template": "A photo of a church, belonging to the Public Institutions within Built Environment"
+    },
+    "stadium": {
+      "original_label": 36,
+      "leaf": "stadium",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a stadium, belonging to the Recreation & Sports within Built Environment"
+    },
+    "medium_residential": {
+      "original_label": 37,
+      "leaf": "medium residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a medium residential, belonging to the Residential Areas within Built Environment"
+    },
+    "rectangular_farmland": {
+      "original_label": 38,
+      "leaf": "rectangular farmland",
+      "root": "Agriculture",
+      "child": "Cultivated Land",
+      "template": "A photo of a rectangular farmland, belonging to the Cultivated Land within Agriculture"
+    },
+    "snowberg": {
+      "original_label": 39,
+      "leaf": "snowberg",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a snowberg, belonging to the Landforms within Natural Geography"
+    },
+    "storage_tank": {
+      "original_label": 40,
+      "leaf": "storage tank",
+      "root": "Industry & Energy",
+      "child": "Industrial Facilities",
+      "template": "A photo of a storage tank, belonging to the Industrial Facilities within Industry & Energy"
+    },
+    "dense_residential": {
+      "original_label": 41,
+      "leaf": "dense residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a dense residential, belonging to the Residential Areas within Built Environment"
+    },
+    "beach": {
+      "original_label": 42,
+      "leaf": "beach",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a beach, belonging to the Landforms within Natural Geography"
+    },
+    "freeway": {
+      "original_label": 43,
+      "leaf": "freeway",
+      "root": "Transportation",
+      "child": "Road Networks",
+      "template": "A photo of a freeway, belonging to the Road Networks within Transportation"
+    },
+    "airplane": {
+      "original_label": 44,
+      "leaf": "airplane",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a airplane, belonging to the Ports & Airports within Transportation"
+    }
+  }
+}

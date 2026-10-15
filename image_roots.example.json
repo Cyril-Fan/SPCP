@@ -1,0 +1,10 @@
+{
+  "PatternNet": "/path/to/PatternNet",
+  "RSICD": "/path/to/RSICD",
+  "NWPU-RESISC45": "/path/to/NWPU-RESISC45",
+  "MLRSNet": "/path/to/MLRSNet",
+  "PatternNetv2": "/path/to/PatternNetv2/images",
+  "RSICDv2": "/path/to/RSICDv2/images",
+  "NWPU-RESISC45v2": "/path/to/NWPU-RESISC45v2/images",
+  "MLRSNetv2": "/path/to/MLRSNetv2/images"
+}

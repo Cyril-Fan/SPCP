@@ -1,0 +1,289 @@
+{
+  "version": "t2net_independent_dg_v2_taxonomy_v1",
+  "dataset": "shared_official_v2_16_classes",
+  "origin": "Names-only inheritance of the frozen v3 PatternNet/NWPU taxonomies before any DG scores; not author ChatGPT-5.1 outputs",
+  "uses_image_pixels_or_scores": false,
+  "canonical_alias_scope": "Taxonomy text only; no official image ID/classname/label is changed",
+  "official_common_classnames": [
+    "baseballfield",
+    "sparse_residential",
+    "harbor",
+    "intersection",
+    "forest",
+    "bridge",
+    "overpass",
+    "railway",
+    "parking",
+    "meadow",
+    "river",
+    "desert",
+    "stadium",
+    "storage_tank",
+    "dense_residential",
+    "beach"
+  ],
+  "source_taxonomy_sha256": {
+    "patternnet": "e2a89957659d79f86dd6962dedcef0f4924df3bddcba0fa9f7fb8cd14bd4d6c9",
+    "resisc45": "1389d05ba557419c1fbf9575ce557de21a27bb6ec49abf25258d998fdcb33251"
+  },
+  "hierarchy_source_mapping": {
+    "baseballfield": {
+      "source_dataset": "patternnet",
+      "source_key": "baseball_field",
+      "source_original_label": 2,
+      "v2_label": 0
+    },
+    "sparse_residential": {
+      "source_dataset": "patternnet",
+      "source_key": "sparse_residential",
+      "source_original_label": 3,
+      "v2_label": 1
+    },
+    "harbor": {
+      "source_dataset": "patternnet",
+      "source_key": "harbor",
+      "source_original_label": 10,
+      "v2_label": 2
+    },
+    "intersection": {
+      "source_dataset": "patternnet",
+      "source_key": "intersection",
+      "source_original_label": 11,
+      "v2_label": 3
+    },
+    "forest": {
+      "source_dataset": "patternnet",
+      "source_key": "forest",
+      "source_original_label": 12,
+      "v2_label": 4
+    },
+    "bridge": {
+      "source_dataset": "patternnet",
+      "source_key": "bridge",
+      "source_original_label": 15,
+      "v2_label": 5
+    },
+    "overpass": {
+      "source_dataset": "patternnet",
+      "source_key": "overpass",
+      "source_original_label": 20,
+      "v2_label": 6
+    },
+    "railway": {
+      "source_dataset": "patternnet",
+      "source_key": "railway",
+      "source_original_label": 23,
+      "v2_label": 7
+    },
+    "parking": {
+      "source_dataset": "patternnet",
+      "source_key": "parking_lot",
+      "source_original_label": 4,
+      "v2_label": 8
+    },
+    "meadow": {
+      "source_dataset": "resisc45",
+      "source_key": "meadow",
+      "source_original_label": 30,
+      "v2_label": 9
+    },
+    "river": {
+      "source_dataset": "patternnet",
+      "source_key": "river",
+      "source_original_label": 28,
+      "v2_label": 10
+    },
+    "desert": {
+      "source_dataset": "resisc45",
+      "source_key": "desert",
+      "source_original_label": 34,
+      "v2_label": 11
+    },
+    "stadium": {
+      "source_dataset": "resisc45",
+      "source_key": "stadium",
+      "source_original_label": 36,
+      "v2_label": 12
+    },
+    "storage_tank": {
+      "source_dataset": "patternnet",
+      "source_key": "storage_tank",
+      "source_original_label": 32,
+      "v2_label": 13
+    },
+    "dense_residential": {
+      "source_dataset": "patternnet",
+      "source_key": "dense_residential",
+      "source_original_label": 33,
+      "v2_label": 14
+    },
+    "beach": {
+      "source_dataset": "patternnet",
+      "source_key": "beach",
+      "source_original_label": 34,
+      "v2_label": 15
+    }
+  },
+  "classes": {
+    "baseballfield": {
+      "original_label": 0,
+      "leaf": "baseball field",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a baseball field, belonging to the Recreation & Sports within Built Environment",
+      "canonical_alias": "baseball_field",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 2
+    },
+    "sparse_residential": {
+      "original_label": 1,
+      "leaf": "sparse residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a sparse residential, belonging to the Residential Areas within Built Environment",
+      "canonical_alias": "sparse_residential",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 3
+    },
+    "harbor": {
+      "original_label": 2,
+      "leaf": "harbor",
+      "root": "Transportation",
+      "child": "Ports & Airports",
+      "template": "A photo of a harbor, belonging to the Ports & Airports within Transportation",
+      "canonical_alias": "harbor",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 10
+    },
+    "intersection": {
+      "original_label": 3,
+      "leaf": "intersection",
+      "root": "Transportation",
+      "child": "Road Networks",
+      "template": "A photo of a intersection, belonging to the Road Networks within Transportation",
+      "canonical_alias": "intersection",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 11
+    },
+    "forest": {
+      "original_label": 4,
+      "leaf": "forest",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a forest, belonging to the Vegetation within Natural Geography",
+      "canonical_alias": "forest",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 12
+    },
+    "bridge": {
+      "original_label": 5,
+      "leaf": "bridge",
+      "root": "Transportation",
+      "child": "Bridge Structures",
+      "template": "A photo of a bridge, belonging to the Bridge Structures within Transportation",
+      "canonical_alias": "bridge",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 15
+    },
+    "overpass": {
+      "original_label": 6,
+      "leaf": "overpass",
+      "root": "Transportation",
+      "child": "Bridge Structures",
+      "template": "A photo of a overpass, belonging to the Bridge Structures within Transportation",
+      "canonical_alias": "overpass",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 20
+    },
+    "railway": {
+      "original_label": 7,
+      "leaf": "railway",
+      "root": "Transportation",
+      "child": "Rail Infrastructure",
+      "template": "A photo of a railway, belonging to the Rail Infrastructure within Transportation",
+      "canonical_alias": "railway",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 23
+    },
+    "parking": {
+      "original_label": 8,
+      "leaf": "parking lot",
+      "root": "Transportation",
+      "child": "Parking Facilities",
+      "template": "A photo of a parking lot, belonging to the Parking Facilities within Transportation",
+      "canonical_alias": "parking_lot",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 4
+    },
+    "meadow": {
+      "original_label": 9,
+      "leaf": "meadow",
+      "root": "Natural Geography",
+      "child": "Vegetation",
+      "template": "A photo of a meadow, belonging to the Vegetation within Natural Geography",
+      "canonical_alias": "meadow",
+      "hierarchy_source_dataset": "resisc45",
+      "hierarchy_source_original_label": 30
+    },
+    "river": {
+      "original_label": 10,
+      "leaf": "river",
+      "root": "Natural Geography",
+      "child": "Water Bodies",
+      "template": "A photo of a river, belonging to the Water Bodies within Natural Geography",
+      "canonical_alias": "river",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 28
+    },
+    "desert": {
+      "original_label": 11,
+      "leaf": "desert",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a desert, belonging to the Landforms within Natural Geography",
+      "canonical_alias": "desert",
+      "hierarchy_source_dataset": "resisc45",
+      "hierarchy_source_original_label": 34
+    },
+    "stadium": {
+      "original_label": 12,
+      "leaf": "stadium",
+      "root": "Built Environment",
+      "child": "Recreation & Sports",
+      "template": "A photo of a stadium, belonging to the Recreation & Sports within Built Environment",
+      "canonical_alias": "stadium",
+      "hierarchy_source_dataset": "resisc45",
+      "hierarchy_source_original_label": 36
+    },
+    "storage_tank": {
+      "original_label": 13,
+      "leaf": "storage tank",
+      "root": "Industry & Energy",
+      "child": "Industrial Facilities",
+      "template": "A photo of a storage tank, belonging to the Industrial Facilities within Industry & Energy",
+      "canonical_alias": "storage_tank",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 32
+    },
+    "dense_residential": {
+      "original_label": 14,
+      "leaf": "dense residential",
+      "root": "Built Environment",
+      "child": "Residential Areas",
+      "template": "A photo of a dense residential, belonging to the Residential Areas within Built Environment",
+      "canonical_alias": "dense_residential",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 33
+    },
+    "beach": {
+      "original_label": 15,
+      "leaf": "beach",
+      "root": "Natural Geography",
+      "child": "Landforms",
+      "template": "A photo of a beach, belonging to the Landforms within Natural Geography",
+      "canonical_alias": "beach",
+      "hierarchy_source_dataset": "patternnet",
+      "hierarchy_source_original_label": 34
+    }
+  }
+}

@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="740" viewBox="0 0 1440 740">
+<title>SPCP: complementary text semantic constraints</title>
+<desc>SPCP paper architecture. Editable vector drawing; coordinate sketches are schematic, not measured features.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="8" refX="8.3" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8.3 4L0 8Z" fill="#252525"/></marker>
+<style>text{font-family:"Times New Roman","Liberation Serif",serif;fill:#252525}path,line,rect,polygon,circle{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="1440" height="740" fill="white"/>
+<text x="40" y="48" font-size="28" font-weight="600" text-anchor="start" style="fill:#252525">Text semantic constraint</text>
+<rect id="core-reference-sketch" x="40" y="125" width="300" height="180" rx="5" fill="#e6f3dc" stroke="#a4b49f" stroke-width="1.1"/>
+<text x="56" y="154" font-size="22" font-weight="500" text-anchor="start" style="fill:#252525">Source anchors</text>
+<g data-role="math-symbol" data-base="q" transform="translate(260 154)">
+<text x="0" y="0" font-size="23" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+</g>
+<g data-role="fixed-reference-icon" transform="translate(316 145) scale(0.8214285714285714)"><path d="M-8 -1V-8A8 8 0 0 1 8 -8V-1" fill="none" stroke="#586e66" stroke-width="2.2"/><rect x="-11" y="-2" width="22" height="18" rx="3" fill="#dbeee6" stroke="#586e66" stroke-width="1.6"/><circle cx="0" cy="5" r="2" fill="#586e66"/><path d="M0 6V11" stroke="#586e66" stroke-width="2"/></g>
+<text x="56" y="180" font-size="19" font-weight="400" text-anchor="start" style="fill:#252525">Fixed reference</text>
+<circle cx="190.0" cy="240" r="47" fill="none" stroke="#bcc8bb" stroke-width="0.9"/>
+<path d="M 125.0 240 H 255.0" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 190.0 298 V 182" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g data-role="math-symbol" data-base="u" transform="translate(263.0 246)">
+<text x="0" y="0" font-size="18" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">u</text>
+</g>
+<g data-role="math-symbol" data-base="v" transform="translate(199.0 185)">
+<text x="0" y="0" font-size="18" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">v</text>
+</g>
+<text x="177.0" y="258" font-size="17" font-weight="400" text-anchor="start" style="fill:#252525">0</text>
+<path d="M 190.0 240 L 234.1655531769377 223.92505326369357" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 190.0 240 L 151.4998539184174 213.04190749150084" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 190.0 240 L 170.13694169818714 282.59646599072255" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 190.0 240 L 224.92780679743754 271.4491384988663" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 157.05194514211072 213.77285416793313 L 228.61346195324435 223.19410658726127" fill="none" stroke="#64825c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="234.1655531769377" cy="223.92505326369357" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="q" transform="translate(246.1655531769377 228.92505326369357)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.34" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<circle cx="151.4998539184174" cy="213.04190749150084" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="q" transform="translate(124.42353391841739 218.04190749150084)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.34" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">j</text>
+</g>
+<circle cx="170.13694169818714" cy="282.59646599072255" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="q" transform="translate(140.82958169818716 287.59646599072255)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.34" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">k</text>
+</g>
+<circle cx="224.92780679743754" cy="271.4491384988663" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="q" transform="translate(236.92780679743754 276.4491384988663)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.34" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">l</text>
+</g>
+<rect id="core-student-sketch" x="40" y="425" width="300" height="180" rx="5" fill="#e6f3dc" stroke="#a4b49f" stroke-width="1.1"/>
+<text x="56" y="454" font-size="22" font-weight="500" text-anchor="start" style="fill:#252525">Student features</text>
+<g data-role="math-symbol" data-base="t" transform="translate(260 454)">
+<text x="0" y="0" font-size="23" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
+</g>
+<text x="56" y="480" font-size="19" font-weight="400" text-anchor="start" style="fill:#252525">Prompts</text>
+<rect x="249" y="469" width="19" height="15" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1"/>
+<rect x="273" y="469" width="19" height="15" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1"/>
+<rect x="297" y="469" width="19" height="15" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1"/>
+<g data-role="trainable-icon" transform="translate(316 464) scale(0.6333333333333333)"><path d="M0 -16C-5 -13 -2 -6 -7 -5C-10 -10 -12 -6 -13 0C-17 10 -9 16 0 16C11 16 16 9 12 1C11 -3 8 -5 7 -9C5 -7 6 -2 2 0C5 -8 5 -12 0 -16Z" fill="#f21111"/><path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a"/></g>
+<circle cx="190.0" cy="540" r="47" fill="none" stroke="#bcc8bb" stroke-width="0.9"/>
+<path d="M 125.0 540 H 255.0" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 190.0 598 V 482" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g data-role="math-symbol" data-base="u" transform="translate(263.0 546)">
+<text x="0" y="0" font-size="18" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">u</text>
+</g>
+<g data-role="math-symbol" data-base="v" transform="translate(199.0 485)">
+<text x="0" y="0" font-size="18" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">v</text>
+</g>
+<text x="177.0" y="558" font-size="17" font-weight="400" text-anchor="start" style="fill:#252525">0</text>
+<path d="M 190.0 540 L 216.95809250849916 501.4998539184174" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 190.0 540 L 157.94607707706257 505.62637602389896" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 190.0 540 L 162.37409314225374 578.0237987356226" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 190.0 540 L 220.21101765526734 576.004088826592" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<path d="M 163.53243575851758 505.23573977093184 L 211.37173382704415 501.8904901713845" fill="none" stroke="#6988a7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="216.95809250849916" cy="501.4998539184174" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="t" transform="translate(228.95809250849916 506.4998539184174)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
+<text x="6.678000000000001" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<circle cx="157.94607707706257" cy="505.62637602389896" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="t" transform="translate(135.53175707706257 510.62637602389896)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
+<text x="6.678000000000001" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">j</text>
+</g>
+<circle cx="162.37409314225374" cy="578.0237987356226" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="t" transform="translate(137.72873314225373 583.0237987356226)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
+<text x="6.678000000000001" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">k</text>
+</g>
+<circle cx="220.21101765526734" cy="576.004088826592" r="4.9" fill="#e6f3dc" stroke="#252525" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="t" transform="translate(232.21101765526734 581.004088826592)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
+<text x="6.678000000000001" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">l</text>
+</g>
+<path d="M 340 215 H 370 V 350 H 399" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 340 515 H 370 V 380 H 399" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect id="core-shared-inputs" x="400" y="336" width="66" height="58" rx="4" fill="#e5edf5" stroke="#a3b4c5" stroke-width="1.0"/>
+<text id="core-shared-input-label" x="433" y="369.5" font-size="24" font-weight="400" text-anchor="middle" font-style="italic" style="fill:#252525">q, t</text>
+<path d="M 466 365 H 486" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="486" cy="365" r="2.8" fill="#252525" stroke="#252525" stroke-width="0.8"/>
+<path d="M 486 365 V 215 H 509" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 486 365 V 515 H 509" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect id="core-absolute-anchoring" x="510" y="100" width="570" height="230" rx="5" fill="#fff4dc" stroke="#cbbd9d" stroke-width="1.1"/>
+<rect x="528" y="115" width="44" height="30" rx="2" fill="#fff3b0" stroke="#c6b36c" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="A" transform="translate(543.4 138)">
+<text x="0" y="0" font-size="24" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">A</text>
+</g>
+<text x="589" y="138" font-size="23" font-weight="500" text-anchor="start" style="fill:#252525">Class anchoring</text>
+<g id="core-anchor-flow" transform="translate(-26 0)">
+<circle cx="644" cy="226" r="58" fill="none" stroke="#bcc8bb" stroke-width="0.9"/>
+<circle cx="644" cy="226" r="2.4" fill="#252525" stroke="#252525" stroke-width="0.8"/>
+<text x="630" y="246" font-size="18" font-weight="400" text-anchor="start" style="fill:#252525">0</text>
+<path d="M 644 226 L 693.8037089016532 207.87293240373955" fill="none" stroke="#64825c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="698.5021720055827" cy="206.1628316871112" r="4.6" fill="#e6f3dc" stroke="#252525" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="q" transform="translate(712.5021720055827 212.1628316871112)">
+<text x="0" y="0" font-size="23" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="12.42" y="5.06" font-size="14.72" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<path d="M 644 226 L 674.3995511266054 182.58494165268343" fill="none" stroke="#6988a7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="677.2674333083606" cy="178.48918143123848" r="4.6" fill="#e6f3dc" stroke="#252525" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="t" transform="translate(685.2674333083606 169.48918143123848)">
+<text x="0" y="0" font-size="23" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
+<text x="7.314" y="5.06" font-size="14.72" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<path d="M 669.3717007612195 216.76545613020696 A 27 27 0 0 0 659.4865637814783 203.88289480419724" fill="none" stroke="#697865" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 716 186 L 665.4205401878634 209.56344141676453" fill="none" stroke="#9aa495" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+<g data-role="math-symbol" data-base="θ" transform="translate(720 182)">
+<text x="0" y="0" font-size="21" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">θ</text>
+<text x="12.39" y="4.62" font-size="13.44" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<text x="644" y="312" font-size="21" font-weight="400" text-anchor="middle" style="fill:#252525">Same class i</text>
+<path d="M 754 226 H 779" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="797" y="235" font-size="25" font-weight="400" text-anchor="start" style="fill:#252525">1 − cos</text>
+<g data-role="math-symbol" data-base="θ" transform="translate(873 235)">
+<text x="0" y="0" font-size="25" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">θ</text>
+<text x="14.750000000000002" y="5.5" font-size="16.0" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<path d="M 915 226 H 939" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect id="core-source-class-mean" x="940" y="194" width="116" height="64" rx="4" fill="#e5edf5" stroke="#a3b4c5" stroke-width="1.0"/>
+<text x="998" y="219" font-size="21" font-weight="400" text-anchor="middle" style="fill:#252525">Source</text>
+<text x="998" y="245" font-size="21" font-weight="400" text-anchor="middle" style="fill:#252525">class mean</text>
+</g>
+<rect id="core-class-difference-comparison" x="510" y="395" width="570" height="240" rx="5" fill="#fff4dc" stroke="#cbbd9d" stroke-width="1.1"/>
+<rect x="528" y="410" width="44" height="30" rx="2" fill="#fff3b0" stroke="#c6b36c" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="E" transform="translate(543.4 433)">
+<text x="0" y="0" font-size="24" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">E</text>
+</g>
+<text x="589" y="433" font-size="23" font-weight="500" text-anchor="start" style="fill:#252525">Class differences</text>
+<text x="535" y="469" font-size="22" font-weight="400" text-anchor="start" style="fill:#252525">Source graph</text>
+<g data-role="fixed-reference-icon" transform="translate(685 459) scale(0.7857142857142857)"><path d="M-8 -1V-8A8 8 0 0 1 8 -8V-1" fill="none" stroke="#586e66" stroke-width="2.2"/><rect x="-11" y="-2" width="22" height="18" rx="3" fill="#dbeee6" stroke="#586e66" stroke-width="1.6"/><circle cx="0" cy="5" r="2" fill="#586e66"/><path d="M0 6V11" stroke="#586e66" stroke-width="2"/></g>
+<g data-role="math-symbol" data-base="N" transform="translate(712 469)">
+<text x="0" y="0" font-size="23" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">N</text>
+<text x="16.261000000000003" y="5.06" font-size="14.72" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<g data-role="math-symbol" data-base="q" transform="translate(536.20576 557)">
+<text x="0" y="0" font-size="22" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.88" y="4.84" font-size="14.08" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
+</g>
+<circle cx="570" cy="552" r="5.3" fill="#e6f3dc" stroke="#252525" stroke-width="1.0"/>
+<path d="M 577 552 L 680 519" fill="none" stroke="#64825c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="688" cy="519" r="5.0" fill="#e6f3dc" stroke="#252525" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="q" transform="translate(704 524)">
+<text x="0" y="0" font-size="22" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.88" y="4.84" font-size="14.08" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">j</text>
+</g>
+<path d="M 577 552 L 680 552" fill="none" stroke="#64825c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="688" cy="552" r="5.0" fill="#e6f3dc" stroke="#252525" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="q" transform="translate(704 557)">
+<text x="0" y="0" font-size="22" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.88" y="4.84" font-size="14.08" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">k</text>
+</g>
+<path d="M 577 552 L 680 585" fill="none" stroke="#64825c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="688" cy="585" r="5.0" fill="#e6f3dc" stroke="#252525" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="q" transform="translate(704 590)">
+<text x="0" y="0" font-size="22" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
+<text x="11.88" y="4.84" font-size="14.08" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">l</text>
+</g>
+<text x="925" y="469" font-size="22" font-weight="400" text-anchor="middle" style="fill:#252525">Pairwise differences</text>
+<path d="M 740 553 H 788" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 811 503 H 798 V 619 H 811" fill="none" stroke="#64825c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 825 519 L 963.8783747543141 537.2836848972838" fill="none" stroke="#64825c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g data-role="math-symbol" data-base="Δq" transform="translate(979.8783747543141 542.2836848972838)">
+<text x="0" y="0" font-size="23" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">Δq</text>
+<text x="25.921" y="5.06" font-size="14.72" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">ij</text>
+</g>
+<path d="M 825 587 L 924.1401859248135 580.0674428627909" fill="none" stroke="#6988a7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g data-role="math-symbol" data-base="Δt" transform="translate(940.1401859248135 585.0674428627909)">
+<text x="0" y="0" font-size="23" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">Δt</text>
+<text x="20.815" y="5.06" font-size="14.72" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">ij</text>
+</g>
+<path d="M 1080 215 H 1109" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1110" y="194" width="90" height="42" rx="4" fill="#e5edf5" stroke="#a3b4c5" stroke-width="1.1"/>
+<text x="1155" y="224" font-size="27" font-weight="400" text-anchor="middle" font-style="italic" style="fill:#252525">1 − η</text>
+<path d="M 1080 515 H 1109" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1110" y="494" width="90" height="42" rx="4" fill="#e5edf5" stroke="#a3b4c5" stroke-width="1.1"/>
+<text x="1155" y="524" font-size="27" font-weight="400" text-anchor="middle" font-style="italic" style="fill:#252525">η</text>
+<path d="M 1200 215 H 1245 V 338" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1200 515 H 1245 V 392" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="1245" cy="365" r="26" fill="#e5edf5" stroke="#a3b4c5" stroke-width="1.2"/>
+<path d="M 1235.12 365 H 1254.88 M 1245 355.12 V 374.88" fill="none" stroke="#252525" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1272 365 H 1301.5" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect id="core-semantic-output" x="1302.5" y="338" width="90" height="54" rx="4" fill="#fff3b0" stroke="#c6b36c" stroke-width="1.1"/>
+<g data-role="math-symbol" data-base="S" transform="translate(1339.25 375)">
+<text x="0" y="0" font-size="30" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">S</text>
+</g>
+<text x="1347.5" y="422" font-size="20" font-weight="400" text-anchor="middle" style="fill:#252525">Semantic</text>
+<text x="1347.5" y="448" font-size="20" font-weight="400" text-anchor="middle" style="fill:#252525">constraint</text>
+<rect id="core-legend" x="40" y="674" width="1360" height="44" rx="7" fill="#fff2ca" stroke="#d4be7c" stroke-width="1.0"/>
+<g data-role="fixed-reference-icon" transform="translate(139.3 693) scale(0.7857142857142857)"><path d="M-8 -1V-8A8 8 0 0 1 8 -8V-1" fill="none" stroke="#586e66" stroke-width="2.2"/><rect x="-11" y="-2" width="22" height="18" rx="3" fill="#dbeee6" stroke="#586e66" stroke-width="1.6"/><circle cx="0" cy="5" r="2" fill="#586e66"/><path d="M0 6V11" stroke="#586e66" stroke-width="2"/></g>
+<text x="162.3" y="703" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Fixed reference</text>
+<g data-role="trainable-icon" transform="translate(469.1 694) scale(0.7666666666666667)"><path d="M0 -16C-5 -13 -2 -6 -7 -5C-10 -10 -12 -6 -13 0C-17 10 -9 16 0 16C11 16 16 9 12 1C11 -3 8 -5 7 -9C5 -7 6 -2 2 0C5 -8 5 -12 0 -16Z" fill="#f21111"/><path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a"/></g>
+<text x="493.1" y="703" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Trainable prompts</text>
+<rect x="818.5" y="682" width="43" height="27" rx="2" fill="#fff3b0" stroke="#c6b36c" stroke-width="1.0"/>
+<g data-role="math-symbol" data-base="L" transform="translate(833.884 703)">
+<text x="0" y="0" font-size="22" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">L</text>
+</g>
+<text x="876.5" y="703" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Constraint</text>
+<circle cx="1187" cy="696" r="12" fill="#e5edf5" stroke="#a3b4c5" stroke-width="1.2"/>
+<path d="M 1182.44 696 H 1191.56 M 1187 691.44 V 700.56" fill="none" stroke="#252525" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1213" y="703" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Addition</text>
+</svg>

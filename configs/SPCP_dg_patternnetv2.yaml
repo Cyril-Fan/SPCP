@@ -1,0 +1,262 @@
+paper:
+  title: Semantics-preserving cross-modal prompting for generalizable remote sensing
+    scene classification
+  method: SPCP
+  historical_runtime_method: CPTA
+  status: working manuscript; no acceptance or publication claim
+model:
+  backbone: ViT-B/16
+  prompt_length: 16
+  depth: 12
+  shallow_layers: 6
+  context_init: a photo of a
+  init_std: 0.02
+  interaction: directional_shared_projection
+  alignment_metric: cosine
+  alignment_weight: 1.0
+  text_alignment_weight: 1.0
+  image_alignment_weight: 1.0
+data:
+  dataset: PatternNetv2
+  split: ../assets/dg_v2/splits/patternnetv2.json
+  image_root: ../external/datasets/PatternNetv2/images
+  taxonomy: ../assets/dg_v2/taxonomy.json
+  shot: 16
+  base_fraction: 0.5
+  base_rounding: ceil
+  task: dg
+  use_val: false
+  role: source
+  eval_only: false
+  split_sha256: 2db9f8f14226c52f5d857e0d323b1cc21761ed2d1a378b7cd520e52d1c1b8df0
+  dg_verified: true
+  common_classnames: &id001
+  - baseballfield
+  - sparse_residential
+  - harbor
+  - intersection
+  - forest
+  - bridge
+  - overpass
+  - railway
+  - parking
+  - meadow
+  - river
+  - desert
+  - stadium
+  - storage_tank
+  - dense_residential
+  - beach
+  common_class_map:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
+    9: 9
+    10: 10
+    11: 11
+    12: 12
+    13: 13
+    14: 14
+    15: 15
+  v2_protocol_manifest: ../assets/dg_v2/common_class_protocol.json
+  v2_data_ready: ../assets/dg_v2/pixel_provenance/data_dg_v2_ready.json
+  ledger_root: ../assets/dg_v2/pixel_provenance
+train:
+  seeds:
+  - 1
+  - 2
+  - 3
+  epochs: 10
+  other_task_epochs: 10
+  optimizer: Adam
+  learning_rate: 0.0025
+  weight_decay: 1.0e-05
+  batch_size: 16
+  eval_batch_size: 64
+  workers: 4
+  scheduler: cosine
+  warmup_epochs: 1
+  warmup_learning_rate: 1.0e-05
+  crop_min: 0.08
+  horizontal_flip: 0.5
+  precision: amp
+  grad_scaler_initial_scale: 128
+  device: cuda
+  max_minutes_per_run: 110
+  checkpoint_selection: final_epoch
+runtime:
+  clip_root: ../external/original_clip
+  output_root: ../runs
+  engineering_steps: 4
+  progress_interval: 10
+  clip_checkpoint: ../external/ViT-B-16.pt
+  clip_checkpoint_sha256: 5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f
+  clip_source_hashes:
+    clip/__init__.py: d7930eb290ebed432116795c91473200d098451a94c0aedd4ae0f934f97955e8
+    clip/clip.py: f42d29d6ff24715a4d3dd6860c820ea21a3839e3a45b42ad92c7bc37019cd3c6
+    clip/model.py: c0ba5cb62eafbf21e6c4e861e9caf6933d1c7e82313d37f953cd2c1ae85f78de
+    clip/simple_tokenizer.py: d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad
+  clip_bpe_sha256: 924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a
+  phase: dg_screen3
+  candidate: 1
+  require_source_selection: false
+  source_selection_version: 2
+  require_winner: false
+  save_scores: true
+  save_features: false
+  diagnostic_gradient_batches: 1
+  experiment_protocol: t2methods.dg_screen3.v1
+  source_validation_consumed: false
+assumptions:
+  prompt_flow: 12 prompted blocks. Text source bank in blocks 1–6 projects to visual
+    prompts; visual source bank in blocks 7–12 projects to text prompts. Two shared
+    linear layers; replace context slots at each block. No class/image aggregation
+    or residual addition.
+  text_branches: 'Fig. 2: learned student contexts + ordinary class-name suffix; frozen
+    teacher uses the full three-level taxonomy sentence.'
+  initialization: First four shallow text context tokens use phrase embeddings; remaining
+    tokens and deeper source prompts use Normal(0, 0.02).
+  taxonomy_origin: Independently generated and frozen before viewing reproduction
+    scores, retaining Table 1 examples. Not the unavailable author ChatGPT-5.1 output.
+  support: 16 shots, seeds 1/2/3, ceil-half sorted integer labels; APPLeNet public
+    split IDs. Exact paper identity is unconfirmed.
+  recipe: Batch 16, AMP, cosine learning-rate decay with one warmup epoch, CoOp-style
+    random crop/flip; missing in paper.
+  loss_reduction: Mean 1−cosine for classes and images; teachers detached; cross-entropy
+    mean over support batch.
+  checkpoint: Fixed final epoch; no score-based checkpoint choice.
+  class_text: Underscores become spaces; seven RSICD compound labels, MLRSNet harbor&port
+    and swimmimg_pool use explicit readable leaf names in the frozen taxonomy JSON.
+    Label IDs and support IDs are unchanged.
+method:
+  name: CPTA
+  enabled: true
+  eta: 0.5
+  neighbors: 3
+  geometry_epsilon: 0.2
+  duplicate_epsilon: 1.0e-06
+  control: difference
+  version: 1
+targets:
+- dataset: RSICDv2
+  split: ../assets/dg_v2/splits/rsicdv2.json
+  image_root: ../external/datasets/RSICDv2/images
+  taxonomy: ../assets/dg_v2/taxonomy.json
+  shot: 16
+  base_fraction: 0.5
+  base_rounding: ceil
+  task: b2n
+  use_val: false
+  role: target
+  eval_only: true
+  split_sha256: 191adf02a1a76d64e4e840fa8383bd141ab2b45f93ef29263a5d5fc25ea2ea77
+  dg_verified: true
+  common_classnames: *id001
+  common_class_map:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
+    9: 9
+    10: 10
+    11: 11
+    12: 12
+    13: 13
+    14: 14
+    15: 15
+  v2_protocol_manifest: ../assets/dg_v2/common_class_protocol.json
+  v2_data_ready: ../assets/dg_v2/pixel_provenance/data_dg_v2_ready.json
+  ledger_root: ../assets/dg_v2/pixel_provenance
+- dataset: NWPU-RESISC45v2
+  split: ../assets/dg_v2/splits/resisc45v2.json
+  image_root: ../external/datasets/NWPU-RESISC45v2/images
+  taxonomy: ../assets/dg_v2/taxonomy.json
+  shot: 16
+  base_fraction: 0.5
+  base_rounding: ceil
+  task: b2n
+  use_val: false
+  role: target
+  eval_only: true
+  split_sha256: 8e8c7bf1b316e0c6936dcba33a393903c52910ba375ef5fed47bf577319d0f49
+  dg_verified: true
+  common_classnames: *id001
+  common_class_map:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
+    9: 9
+    10: 10
+    11: 11
+    12: 12
+    13: 13
+    14: 14
+    15: 15
+  v2_protocol_manifest: ../assets/dg_v2/common_class_protocol.json
+  v2_data_ready: ../assets/dg_v2/pixel_provenance/data_dg_v2_ready.json
+  ledger_root: ../assets/dg_v2/pixel_provenance
+- dataset: MLRSNetv2
+  split: ../assets/dg_v2/splits/mlrsnetv2.json
+  image_root: ../external/datasets/MLRSNetv2/images
+  taxonomy: ../assets/dg_v2/taxonomy.json
+  shot: 16
+  base_fraction: 0.5
+  base_rounding: ceil
+  task: b2n
+  use_val: false
+  role: target
+  eval_only: true
+  split_sha256: 759e826e7f706afc822253947c4dd6926a9e5906664685b4f5d44dcdf12ca4d6
+  dg_verified: true
+  common_classnames: *id001
+  common_class_map:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
+    9: 9
+    10: 10
+    11: 11
+    12: 12
+    13: 13
+    14: 14
+    15: 15
+  v2_protocol_manifest: ../assets/dg_v2/common_class_protocol.json
+  v2_data_ready: ../assets/dg_v2/pixel_provenance/data_dg_v2_ready.json
+  ledger_root: ../assets/dg_v2/pixel_provenance
+source_validation:
+  ids_file: ../assets/dg_v2/source_val64.json
+  ids_sha256: fb7e5d2c12102aef04d68a2b968e3bca5084237681752a8fde6bb39abbe7b0b4
+  count: 64
+  per_class: 4
+  extra_labels_disclosed: true
+  views:
+  - clean
+  - jpeg75
+  - horizontal_rgb_gain_0.85_1.15
+  - bicubic_224_160_224
+  - gaussian_kernel9_sigma0.7
+  version: 2
+  rule_sha256: 3a832290725af2d4875568fb031c62510c3011c4f745bc518235f5bf227c3490

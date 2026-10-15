@@ -1,0 +1,67 @@
+{
+  "schema": "spcp.protocol_bundle.v1",
+  "contains_dataset_images": false,
+  "files": [
+    {
+      "path": "assets/dg_v2/pixel_provenance/MLRSNetv2.images.jsonl",
+      "bytes": 12623796,
+      "sha256": "68d83afd0091d590bf9438347e29a35a93c4229a707237aa32c871f6446e966c"
+    },
+    {
+      "path": "assets/dg_v2/pixel_provenance/NWPU-RESISC45v2.images.jsonl",
+      "bytes": 3646421,
+      "sha256": "19d08ef44337683c495912cd6c0aba756ce2949d1af51267be2b43a995917dac"
+    },
+    {
+      "path": "assets/dg_v2/pixel_provenance/PatternNetv2.images.jsonl",
+      "bytes": 4130690,
+      "sha256": "1b236794134df64f48a1809c156e00961a02f24626268c208f6ae218153b741a"
+    },
+    {
+      "path": "assets/dg_v2/pixel_provenance/RSICDv2.images.jsonl",
+      "bytes": 1698224,
+      "sha256": "f306204beaa8315089eb51255e3b3de5423e2bd900861f88922b66a17211db54"
+    },
+    {
+      "path": "assets/dg_v2/splits/mlrsnetv2.json",
+      "bytes": 1970561,
+      "sha256": "759e826e7f706afc822253947c4dd6926a9e5906664685b4f5d44dcdf12ca4d6"
+    },
+    {
+      "path": "assets/dg_v2/splits/patternnetv2.json",
+      "bytes": 624830,
+      "sha256": "2db9f8f14226c52f5d857e0d323b1cc21761ed2d1a378b7cd520e52d1c1b8df0"
+    },
+    {
+      "path": "assets/dg_v2/splits/resisc45v2.json",
+      "bytes": 546730,
+      "sha256": "8e8c7bf1b316e0c6936dcba33a393903c52910ba375ef5fed47bf577319d0f49"
+    },
+    {
+      "path": "assets/dg_v2/splits/rsicdv2.json",
+      "bytes": 259152,
+      "sha256": "191adf02a1a76d64e4e840fa8383bd141ab2b45f93ef29263a5d5fc25ea2ea77"
+    },
+    {
+      "path": "assets/raw/splits/mlrsnet.json",
+      "bytes": 6173442,
+      "sha256": "057e6764291156799ba85c14bf8835918880c986a6ef33fad28e7eb3ca651f68"
+    },
+    {
+      "path": "assets/raw/splits/patternnet.json",
+      "bytes": 3338462,
+      "sha256": "db971a7a485c8c1d2d2e6e962e8bbadb5ec36977b4947c42bdad3c0168db29e4"
+    },
+    {
+      "path": "assets/raw/splits/resisc45.json",
+      "bytes": 1677230,
+      "sha256": "9458dfb3e0c5cff5bfc305398d1237f2bb6bf6adb199c09229c3df0417ec1a70"
+    },
+    {
+      "path": "assets/raw/splits/rsicd.json",
+      "bytes": 467140,
+      "sha256": "9d31238de620ab89152bd9ed2897ff8b3552d7bddf88a9c00b0e342c86a96a97"
+    }
+  ],
+  "archive_sha256": "23f3544780f4df992a1ba7d61cee3d121e59eb35c1b4cedf257ae903a62f76ad"
+}
