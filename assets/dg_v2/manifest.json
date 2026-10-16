@@ -11,8 +11,7 @@
       "bytes": 5511,
       "sha256": "52a3c6bfb72cdcd3e37950750e46af2b42b5a5214041d2bc25eec8fde05daa46",
       "git_blob_sha": "19c3619d0b7c5e811b3cb20d5ab1ae056a216607",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/README.md"
+      "git_blob_verified": true
     },
     {
       "path": "files/oxford_pets.py",
@@ -20,8 +19,7 @@
       "bytes": 6674,
       "sha256": "2b1bc2469aab18aee2c3d44d9b0f08b311e136898be8595f28d7232a871b2c2a",
       "git_blob_sha": "a25862dfd3e72d63d9b60290846a856652826fa0",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/oxford_pets.py"
+      "git_blob_verified": true
     },
     {
       "path": "files/imagenet.py",
@@ -29,8 +27,7 @@
       "bytes": 5552,
       "sha256": "17a75d73587395040361b8a4b9bc954bca9615fcaeec981af848bf91ac039296",
       "git_blob_sha": "6fea3ed9ed3a12b294decfcb6e3fb055fb4b49e5",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/imagenet.py"
+      "git_blob_verified": true
     },
     {
       "path": "train.py",
@@ -38,8 +35,7 @@
       "bytes": 5257,
       "sha256": "69f0e0d52ec77a78a04c8e07b96fae705bae51130fd2c9bdfcf242e6dc8f1498",
       "git_blob_sha": "6669de34fe8eafae8f0e0968a1730a966dbfcca0",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/train.py"
+      "git_blob_verified": true
     },
     {
       "path": "scripts/domaingen_train.sh",
@@ -47,8 +43,7 @@
       "bytes": 590,
       "sha256": "4f9c68a434d89a661edcf7ab2494ff85a4c1c69790e2b0e17a65bc95edc375b2",
       "git_blob_sha": "089aaf5018cf9cb75dc0ec6e83ef7eec9ae9ed35",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/scripts/domaingen_train.sh"
+      "git_blob_verified": true
     },
     {
       "path": "scripts/domaingen_test.sh",
@@ -56,8 +51,7 @@
       "bytes": 740,
       "sha256": "4ade1c52f71afb67427ea433d1d4a1b35d0fa646cd65c9c22ad4648cf8118f53",
       "git_blob_sha": "2276807340397e9b71555b4cb7f7a56f08c251a5",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/scripts/domaingen_test.sh"
+      "git_blob_verified": true
     },
     {
       "path": "yaml/trainers/AppleNet/vit_b16_c4.yaml",
@@ -65,8 +59,7 @@
       "bytes": 596,
       "sha256": "106b601fd8a4ba1691e2b596ad2cf18694f12388f95c8d6a506a6786a4c2c0a7",
       "git_blob_sha": "f921d7eb6fcb53766f69593169685a48c0eb266e",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/yaml/trainers/AppleNet/vit_b16_c4.yaml"
+      "git_blob_verified": true
     },
     {
       "path": "json/patternnetv2.json",
@@ -74,8 +67,7 @@
       "bytes": 624830,
       "sha256": "2db9f8f14226c52f5d857e0d323b1cc21761ed2d1a378b7cd520e52d1c1b8df0",
       "git_blob_sha": "a2345dbbacb28e05739308e0858bca296152f7a0",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/json/patternnetv2.json"
+      "git_blob_verified": true
     },
     {
       "path": "files/patternnetv2.py",
@@ -83,8 +75,7 @@
       "bytes": 5197,
       "sha256": "46418cc4d33a2c5f004f029a5a2087912ca680bde4766dafaca8c49d37fc7050",
       "git_blob_sha": "0eddc7ac35387a8fd05d63c8fbdee26994e1a16b",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/patternnetv2.py"
+      "git_blob_verified": true
     },
     {
       "path": "files/patternnet.py",
@@ -92,8 +83,7 @@
       "bytes": 5196,
       "sha256": "e4c5023dd680c76791260c47db0d7da47370d14e608193cea3be1b1f2ecb67bc",
       "git_blob_sha": "7b38c4754f9f4793135893ad16ef85f7c2528ad4",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/patternnet.py"
+      "git_blob_verified": true
     },
     {
       "path": "yaml/datasets/patternnetv2.yaml",
@@ -101,8 +91,7 @@
       "bytes": 31,
       "sha256": "7a9c68865957d2cc8b245744944598445c708ee726f62f857629f458177c90aa",
       "git_blob_sha": "44e857fdba4d51f9c624085b4364aab326513a9e",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/yaml/datasets/patternnetv2.yaml"
+      "git_blob_verified": true
     },
     {
       "path": "json/rsicdv2.json",
@@ -110,8 +99,7 @@
       "bytes": 259152,
       "sha256": "191adf02a1a76d64e4e840fa8383bd141ab2b45f93ef29263a5d5fc25ea2ea77",
       "git_blob_sha": "8ab08fce29d878ca469aed629bca609674fbf953",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/json/rsicdv2.json"
+      "git_blob_verified": true
     },
     {
       "path": "files/rsicdv2.py",
@@ -119,8 +107,7 @@
       "bytes": 5184,
       "sha256": "68b9d5282223cc3406eaeb85100eaf5d17c8711613036312537b9b23ff820924",
       "git_blob_sha": "7aab3e973e53b4976a3fc08389bbfda9f02d848d",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/rsicdv2.py"
+      "git_blob_verified": true
     },
     {
       "path": "files/rsicd.py",
@@ -128,8 +115,7 @@
       "bytes": 5178,
       "sha256": "dbc5232352a73758387222b19a5ac803b3ff64c067deb268a094946f0d782089",
       "git_blob_sha": "55a7c7c44b0b79514ee4172bb1f97294988ab144",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/rsicd.py"
+      "git_blob_verified": true
     },
     {
       "path": "yaml/datasets/rsicdv2.yaml",
@@ -137,8 +123,7 @@
       "bytes": 26,
       "sha256": "5fe98b2cb2e3794d7c6566a39814653547337161a4f4282ff182dd4bfe10ca3a",
       "git_blob_sha": "590e38a9ff25034cc078b5a9963c834d2b5f444f",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/yaml/datasets/rsicdv2.yaml"
+      "git_blob_verified": true
     },
     {
       "path": "json/resisc45v2.json",
@@ -146,8 +131,7 @@
       "bytes": 546730,
       "sha256": "8e8c7bf1b316e0c6936dcba33a393903c52910ba375ef5fed47bf577319d0f49",
       "git_blob_sha": "653aba6a8eb748976bc2d4df290f53b7a349ee92",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/json/resisc45v2.json"
+      "git_blob_verified": true
     },
     {
       "path": "files/resisc45v2.py",
@@ -155,8 +139,7 @@
       "bytes": 5191,
       "sha256": "184c809f5dba5410f4bd324c4cb9ba2a6f440ef1f0c6ff1534c97b69f258f812",
       "git_blob_sha": "7e56f38ba0da92670be58b309e0c468dbff1ba84",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/resisc45v2.py"
+      "git_blob_verified": true
     },
     {
       "path": "files/resisc45.py",
@@ -164,8 +147,7 @@
       "bytes": 5185,
       "sha256": "b539f22a594c20f9a403439b37c9f3fdb7d84030c1c1f0f1ab5b7bc3954b7a7e",
       "git_blob_sha": "87cf5154b09053d533d9bb3fc7a8a51ffb90a9c9",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/resisc45.py"
+      "git_blob_verified": true
     },
     {
       "path": "yaml/datasets/resisc45v2.yaml",
@@ -173,8 +155,7 @@
       "bytes": 29,
       "sha256": "e3f103c63f5995b3726fb07b413899eb2cdcdb12a9bf9250736cc73f215fb3b3",
       "git_blob_sha": "4a85235d968091c5815a3a663e9a74c3dbd81081",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/yaml/datasets/resisc45v2.yaml"
+      "git_blob_verified": true
     },
     {
       "path": "json/mlrsnetv2.json",
@@ -182,8 +163,7 @@
       "bytes": 1970561,
       "sha256": "759e826e7f706afc822253947c4dd6926a9e5906664685b4f5d44dcdf12ca4d6",
       "git_blob_sha": "9f9b0de61e0dd0bc11dcd0f8ea040b2343cbbed3",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/json/mlrsnetv2.json"
+      "git_blob_verified": true
     },
     {
       "path": "files/mlrsnetv2.py",
@@ -191,8 +171,7 @@
       "bytes": 5188,
       "sha256": "7fb1eff5b9ca03003792285d669766492609e976303391309fa414322c884da0",
       "git_blob_sha": "e36abfe97cc29ed250c8a26519353b6e4fe73451",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/mlrsnetv2.py"
+      "git_blob_verified": true
     },
     {
       "path": "files/mlrsnet.py",
@@ -200,8 +179,7 @@
       "bytes": 5182,
       "sha256": "f94d2605c0c8641c33a257a04bba88f9eb033964169970b677ed05c7d225161b",
       "git_blob_sha": "0f7b82bdd5a3b2d0f07ebf77f558e7a0aba2e051",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/files/mlrsnet.py"
+      "git_blob_verified": true
     },
     {
       "path": "yaml/datasets/mlrsnetv2.yaml",
@@ -209,8 +187,7 @@
       "bytes": 28,
       "sha256": "f507fd7096143a8d506937d26d643a3dd3bb269f6b8510f73eca6ab8cd50f728",
       "git_blob_sha": "18f28cbdc440e1015ede1468cdd639db5be3ca48",
-      "git_blob_verified": true,
-      "local_path": "outputs/t2net_reproduction/references/dg_v2/official/yaml/datasets/mlrsnetv2.yaml"
+      "git_blob_verified": true
     }
   ],
   "metadata_only": true,
@@ -528,9 +505,7 @@
       "image_pixels_verified": false
     }
   ],
-  "image_reuse_status": "blocked_full_raw_reuse_pending_official_v2_images_or_author_identity_manifest",
   "runnable_now": false,
-  "t2net_author_exact_split_identity_confirmed": false,
   "this_audit_modified_core_source": false,
   "this_audit_used_ssh_or_gpu": false,
   "derived_and_receipt_files": [

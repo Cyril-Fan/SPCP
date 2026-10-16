@@ -1,6 +1,5 @@
 """Full held-out evaluation with vocabulary changes and immutable state audit."""
 import csv
-import io
 import json
 import math
 from pathlib import Path
@@ -12,7 +11,6 @@ from torch.utils.data import DataLoader
 
 from .checkpoint import file_hash, model_state_hash
 from .dataset_loader import SceneDataset
-from .config import COMMON, read_json, require
 
 
 def harmonic_mean(base, new):
@@ -95,11 +93,6 @@ def evaluate(model, records, classnames, taxonomy, preprocess, config, predictio
 
 
 def evaluate_protocol(model, bundle, targets, preprocess, config, output):
-    if config["runtime"].get("phase") == "screening":
-        if config["runtime"].get("source_selection_version", 1) == 2:
-            from .source_evaluation_v2 import evaluate_source_v2
-            return evaluate_source_v2(model, bundle, preprocess, config, output)
-        return evaluate_source_validation(model, preprocess, config, output)
     output = Path(output)
     taxonomy = json.loads(Path(config["data"]["taxonomy"]).read_text(encoding="utf-8"))
     task = config["data"]["task"]
@@ -126,69 +119,3 @@ def evaluate_protocol(model, bundle, targets, preprocess, config, output):
     model.set_classnames([taxonomy["classes"][name]["leaf"] for name in bundle.train_classnames],
                          [taxonomy["classes"][name]["template"] for name in bundle.train_classnames])
     return result
-
-
-def source_validation_records(config):
-    from .dataset_loader import _ImageResolver
-    manifest = read_json(config["source_validation"]["ids_file"])
-    rows = manifest["records"]
-    require(manifest.get("source_commit") == "42bc4654311da9773b59979dc71fe9f60534ab84" and len(rows) == 64,
-            "Source validation manifest is not the predeclared 64 image cohort")
-    official = {row[0]: (row[1], row[2]) for row in read_json(config["data"]["split"])["val"]}
-    require(len({row["id"] for row in rows}) == 64, "Duplicate source validation IDs")
-    counts = {name: 0 for name in COMMON}
-    resolver = _ImageResolver(Path(config["data"]["image_root"]), config["data"].get("image_layout", "auto"), "patternnetv2")
-    records = []
-    for row in rows:
-        label, name = official.get(row["id"], (None, None))
-        require(type(label) is int and row["label"] == label and row["classname"] == name and COMMON[label] == name,
-                "Source validation ID/label is outside official source val")
-        counts[name] += 1
-        path = resolver.resolve(row["id"])
-        ledger = config.get("_dg_pixel_ledgers", {}).get("PatternNetv2", {}).get(row["id"])
-        require(ledger is not None and Path(path).stat().st_size == ledger["bytes"] and file_hash(path) == ledger["sha256"],
-                "Source validation image differs from official v2 pixel proof")
-        records.append(dict(row, original_label=label, relative_path=row["id"], split="val", path=path))
-    require(set(counts.values()) == {4}, "Source validation must contain four images per common class")
-    return records
-
-
-class SourceValidationView:
-    """Fixed source-only corruption after the ordinary CLIP eval transform."""
-    def __init__(self, preprocess, view):
-        self.preprocess, self.view = preprocess, view
-
-    def __call__(self, image):
-        tensor = self.preprocess(image)
-        if self.view == "clean":
-            return tensor
-        mean = tensor.new_tensor((0.48145466, 0.4578275, 0.40821073))[:, None, None]
-        std = tensor.new_tensor((0.26862954, 0.26130258, 0.27577711))[:, None, None]
-        rgb = (tensor * std + mean).clamp(0, 1)
-        if self.view == "jpeg75":
-            from PIL import Image
-            import numpy as np
-            encoded = io.BytesIO()
-            Image.fromarray((rgb.permute(1, 2, 0).numpy() * 255).round().astype("uint8")).save(encoded, format="JPEG", quality=75)
-            encoded.seek(0)
-            with Image.open(encoded) as decoded:
-                rgb = torch.from_numpy(np.array(decoded.convert("RGB"), copy=True)).permute(2, 0, 1).float() / 255
-        elif self.view == "horizontal_rgb_gain_0.85_1.15":
-            rgb = (rgb * torch.linspace(0.85, 1.15, rgb.shape[-1])[None, None, :]).clamp(0, 1)
-        else:
-            raise ValueError("Unknown registered source validation view")
-        return (rgb - mean) / std
-
-
-def evaluate_source_validation(model, preprocess, config, output):
-    records = source_validation_records(config)
-    taxonomy = read_json(config["data"]["taxonomy"])
-    measured = {view: evaluate(model, records, COMMON, taxonomy, SourceValidationView(preprocess, view), config,
-                               Path(output) / ("source_val_" + view + "_predictions.csv"))
-                for view in config["source_validation"]["views"]}
-    return {"source": "measured", "task": "dg", "phase": "screening", "source_validation": measured,
-            "selection_score": sum(item["accuracy"] for item in measured.values()) / 3,
-            "selection_metric": "equal-weight clean/JPEG75/horizontal multiplicative RGB gain accuracy",
-            "source_validation_ids_sha256": config["source_validation"]["ids_sha256"],
-            "source_validation_count": 64, "extra_validation_labels": 64,
-            "target_evaluations": 0, "targets_consumed": False}

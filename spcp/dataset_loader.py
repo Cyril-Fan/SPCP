@@ -1,4 +1,4 @@
-"""Pinned scene splits and source-only supports for the T2Net reconstruction.
+"""Pinned scene splits and source-only supports for SPCP.
 
 Original numeric labels and image IDs are retained. Classifier labels are local
 to the returned vocabulary. This module never downloads, resplits, or opens
@@ -281,7 +281,7 @@ def load_dataset(config: dict, task: Optional[str] = None,
     partitions, names, split_sha = _read_split(split_path, expected_sha)
     labels = sorted(names)
     if data.get("base_fraction", 0.5) != 0.5 or data.get("base_rounding", "ceil") != "ceil":
-        raise ValueError("This reconstruction uses the declared CoOp ceil-half sorted-label split")
+        raise ValueError("B2N uses ceil-half sorted integer class labels")
     cut = math.ceil(len(labels) / 2)
     base_ids, new_ids = labels[:cut], labels[cut:]
     maps = {"all": {label: i for i, label in enumerate(labels)},
@@ -402,6 +402,6 @@ class SceneDataset(Dataset):
 
 
 class DatasetLoader:
-    """Namespace matching the planning diagrams; main uses load_dataset directly."""
+    """Convenience namespace for loading a scene-classification dataset."""
 
     load_dataset = staticmethod(load_dataset)

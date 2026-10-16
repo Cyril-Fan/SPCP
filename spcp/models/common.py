@@ -9,7 +9,7 @@ from numbers import Real
 import torch
 from torch.nn import functional as F
 
-from ..base_model import T2NetModel
+from ..base_model import PromptedCLIP
 
 def finite_float(value, name, lower=None, upper=None):
     if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(value):
@@ -45,14 +45,13 @@ def payload_hash(payload):
     visit(payload)
     return digest.hexdigest()
 
-class MethodModel(T2NetModel):
+class MethodModel(PromptedCLIP):
     method_name = "UNSET"
 
     def __init__(self, clip_model, clip_module, config):
         requested = copy.deepcopy(config.get("method", {}))
         if requested.get("name", self.method_name) != self.method_name:
             raise ValueError("Model/config method mismatch")
-        # This constructor is byte-preserving original-v3 initialization.
         super().__init__(clip_model, clip_module, config)
         self.method_config = requested
         self.method_config["name"] = self.method_name
@@ -76,7 +75,7 @@ class MethodModel(T2NetModel):
         teacher = self.teacher_target(images, output, ids, epoch)
         metric = getattr(self, "alignment_metric", "cosine")
         if metric != "cosine":
-            raise ValueError("The fixed-v3 default and method comparisons require cosine alignment")
+            raise ValueError("SPCP uses cosine alignment")
         ce = F.cross_entropy(output["logits"].float(), labels)
         text = (1 - F.cosine_similarity(output["text_features"].float(), self.reference_text().float(), dim=-1)).mean()
         image = (1 - F.cosine_similarity(raw.float(), teacher.detach().float(), dim=-1)).mean()

@@ -1,4 +1,4 @@
-"""Fixed-v3 Adam/AMP training with strict epoch-boundary resume."""
+"""SPCP Adam/AMP training with strict epoch-boundary resume."""
 import json
 import math
 from pathlib import Path
@@ -63,16 +63,8 @@ class Trainer:
                          "frozen_backbone_before": self.initial_backbone,
                          "trainable_parameters": {name: int(p.numel()) for name, p in self.parameters},
                          "config": {k: v for k, v in config.items() if not k.startswith("_")},
-                         "checkpoint_selection": "final_epoch", "paper_exact_protocol_confirmed": False,
+                         "checkpoint_selection": "final_epoch",
                          "resume_contract": "completed epoch only; same configuration/device/worker recipe; no mid-batch cursor"}
-        if config['runtime'].get('phase') == 'cpta_eta':
-            from .eta_protocol import contract
-            self.metadata['loss_contract'] = contract(config['method']['eta'])
-            write_json(self.output / 'loss_contract.json', self.metadata['loss_contract'])
-        if config['runtime'].get('phase') == 'cpta_system':
-            from .system_protocol import contract
-            self.metadata['loss_contract'] = contract(config['method']['variant'])
-            write_json(self.output / 'loss_contract.json', self.metadata['loss_contract'])
         import torchvision
         import PIL
         self.metadata["environment"] = {"python": platform.python_version(), "torch": torch.__version__,
@@ -85,21 +77,7 @@ class Trainer:
                                  [self.taxonomy["classes"][name]["template"] for name in self.bundle.train_classnames])
 
     def _store_preparation(self, saved=None):
-        receipt = self.model.method_state_dict().get("receipt", {})
-        self.metadata["method_preparation"] = receipt
-        if self.config["method"]["name"] != "CPTA_SYSTEM":
-            return
-        # Re-export the original fixed state on resume/replay; never recalibrate.
-        for name, key in (("loss_contract", "loss_contract"), ("initialization", "initialization"), ("gradient_match", "gradient_match")):
-            if key in receipt:
-                write_json(self.output / (name + ".json"), receipt[key])
-        cost = saved.get("metadata", {}).get("method_preparation_cost") if saved else None
-        cost_path = self.output / "preparation_cost.json"
-        if cost is None and cost_path.is_file():
-            cost = json.loads(cost_path.read_text(encoding="utf-8"))
-        if cost is not None:
-            self.metadata["method_preparation_cost"] = cost
-            write_json(cost_path, cost)
+        self.metadata["method_preparation"] = self.model.method_state_dict().get("receipt", {})
 
     def _validate_saved(self, saved, final=False):
         if saved.get("run_kind") != "training":
@@ -131,78 +109,35 @@ class Trainer:
             raise RuntimeError("Frozen CLIP audit failed during checkpoint finalization")
         return audit
 
-    def _is_selected_formal_seed1(self):
-        return (self.config["runtime"].get("phase") == "formal" and
-                self.config["data"]["task"] == "dg" and self.config["_seed"] == 1 and
-                not self.config["runtime"].get("control_overrides"))
 
-    def _selected_source_fit(self, checkpoint, already_copied=False):
-        selected = self.config.get("_selection_receipt", {}).get("selected_output")
-        if not self._is_selected_formal_seed1() or selected is None or getattr(self.model, "inference_off", False):
-            raise ValueError("Formal source-fit reuse requires unchanged DG seed1 inference and an explicit selected source receipt")
-        selected = absolute_path(selected)
-        source_checkpoint = selected / "final.pt"
-        if selected == absolute_path(self.output) or not completed_run(selected, self.config["_request_identity"]):
-            raise ValueError("Selected source fit is not independently content-verified for this exact configuration")
-        expected = file_hash(source_checkpoint)
-        if (not already_copied and absolute_path(checkpoint) != source_checkpoint) or file_hash(checkpoint) != expected:
-            raise ValueError("Formal DG seed1 checkpoint differs from the selected source checkpoint SHA")
-        return {"source_fit_reused": True, "source_fit_reused_from": str(source_checkpoint),
-                "source_checkpoint_sha256": expected}
 
     def _validate_recovery_checkpoint(self, checkpoint, saved, final=False):
         self._validate_saved(saved, final=final)
-        if self._is_selected_formal_seed1():
-            if not final:
-                raise ValueError("Formal selected DG seed1 requires its copied source final checkpoint, never epoch continuation")
-            return self._selected_source_fit(checkpoint, already_copied=True)
-        return None
 
-    def evaluate_checkpoint(self, checkpoint, finalize_reused=False, recover_final=False, recovery_origin="final_checkpoint"):
+    def evaluate_checkpoint(self, checkpoint, recover_final=False, recovery_origin="final_checkpoint"):
         saved = load_checkpoint(checkpoint)
-        self._validate_saved(saved, final=True)
-        if recover_final and (absolute_path(checkpoint) != absolute_path(self.output / "final.pt") or getattr(self.model, "inference_off", False)):
-            raise ValueError("Final recovery must evaluate the same committed final checkpoint without an inference ablation")
-        selected_reuse = (self._selected_source_fit(checkpoint) if finalize_reused else
-                          self._validate_recovery_checkpoint(checkpoint, saved, final=True) if recover_final else None)
+        self._validate_recovery_checkpoint(checkpoint, saved, final=True)
+        if recover_final and absolute_path(checkpoint) != absolute_path(self.output / "final.pt"):
+            raise ValueError("Recovery must use this output's final checkpoint")
         restore_model(self.model, saved)
-        if recover_final:
-            audit = self._recovery_audit(saved, recovery_origin)
-            if selected_reuse:
-                audit.update(selected_reuse)
-                write_json(self.output / "audit.json", audit)
         self._store_preparation(saved)
-        if selected_reuse:
-            self.metadata.update(selected_reuse)
+        if recover_final:
+            self._recovery_audit(saved, recovery_origin)
         result = evaluate_protocol(self.model, self.bundle, self.targets, self.preprocess, self.config, self.output)
         result.update(completed_epochs=saved["completed_epochs"], model_name=self.config["method"]["name"],
-                      state_sha256=saved["state_sha256"], inference_off=bool(getattr(self.model, "inference_off", False)),
-                      training_seconds=0.0 if selected_reuse else saved.get("training_seconds"),
-                      source_training_seconds=saved.get("training_seconds"))
-        if selected_reuse:
-            result.update(selected_reuse)
+                      state_sha256=saved["state_sha256"], training_seconds=saved.get("training_seconds"))
         if recover_final:
             result.update(recovery_without_optimizer_steps=True, recovery_origin=recovery_origin,
-                          missing_historical_measurements=["first_step_gradient_norms", "median_step_seconds", "peak_memory_bytes"],
-                          paper_exact_protocol_confirmed=False)
+                          missing_historical_measurements=["first_step_gradient_norms", "median_step_seconds", "peak_memory_bytes"])
         write_json(self.output / "metadata.json", self.metadata)
         write_json(self.output / "results.json", result)
-        if finalize_reused:
-            import shutil
-            if self.config["runtime"].get("phase") != "formal" or getattr(self.model, "inference_off", False):
-                raise ValueError("Only unchanged formal inference may finalize a reused source fit")
-            shutil.copyfile(checkpoint, self.output / "final.pt")
-            write_json(self.output / "audit.json", {**selected_reuse, "state_sha256": saved["state_sha256"]})
-            finish_run(self.output, self.config["_request_identity"], saved["state_sha256"])
-        elif recover_final:
+        if recover_final:
             finish_run(self.output, self.config["_request_identity"], saved["state_sha256"])
         write_json(self.output / "status.json", {"status": "evaluation_complete", "checkpoint": str(absolute_path(checkpoint))})
         return result
 
     def run(self, resume=None):
         train, device = self.config["train"], self.config["train"]["device"]
-        if self._is_selected_formal_seed1():
-            raise ValueError("Formal DG seed1 must evaluate the selected source fit; a separate source training fit is prohibited")
         if (self.output / "final.pt").exists() or (self.output / "complete.json").exists():
             raise FileExistsError("Final fit exists; never retrain or overwrite it. Replay evaluation into a fresh output if necessary")
         saved = None
@@ -242,7 +177,7 @@ class Trainer:
                 raise FileExistsError("Partial run exists; explicit --resume is required")
             before = capture_rng(generator, device)
             self.model.prepare(self.bundle, self.preprocess, self.config["_seed"], self.output)
-            if self.config["method"]["name"] in ("PTR", "BMC", "CPTA", "CPTA_SYSTEM"):
+            if self.config["method"]["name"] == "SPCP":
                 self.model.method_receipt["source_assets"] = {"taxonomy_sha256": self.metadata["taxonomy_sha256"],
                     "clip_source_hashes": self.metadata["clip_source_hashes"],
                     "clip_checkpoint_sha256": self.metadata["clip_checkpoint_sha256"],
@@ -374,7 +309,7 @@ class Trainer:
         result = evaluate_protocol(self.model, self.bundle, self.targets, self.preprocess, self.config, self.output)
         result.update(completed_epochs=completed, model_name=self.config["method"]["name"],
                       training_seconds=audit["training_seconds"], elapsed_seconds=prior_seconds + time.monotonic() - start,
-                      state_sha256=model_state_hash(self.model), paper_exact_protocol_confirmed=False)
+                      state_sha256=model_state_hash(self.model))
         write_json(self.output / "results.json", result)
         finish_run(self.output, self.config["_request_identity"], result["state_sha256"])
         write_json(self.output / "status.json", {"status": "completed", "completed_epochs": completed, "seconds": result["elapsed_seconds"]})

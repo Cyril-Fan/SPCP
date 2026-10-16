@@ -1,92 +1,123 @@
 {
-  "schema": "spcp.source_identity.v2",
-  "scope": "Full SPCP and B2N/CD/DG only; no component or text-objective ablation release",
+  "schema": "spcp.source_identity.v3",
+  "scope": "SPCP runtime, setup scripts, tests, and B2N/CD/DG configs",
+  "method": "SPCP",
   "files": [
     {
-      "path": "t2methods/base_model.py",
-      "sha256": "4269e32526e8fa9910e6a7385b6340c57edec5b12317ea9335e1dc01683ea9fe"
+      "path": "spcp/__init__.py",
+      "sha256": "0846e4d86845733e3536bf2415cfab56a8c4a29e36e5684024a24057775ee275"
     },
     {
-      "path": "t2methods/checkpoint.py",
-      "sha256": "ce6609a943d67beb1360f1e6314d546c4fa0bf158d46e34d5a9837bda74d9f3a"
+      "path": "spcp/__main__.py",
+      "sha256": "3129adff95e0f38b87ab34cddfc27082c7892bcaec267ff5d40f160fdf55b44a"
     },
     {
-      "path": "t2methods/cli.py",
-      "sha256": "3e37b5b81b6f6275b20a2bc8e6c7fa86852612b312872069c795d8bb8186f7c3"
+      "path": "spcp/base_model.py",
+      "sha256": "1310cc248dfb388d7b2d3d851db35bcc16a9a2efa747d70a376878d07603253a"
     },
     {
-      "path": "t2methods/cpta_completion.py",
-      "sha256": "96c674680c0f043bd25b71c26be8020d032c9e18c402d1d30d0fbba12884d3ab"
+      "path": "spcp/checkpoint.py",
+      "sha256": "5a69e25aaf7c3edb7304ec37367553b04f0d4548967904507cd9cf9b938e4b2b"
     },
     {
-      "path": "t2methods/dataset_loader.py",
-      "sha256": "4535daa39bdd1f90b90c50422c4207ae474c2f36a1a470b3c0c12692dd5cedba"
+      "path": "spcp/cli.py",
+      "sha256": "d4b8c674806c5cc24640c821b2f8071270d09fcb750ca37d55d89f9f3aef2e80"
     },
     {
-      "path": "t2methods/dg_screen3.py",
-      "sha256": "39090c6f185fffa54f3992eaa4b22acafbbcb6c735bbc47a5ab3e01c52bc349c"
+      "path": "spcp/config.py",
+      "sha256": "583ddb464ccc6674e1a1e55cdbfb88c9ade6d790a70ad20efe0f9f500c9f0e05"
     },
     {
-      "path": "t2methods/evaluation.py",
-      "sha256": "058d6a7bf03aa8f08f9b10dbc7214b3c2fe8d41795fcbbd7f432f441c54e3d85"
+      "path": "spcp/dataset_loader.py",
+      "sha256": "4c7269c1ecae02feb019760c4f68b3596b592dd1eed5d2ec73f380fdbbaeca0e"
     },
     {
-      "path": "t2methods/round2_settings.py",
-      "sha256": "dd868eb80183ee0e310613a6e779444bf4396372b1f12efde1a2a43d307eec01"
+      "path": "spcp/evaluation.py",
+      "sha256": "51da9ffd7f1fb7a76529df5ec03ec8deb1193f5edad63a2b94efaff09b374b2e"
     },
     {
-      "path": "t2methods/round2_views.py",
-      "sha256": "acb61c252e2937d22aaabc3304ddb9f1e2e5a1579a2415efeb79b0f49d554ae2"
+      "path": "spcp/models/__init__.py",
+      "sha256": "5ee0da7958389bc1f212a208d472ccaf7e973ff8bd762e0413e50c5f45aeb8bb"
     },
     {
-      "path": "t2methods/selection_protocol_v2.py",
-      "sha256": "e162e9a647bb49c5a8e9624470efe9fbf068b21868f82383e1054118ecab2ad4"
+      "path": "spcp/models/common.py",
+      "sha256": "704d4f78adf4d57beecfdb134525aabf98d96d11f1367d1b848f3a8667753f8b"
     },
     {
-      "path": "t2methods/source_evaluation_v2.py",
-      "sha256": "521693dcbbb552423138f4ca09fefe0e42d2d60b4017988ac03a2148a6e9f34f"
+      "path": "spcp/models/source_graph.py",
+      "sha256": "c896854dd5f913319be977b7978700d7baff1f45e188af2b8c4368695974245a"
     },
     {
-      "path": "t2methods/source_selection_v2.py",
-      "sha256": "a58d0a4c85384f1a17da605f36f5895f653e3510aeb1c23a9806373764612bc8"
+      "path": "spcp/models/spcp.py",
+      "sha256": "ae74043f08a6f741ed2121a62ded1db2aabe1ee083d5a8da457f3367543683b1"
     },
     {
-      "path": "t2methods/statistics.py",
+      "path": "spcp/settings.py",
+      "sha256": "443ccfd25cad5aff031a17fcc4df86b5d647b956c68ad4655b276e76b1e7eff3"
+    },
+    {
+      "path": "spcp/statistics.py",
       "sha256": "091cce00db781916450662d63878fcdd2ed9890bdcb6018e839bbaabe3785f08"
     },
     {
-      "path": "t2methods/style_views.py",
-      "sha256": "780cc254612dcae8054c97bf64eeba4d490c3e963020edd5d335a3e65aab9c79"
+      "path": "spcp/training.py",
+      "sha256": "0d81e0ddebc6bd26c998ec9638bf7fd66e06557ffa758009d33ae12f25a0758a"
     },
     {
-      "path": "t2methods/summarize.py",
-      "sha256": "a094d59bfdce0800635f87b0b37956b79cf7be862b8017074f250fbf1a53bc91"
+      "path": "scripts/bind_external_assets.py",
+      "sha256": "172128c58f239086057305111852e9a987ca5ed72ac59f3320c22ccbe14cafb8"
     },
     {
-      "path": "t2methods/training.py",
-      "sha256": "e862056fcf35a026ebf19dd1040967c90531eb3c974dd8918679922d249fc70a"
+      "path": "scripts/check_release.py",
+      "sha256": "f62794a900d3b5705d520db20140919de44021b5854b2bd0ae8d4ac94e9019f1"
     },
     {
-      "path": "t2methods/__init__.py",
-      "sha256": "cd5a8f66a9910f9801c95b333a27c636c7b8baa23e7303c17921a15e1ec5e3fa"
+      "path": "scripts/download_clip.py",
+      "sha256": "224f68de153bfd62e03082920e97441bc50c8c4b3b657913249d9ee4bf605a9a"
     },
     {
-      "path": "t2methods/models/common.py",
-      "sha256": "d6852d6c5e14cf44b25deabded490b664e47947932271fa7dba59f74997d7730"
+      "path": "scripts/prepare_protocol_assets.py",
+      "sha256": "bdbaf95392c783f96a59fb0eede987ebf285e25c7c02cd3128b1c8a2f3edef9d"
     },
     {
-      "path": "t2methods/models/cpta.py",
-      "sha256": "51aed3c80a6b27581562d52698299188b4910ac410b81e2275e8688ba0336c63"
+      "path": "tests/__init__.py",
+      "sha256": "7e5bbc4df778b21cf83fc7cc799862aff714d458774bb08bcbedf3daab3dd7b3"
     },
     {
-      "path": "t2methods/models/source_graph.py",
-      "sha256": "c896854dd5f913319be977b7978700d7baff1f45e188af2b8c4368695974245a"
+      "path": "tests/fake_clip.py",
+      "sha256": "428ad3e57ba074e7018294e21a8046abc25590c572287237113a6ee5ec3e54b8"
+    },
+    {
+      "path": "tests/test_integration.py",
+      "sha256": "b706cf669070f32bc02fef8863f0e9799ed13ccab6f86b67ac546c72dfddb619"
+    },
+    {
+      "path": "tests/test_spcp.py",
+      "sha256": "f1846bbea4f89bbec01db7f0d064e7b6289906604e6f8d5ce4ced183577f1a29"
+    },
+    {
+      "path": "configs/SPCP_b2n_mlrsnet.yaml",
+      "sha256": "47711e357a2106dddb622284b1d490cf5f4e305bfae1be1936205a63354d2abf"
+    },
+    {
+      "path": "configs/SPCP_b2n_patternnet.yaml",
+      "sha256": "af408ef3d97814d499f9dbb012cf277cc5e42ee4036d22fd9f492ad0d7dc48a2"
+    },
+    {
+      "path": "configs/SPCP_b2n_resisc45.yaml",
+      "sha256": "854f2d3c724deefe3caddcac6b68852332be0b7dca283e6f7319e6f25582caed"
+    },
+    {
+      "path": "configs/SPCP_b2n_rsicd.yaml",
+      "sha256": "a350518da7b05fcc3cc649e3b6206956e22dc2100684aa462dc737019547e0a0"
+    },
+    {
+      "path": "configs/SPCP_cd_patternnet.yaml",
+      "sha256": "ac52489541b73973e76b970e63175eec5d9a4374c05043b959a78c9f3680a4f5"
+    },
+    {
+      "path": "configs/SPCP_dg_patternnetv2.yaml",
+      "sha256": "630f381816df143b3a78080ed49cc1045e105ae9e65ccee7b3964a1c9cf9fd36"
     }
-  ],
-  "public_interface_changes": [
-    "t2methods/config.py: restrict method and phases to full SPCP",
-    "t2methods/models/__init__.py: expose full SPCP only",
-    "spcp: public alias/CLI; no tensor or loss changes"
-  ],
-  "historical_runtime_method": "CPTA"
+  ]
 }

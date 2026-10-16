@@ -4,17 +4,17 @@
 
 | Concept / 概念 | File / 文件 |
 |---|---|
-| Frozen CLIP and cross-modal prompt interaction X | `t2methods/base_model.py` |
-| Individual text anchors A and same-input image alignment I | `t2methods/models/common.py` |
-| Fixed source-class neighbor graph | `t2methods/models/source_graph.py` |
-| Full coordinate differences E; `CE + I + 0.5 A + 0.5 E` | `t2methods/models/cpta.py` |
-| Training, evaluation and checkpoint restoration | `training.py`, `evaluation.py`, `checkpoint.py` in `t2methods/` |
-| Frozen data/CLIP contracts | `t2methods/config.py` |
+| Frozen CLIP and cross-modal prompt interaction X | `spcp/base_model.py` |
+| Individual text anchors A and same-input image alignment I | `spcp/models/common.py` |
+| Fixed source-class neighbor graph | `spcp/models/source_graph.py` |
+| Full coordinate differences E; `CE + I + 0.5 A + 0.5 E` | `spcp/models/spcp.py` |
+| Training, evaluation and checkpoint restoration | `training.py`, `evaluation.py`, `checkpoint.py` in `spcp/` |
+| Frozen data/CLIP contracts | `spcp/config.py` |
 | Public CLI / 对外入口 | `python -m spcp` |
 
-SPCP jointly integrates text semantic preservation S, image alignment I, and prompt interaction X. S combines A with E. The prompt, graph and loss kernels retain the verified original source bytes; the public model registry and validator expose full SPCP only. The historical runtime ID is `CPTA`. The older base class name `T2NetModel` denotes a local independent prompt reconstruction, not official T2Net author code. Source hashes and interface changes are recorded in `source_identity.json`.
+SPCP jointly integrates text semantic preservation S, image alignment I, and prompt interaction X. S combines individual class anchoring A with full coordinate differences E. All model and runtime interfaces use the SPCP name. The source inventory in `source_identity.json` identifies this release; numerical equivalence checks cover loss values, forward outputs and trainable gradients after the naming cleanup.
 
-S/I/X 共同组成完整方法，S 包含 A 与 E。提示、源图及损失计算核心保持原始字节，对外模型注册及验证接口限制为完整 SPCP。内部历史类名不表示获取了 T2Net 官方源码。源码身份及接口变动另有清单。
+S/I/X 共同组成完整方法，S 包含逐类锚点 A 与完整坐标差 E。模型与运行接口统一使用 SPCP。固定描述、类别映射、图像身份和结果数值均属于复现协议。
 
 ## Fixed protocols / 固定协议
 
@@ -32,7 +32,7 @@ All use 16-shot source supports, seeds 1/2/3, CLIP ViT-B/16, 16 prompt tokens, 1
 
 Compute B2N HM for each dataset and seed, then average the four datasets within a seed and finally average the three seed aggregates. CD/DG target averages exclude PatternNet/PatternNetv2 source accuracy. Sample SD uses `ddof=1`. Do not reconstruct HM from already rounded mean Base/New values.
 
-Existing full-method summaries are in `results/`; these are saved experiments, not newly executed publication tests. The historical choice η=0.50 followed exploratory DG screening informed by target results. `assets/admissions/cpta_eta050.json` preserves that provenance; it is not an independent source-only selection receipt. The reported DG result is not independent validation of a parameter-selection rule. The public release exposes only the full-method training/evaluation tasks requested by the authors.
+Existing full-method summaries are in `results/`; these are saved experiments, not newly executed publication tests. The historical choice η=0.50 followed exploratory DG screening informed by target results. `assets/admissions/spcp_eta050.json` preserves that provenance; it is not an independent source-only selection receipt. The reported DG result is not independent validation of a parameter-selection rule. The public release exposes only the full-method training/evaluation tasks requested by the authors.
 
 HM 先按数据集和 seed 计算再汇总，CD/DG 的目标域均值不包含源域。`results/` 为既有完整方法结果。本方法 η=0.50 的历史选择包含探索性的目标域信息，不能表述为独立源域验证。发布检查不增加真实实验或新的显著性结论。
 

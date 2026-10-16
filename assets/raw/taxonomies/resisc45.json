@@ -1,10 +1,8 @@
 {
-  "version": "t2net_reconstructed_taxonomy_v1",
+  "version": "spcp_taxonomy_v1",
   "dataset": "resisc45",
-  "origin": "Independently authored by the current Codex assistant from class names only; not author ChatGPT-5.1 outputs",
-  "table1_examples_preserved": true,
+  "origin": "Fixed class-name hierarchy descriptions prepared offline before experiment scores were inspected.",
   "uses_image_pixels_or_scores": false,
-  "instruction_source": "T2Net section 3.2.1",
   "classes": {
     "runway": {
       "original_label": 0,

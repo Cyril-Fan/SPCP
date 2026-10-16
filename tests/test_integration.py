@@ -13,15 +13,41 @@ import numpy as np
 from PIL import Image
 import torch
 from torchvision import transforms
-from t2methods.models import build_model
-from t2methods.checkpoint import load_checkpoint, model_state_hash, completed_run, file_hash, archive_failed_attempt, write_json
-from t2methods.training import Trainer, seed_everything
-from t2methods.evaluation import evaluate_protocol
+from spcp.models import build_model
+from spcp.checkpoint import load_checkpoint, model_state_hash, completed_run, file_hash, archive_failed_attempt, write_json
+from spcp.training import Trainer, seed_everything
+from spcp.evaluation import evaluate_protocol
 from tests.fake_clip import FakeClip, CLIP_MODULE, config as model_config
 
 torch.set_num_threads(1)
 
 class IntegrationChecks(unittest.TestCase):
+    def test_dg_seed_one_can_train_and_replay(self):
+        scratch = Path(os.path.abspath(__file__)).parents[1] / 'test_scratch'
+        scratch.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=str(scratch)) as directory:
+            root = Path(directory)
+            bundle, config = self.fixture(root / 'source', 'SPCP')
+            config['data']['task'] = 'dg'
+            targets = []
+            for index in range(3):
+                target = SimpleNamespace(train=[], val=[], test=bundle.new_test,
+                                         test_classnames=bundle.new_classnames,
+                                         metadata={'role': 'target', 'support_ids': []})
+                targets.append(({'dataset': 'Target%d' % index,
+                                 'taxonomy': config['data']['taxonomy']}, target))
+            output = root / 'run'
+            output.mkdir()
+            result = Trainer(self.model('SPCP', config), bundle, config, output, targets).run()
+            self.assertEqual(result['completed_epochs'], 2)
+            self.assertEqual(len(result['targets']), 3)
+            replay = root / 'replay'
+            replay.mkdir()
+            restored = Trainer(self.model('SPCP', config), bundle, config, replay, targets)
+            replay_result = restored.evaluate_checkpoint(output / 'final.pt')
+            self.assertEqual(result['target_mean'], replay_result['target_mean'])
+            self.assertEqual(result['state_sha256'], replay_result['state_sha256'])
+
     def fixture(self, root, method):
         root.mkdir(); classes=["class0","class1","class2"]
         taxonomy={"classes":{name:{"leaf":name,"template":"a photo of land "+name+"."} for name in classes}}
@@ -57,7 +83,7 @@ class IntegrationChecks(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=str(scratch)) as directory:
             Path(os.path.abspath(directory)).relative_to(scratch)
             root=Path(directory)
-            for method in ["CPTA"]:
+            for method in ["SPCP"]:
                 with self.subTest(method=method):
                     bundle,config=self.fixture(root/method,method)
                     full=root/method/"full"; partial=root/method/"partial"; full.mkdir(); partial.mkdir()
@@ -67,7 +93,7 @@ class IntegrationChecks(unittest.TestCase):
                     self.assertTrue(json.loads((full/"audit.json").read_text())["backbone_unchanged"])
                     self.assertTrue((full/"base_predictions_scores.npz").is_file())
                     self.assertTrue((full/"mechanism_diagnostics.jsonl").is_file())
-                    import t2methods.training as training
+                    import spcp.training as training
                     original_save=training.save_checkpoint
                     def save_and_interrupt(path,state):
                         original_save(path,state)

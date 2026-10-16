@@ -1,7 +1,7 @@
 {
-  "version": "t2net_independent_dg_v2_taxonomy_v1",
+  "version": "spcp_dg_taxonomy_v1",
   "dataset": "shared_official_v2_16_classes",
-  "origin": "Names-only inheritance of the frozen v3 PatternNet/NWPU taxonomies before any DG scores; not author ChatGPT-5.1 outputs",
+  "origin": "Fixed class-name hierarchy descriptions prepared offline before experiment scores were inspected.",
   "uses_image_pixels_or_scores": false,
   "canonical_alias_scope": "Taxonomy text only; no official image ID/classname/label is changed",
   "official_common_classnames": [

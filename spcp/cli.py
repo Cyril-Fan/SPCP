@@ -9,7 +9,7 @@ import uuid
 from .checkpoint import (absolute_path, archive_failed_attempt, completed_run, failed_retry_kind,
                          file_hash, interrupted_retry_kind, load_checkpoint, record_interruption,
                          validate_epoch_resume, write_json)
-from .config import CLIP_SOURCE_SHA, apply_asset_binding, apply_source_selection, load_config, target_config, validate_config, verify_dg_pixels
+from .config import CLIP_SOURCE_SHA, apply_asset_binding, load_config, target_config, validate_config, verify_dg_pixels
 
 
 def parser():
@@ -21,7 +21,6 @@ def parser():
         child.add_argument("--seed", type=int, default=1)
         child.add_argument("--device", choices=("cpu", "cuda"))
         child.add_argument("--workers", type=int)
-        child.add_argument("--selection-receipt", help="Explicit source-only screening receipt freezing the formal method configuration")
         child.add_argument("--asset-binding", help="One offline binding for external CLIP/BPE/weights and optional image roots")
         if command != "validate-config":
             child.add_argument("--output")
@@ -34,8 +33,6 @@ def parser():
             child.add_argument("--skip-completed", action="store_true")
         if command == "evaluate":
             child.add_argument("--checkpoint", required=True)
-            child.add_argument("--inference-off", action="store_true", help="Replay method-off inference without a new fit")
-            child.add_argument("--finalize-reused-fit", action="store_true", help="Mark a matching selected source fit as formally evaluated without retraining")
     return result
 
 
@@ -48,7 +45,7 @@ def offline_clip(config):
             raise FileNotFoundError("Complete original offline CLIP source is required: " + str(package / name))
     actual_source = {p.relative_to(root).as_posix(): file_hash(p) for p in sorted(package.rglob("*.py"))}
     if actual_source != CLIP_SOURCE_SHA:
-        raise ValueError("External CLIP source SHA inventory differs from the sealed-v3 original code")
+        raise ValueError("External CLIP source SHA inventory differs from the pinned CLIP source")
     bpe_expected = config["runtime"].get("clip_bpe_sha256")
     if not isinstance(bpe_expected, str) or len(bpe_expected) != 64 or file_hash(package / "bpe_simple_vocab_16e6.txt.gz") != bpe_expected:
         raise ValueError("Declare and verify the external official BPE asset SHA before real execution")
@@ -92,15 +89,12 @@ def execute(args):
     config = load_config(args.config, args.seed, overrides)
     if args.asset_binding:
         apply_asset_binding(config, args.asset_binding)
-    if args.selection_receipt:
-        apply_source_selection(config, args.selection_receipt)
     if args.command == "validate-config":
         value = validate_config(config)
         value["request_identity"] = config["_request_identity"]
         print(json.dumps(value, ensure_ascii=False), flush=True)
         return value
-    if args.command == "evaluate" and args.inference_off and config["method"]["name"] != "SGRP":
-        raise ValueError("--inference-off is implemented only for SGRP; SCA/LSP must use their explicitly declared controls")
+
     default_name = "%s_%s_%s_seed%d" % (config["method"]["name"], config["data"]["task"], config["data"]["dataset"], args.seed)
     output = absolute_path(args.output or Path(config["runtime"]["output_root"]) / default_name)
     if args.command == "train" and getattr(args, "skip_completed", False) and completed_run(output, config["_request_identity"]):
@@ -141,16 +135,14 @@ def execute(args):
         archive_failed_attempt(output, retry_kind)
         archived_retry = True
     try:
-        if config["runtime"].get("require_source_selection", False) and not args.selection_receipt:
-            raise ValueError("Formal execution requires an explicit source-only selection receipt; dry-run defaults are placeholders")
         # Imports below are intentionally below argument/config/output checks.
         from .dataset_loader import load_dataset
         from .models import build_model
         from .training import Trainer, seed_everything
         seed_everything(args.seed, config["train"]["device"])
         bundle = load_dataset(config, seed=args.seed)
-        targets = ([] if config["runtime"].get("phase") == "screening" else
-                   [(target, load_dataset(target_config(config, target), task="eval", seed=args.seed)) for target in config.get("targets", [])])
+        targets = [(target, load_dataset(target_config(config, target), task="eval", seed=args.seed))
+                   for target in config.get("targets", [])]
         if config["data"]["task"] == "dg":
             verify_dg_pixels(config, [bundle] + [item[1] for item in targets])
         clip_model, clip_module, preprocess = offline_clip(config)
@@ -169,12 +161,7 @@ def execute(args):
         if retry_kind == "evaluate_final":
             result = trainer.evaluate_checkpoint(output / "final.pt", recover_final=True)
         elif args.command == "evaluate":
-            if args.finalize_reused_fit:
-                selected = config.get("_selection_receipt", {}).get("selected_output")
-                if config["data"]["task"] != "dg" or args.seed != 1 or selected is None or absolute_path(args.checkpoint) != absolute_path(Path(selected) / "final.pt"):
-                    raise ValueError("Formal fit reuse must use exactly the selected source-screening DG seed1 checkpoint")
-            model.inference_off = args.inference_off
-            result = trainer.evaluate_checkpoint(absolute_path(args.checkpoint), finalize_reused=args.finalize_reused_fit)
+            result = trainer.evaluate_checkpoint(absolute_path(args.checkpoint))
         else:
             result = trainer.run(resume=resume)
         print(json.dumps({"output": str(output), "result": result}, ensure_ascii=False), flush=True)

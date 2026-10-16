@@ -2,7 +2,6 @@
   "repository": "https://github.com/mainaksingha01/APPLeNet",
   "source_commit": "42bc4654311da9773b59979dc71fe9f60534ab84",
   "metadata_verified": true,
-  "t2net_author_exact_split_identity_confirmed": false,
   "common_classnames": [
     "baseballfield",
     "sparse_residential",
@@ -361,21 +360,5 @@
     "fewshot_pickle": "<dataset_dir>/shots/shot_<NUM_SHOTS>-seed_<SEED>.pkl",
     "missing_json_fallback": "read_and_split_data is incomplete in this commit; use the official JSON, do not regenerate it.",
     "external_sampler_dependency": "DatasetBase from external Dassl.pytorch; README link is unpinned, so exact dependency snapshot is not established by this repository alone."
-  },
-  "t2net_recipe_scope": {
-    "dg_epochs": 10,
-    "main_seed_count": 3,
-    "shot_count": 16,
-    "shot_count_status": "Reconstruction assumption supported by APPLeNet protocol, not explicitly stated for T2Net CD/DG in its user-provided paper.",
-    "seed_ids": [
-      1,
-      2,
-      3
-    ],
-    "seed_ids_status": "Reconstruction assumption; T2Net paper does not state exact seed IDs."
-  },
-  "image_pixels_downloaded": false,
-  "image_pixels_verified": false,
-  "runnable_now": false,
-  "image_reuse_status": "blocked_full_raw_reuse_pending_official_v2_images_or_author_identity_manifest"
+  }
 }

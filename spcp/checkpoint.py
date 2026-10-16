@@ -10,7 +10,7 @@ from pathlib import Path
 import uuid
 
 
-SCHEMA = "t2methods.checkpoint.v1"
+SCHEMA = "spcp.checkpoint.v1"
 
 
 def absolute_path(path):
@@ -101,7 +101,7 @@ def load_checkpoint(path):
     import torch
     value = torch.load(Path(path), map_location="cpu", weights_only=False)
     if not isinstance(value, dict) or value.get("schema") != SCHEMA:
-        raise ValueError("Unknown checkpoint schema; old v3 checkpoints require an explicit migration")
+        raise ValueError("Unknown checkpoint schema; use checkpoints produced by this SPCP source tree")
     if value.get("state_sha256") != state_hash({"prompts": value["prompts"], "method": value["method_state"]}):
         raise ValueError("Checkpoint prompt/method state hash mismatch")
     return value
@@ -225,7 +225,7 @@ def failed_retry_kind(output):
 
 
 def interrupted_retry_kind(output):
-    """Explicit interruption recovery cannot authorize a fresh source fit."""
+    """Recover an interrupted run only from an existing matching checkpoint."""
     output = absolute_path(output)
     status = _recovery_status(output)
     if (output / "failure.json").exists() or status.get("status") in ("failed", "runtime_limit"):
@@ -246,7 +246,7 @@ def record_interruption(output, kind, saved):
     receipt = {"type": "InterruptedRun", "retry_kind": kind, "checkpoint": checkpoint.name,
                "checkpoint_sha256": file_hash(checkpoint), "completed_epochs": saved["completed_epochs"],
                "request_identity": saved["metadata"]["request_identity"], "provenance_validated": True,
-               "measured_success": False, "message": "Explicit recovery of an unrecorded interruption; no fresh fit authorized"}
+               "measured_success": False, "message": "Recovery of an unrecorded interruption from an existing checkpoint"}
     write_json(output / "interruption.json", receipt)
     write_json(output / "failure.json", receipt)
     write_json(output / "status.json", {"status": "failed", "error_type": "InterruptedRun", "retry_kind": kind})

@@ -1,8 +1,4 @@
-"""Bind explicit existing offline assets once for all generated configurations.
-
-This tool reads files for hashing only. It never imports torch/CLIP, downloads,
-loads a model, copies weights/images, or makes CUDA/network calls.
-"""
+"""Verify local CLIP assets and bind dataset paths to SPCP configurations."""
 import argparse
 import json
 from pathlib import Path
@@ -10,8 +6,8 @@ import sys
 
 ROOT = Path(__file__).absolute().parents[1]
 sys.path.insert(0, str(ROOT))
-from t2methods.checkpoint import absolute_path, file_hash, write_json
-from t2methods.config import CLIP_SOURCE_SHA, CLIP_WEIGHT_SHA, CLIP_BPE_SHA, apply_asset_binding, load_config
+from spcp.checkpoint import absolute_path, file_hash, write_json
+from spcp.config import CLIP_SOURCE_SHA, CLIP_WEIGHT_SHA, CLIP_BPE_SHA, apply_asset_binding, load_config
 
 
 def bind(clip_root, checkpoint, image_roots=None, expected_bpe=None):
@@ -23,12 +19,12 @@ def bind(clip_root, checkpoint, image_roots=None, expected_bpe=None):
         raise FileNotFoundError("Incomplete external original CLIP assets: " + ", ".join(missing))
     actual = {path.relative_to(root).as_posix(): file_hash(path) for path in sorted(package.rglob("*.py"))}
     if actual != CLIP_SOURCE_SHA:
-        raise ValueError("External CLIP code SHA inventory differs from the sealed-v3 original source")
+        raise ValueError("External CLIP source differs from the pinned file inventory")
     if not weights.is_file() or file_hash(weights) != CLIP_WEIGHT_SHA:
         raise ValueError("Explicit external ViT-B/16 checkpoint does not match the official guarded SHA")
     bpe = file_hash(package / "bpe_simple_vocab_16e6.txt.gz")
     if bpe != CLIP_BPE_SHA:
-        raise ValueError("BPE differs from the verified SGRP/SCA/LSP remote archive")
+        raise ValueError("CLIP BPE tokenizer SHA-256 differs")
     if expected_bpe is not None and expected_bpe != bpe:
         raise ValueError("External BPE SHA differs from the explicitly supplied expected value")
     roots = {}
@@ -39,13 +35,13 @@ def bind(clip_root, checkpoint, image_roots=None, expected_bpe=None):
         if not path.is_dir():
             raise FileNotFoundError("Explicit image root is unavailable: " + str(path))
         roots[dataset] = str(path)
-    return {"schema": "t2methods.external_assets.v1",
+    return {"schema": "spcp.external_assets.v1",
             "runtime": {"clip_root": str(root), "clip_checkpoint": str(weights),
                         "clip_checkpoint_sha256": CLIP_WEIGHT_SHA, "clip_source_hashes": CLIP_SOURCE_SHA, "clip_bpe_sha256": bpe},
-            "image_roots": roots, "original_CLIP_source_guard": "exact four-file sealed-v3 SHA inventory",
+            "image_roots": roots, "original_CLIP_source_guard": "pinned four-file SHA-256 inventory",
             "weight_guard": "ViT-B/16 SHA declared by the original CLIP local loader URL",
-            "BPE_provenance": "matches completed prior remote preflight SHA; additional supplied SHA checked when present",
-            "BPE_historical_identity_confirmed": True, "BPE_verified_prior_remote_sha256": CLIP_BPE_SHA, "image_pixels_verified": False,
+            "BPE_provenance": "CoOp-distributed CLIP tokenizer at the pinned source commit",
+            "BPE_sha256": CLIP_BPE_SHA, "image_pixels_verified": False,
             "GPU_model_network_calls": 0, "dataset_images_copied": 0, "weights_copied": 0}
 
 
@@ -89,7 +85,7 @@ def main(argv=None):
             (destination / path.name).write_text(yaml.safe_dump(public, sort_keys=False, allow_unicode=True), encoding="utf-8")
     print(json.dumps({"binding": str(binding_path), "sha256": file_hash(binding_path), "valid": True,
                       "GPU_model_network_calls": 0, "dataset_images_copied": 0, "weights_copied": 0,
-                      "BPE_historical_identity_confirmed": True}))
+                      "BPE_verified": True}))
     return value
 
 

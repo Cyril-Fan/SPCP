@@ -1,8 +1,6 @@
 paper:
-  title: Semantics-preserving cross-modal prompting for generalizable remote sensing
-    scene classification
+  title: Semantics-preserving cross-modal prompting for generalizable remote sensing scene classification
   method: SPCP
-  historical_runtime_method: CPTA
   status: working manuscript; no acceptance or publication claim
 model:
   backbone: ViT-B/16
@@ -93,7 +91,6 @@ train:
 runtime:
   clip_root: ../external/original_clip
   output_root: ../runs
-  engineering_steps: 4
   progress_interval: 10
   clip_checkpoint: ../external/ViT-B-16.pt
   clip_checkpoint_sha256: 5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f
@@ -103,39 +100,33 @@ runtime:
     clip/model.py: c0ba5cb62eafbf21e6c4e861e9caf6933d1c7e82313d37f953cd2c1ae85f78de
     clip/simple_tokenizer.py: d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad
   clip_bpe_sha256: 924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a
-  phase: dg_screen3
-  candidate: 1
+  phase: formal
   require_source_selection: false
-  source_selection_version: 2
-  require_winner: false
   save_scores: true
   save_features: false
   diagnostic_gradient_batches: 1
-  experiment_protocol: t2methods.dg_screen3.v1
+  experiment_protocol: spcp.dg.v1
   source_validation_consumed: false
 assumptions:
-  prompt_flow: 12 prompted blocks. Text source bank in blocks 1–6 projects to visual
-    prompts; visual source bank in blocks 7–12 projects to text prompts. Two shared
-    linear layers; replace context slots at each block. No class/image aggregation
-    or residual addition.
-  text_branches: 'Fig. 2: learned student contexts + ordinary class-name suffix; frozen
-    teacher uses the full three-level taxonomy sentence.'
-  initialization: First four shallow text context tokens use phrase embeddings; remaining
-    tokens and deeper source prompts use Normal(0, 0.02).
-  taxonomy_origin: Independently generated and frozen before viewing reproduction
-    scores, retaining Table 1 examples. Not the unavailable author ChatGPT-5.1 output.
-  support: 16 shots, seeds 1/2/3, ceil-half sorted integer labels; APPLeNet public
-    split IDs. Exact paper identity is unconfirmed.
-  recipe: Batch 16, AMP, cosine learning-rate decay with one warmup epoch, CoOp-style
-    random crop/flip; missing in paper.
-  loss_reduction: Mean 1−cosine for classes and images; teachers detached; cross-entropy
-    mean over support batch.
+  prompt_flow: 12 prompted blocks. Text source bank in blocks 1–6 projects to visual prompts; visual source
+    bank in blocks 7–12 projects to text prompts. Two shared linear layers; replace context slots at each
+    block. No class/image aggregation or residual addition.
+  text_branches: Learned context with class-name suffix for students; fixed full hierarchy sentence for
+    frozen text references.
+  initialization: First four shallow text context tokens use phrase embeddings; remaining tokens and deeper
+    source prompts use Normal(0, 0.02).
+  taxonomy_origin: Fixed class-name hierarchy descriptions; prepared before inspecting experiment scores.
+    Stored class/template text is part of the protocol.
+  support: 16 shots, seeds 1/2/3, ceil-half sorted labels for B2N; fixed APPLeNet split IDs.
+  recipe: Batch 16, AMP, Adam, cosine learning-rate decay with one warmup epoch, random resized crop and
+    horizontal flip.
+  loss_reduction: Mean 1−cosine for classes and images; teachers detached; cross-entropy mean over support
+    batch.
   checkpoint: Fixed final epoch; no score-based checkpoint choice.
-  class_text: Underscores become spaces; seven RSICD compound labels, MLRSNet harbor&port
-    and swimmimg_pool use explicit readable leaf names in the frozen taxonomy JSON.
-    Label IDs and support IDs are unchanged.
+  class_text: Underscores become spaces; seven RSICD compound labels, MLRSNet harbor&port and swimmimg_pool
+    use explicit readable leaf names in the frozen taxonomy JSON. Label IDs and support IDs are unchanged.
 method:
-  name: CPTA
+  name: SPCP
   enabled: true
   eta: 0.5
   neighbors: 3
@@ -246,17 +237,3 @@ targets:
   v2_protocol_manifest: ../assets/dg_v2/common_class_protocol.json
   v2_data_ready: ../assets/dg_v2/pixel_provenance/data_dg_v2_ready.json
   ledger_root: ../assets/dg_v2/pixel_provenance
-source_validation:
-  ids_file: ../assets/dg_v2/source_val64.json
-  ids_sha256: fb7e5d2c12102aef04d68a2b968e3bca5084237681752a8fde6bb39abbe7b0b4
-  count: 64
-  per_class: 4
-  extra_labels_disclosed: true
-  views:
-  - clean
-  - jpeg75
-  - horizontal_rgb_gain_0.85_1.15
-  - bicubic_224_160_224
-  - gaussian_kernel9_sigma0.7
-  version: 2
-  rule_sha256: 3a832290725af2d4875568fb031c62510c3011c4f745bc518235f5bf227c3490

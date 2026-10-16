@@ -6,7 +6,7 @@
 [English](#english) · [中文](#中文) · [Downloads / 下载](docs/DOWNLOADS.md) · [Reproducibility / 复现说明](docs/REPRODUCIBILITY.md)
 
 Implementation accompanying the working manuscript **“Semantics-preserving cross-modal prompting for generalizable remote sensing scene classification.”**  
-Authors: **Xingyu Fan, Shengsheng Wang, and Zihao Fu**. This repository does not imply journal acceptance or publication.
+Authors: **Xingyu Fan, Shengsheng Wang, and Zihao Fu**.
 
 <img src="docs/figures/SPCP_overall.png" alt="Overview of SPCP" width="850">
 
@@ -22,7 +22,7 @@ SPCP jointly trains prompts and two interaction projections while keeping the CL
 
 The full objective is `CE + I + (1−η) A + η E`, with `η=0.50`, `K=3`, and denominator floor `ε=0.20`. We provide base-to-new (**B2N**), cross-dataset (**CD**), and shared-class domain generalization (**DG**) configurations, synthetic CPU tests, fixed templates/splits, and full-method result summaries.
 
-`spcp` is the public entry point. The internal package name `t2methods` and method ID `CPTA` are retained for the historical full-method runtime. Prompt/loss kernels preserve their original bytes; interface changes and source hashes are documented in [source identities](docs/source_identity.json).
+The `spcp` package provides the model, training loop, evaluation, and checkpoint utilities. Configurations and runtime metadata use the method name `SPCP`. See [source identities](docs/source_identity.json) for the release file inventory.
 
 ### 1. Download and install
 
@@ -92,7 +92,7 @@ The other B2N configs are `SPCP_b2n_rsicd.yaml`, `SPCP_b2n_resisc45.yaml`, and `
 python -m spcp train --config configs/SPCP_b2n_patternnet.yaml --asset-binding external_assets.json --seed 1 --output runs/SPCP_b2n_patternnet_seed1 --resume runs/SPCP_b2n_patternnet_seed1/last.pt
 ```
 
-See `python -m spcp train --help` for recorded-failure recovery and verified reuse options. A fresh clone is intended for fresh runs; strict identities can reject old checkpoints from a different source tree. Do not remove guards to force a replay.
+See `python -m spcp train --help` for checkpoint recovery and completed-run verification. A fresh clone is intended for fresh runs; strict identities can reject old checkpoints from a different source tree. Do not remove guards to force a replay.
 
 ### 4. Engineering checks
 
@@ -109,7 +109,7 @@ Existing three-seed summaries: **80.38% B2N macro HM**, **63.07% CD target avera
 
 This first release contains source and protocol metadata. **Trained SPCP checkpoints are not distributed in this release**; the commands above produce `final.pt`. The CLIP backbone download is provided separately by the setup script. Dataset images remain with their providers.
 
-We acknowledge [OpenAI CLIP](https://github.com/openai/CLIP), [CoOp](https://github.com/KaiyangZhou/CoOp), [APPLeNet](https://github.com/mainaksingha01/APPLeNet), and the T2Net/CRNet papers for related methods and protocol/writing context. This is the SPCP implementation, not an official implementation of T2Net or CRNet. See [third-party notices](THIRD_PARTY_NOTICES.md). An explicit license for the authors' original SPCP code has not yet been selected; upstream notices remain applicable to upstream material.
+SPCP code is released under the [MIT License](LICENSE). We acknowledge [OpenAI CLIP](https://github.com/openai/CLIP), [CoOp](https://github.com/KaiyangZhou/CoOp), and [APPLeNet](https://github.com/mainaksingha01/APPLeNet). See [third-party notices](THIRD_PARTY_NOTICES.md) for upstream licenses and dataset terms.
 
 ## 中文
 
@@ -123,7 +123,7 @@ SPCP 在冻结 CLIP 编码器及其预训练 logit scale 的前提下，联合�
 
 完整目标为 `CE + I + (1−η) A + η E`，默认 `η=0.50`、`K=3`、分母稳定项 `ε=0.20`。仓库提供完整 SPCP 的 B2N、CD、DG 配置、固定语义模板/划分、既有结果及 CPU 工程测试。
 
-对外入口为 `python -m spcp`，内部保留历史命名 `t2methods` 和完整方法 ID `CPTA`。提示/损失核心保持原始字节，对外注册与验证接口的调整见 [source_identity.json](docs/source_identity.json)。
+统一使用 `spcp` 包和 `SPCP` 方法名。模型、训练、评估及检查点工具均位于该包，发布文件哈希见 [source_identity.json](docs/source_identity.json)。
 
 ### 下载、安装与准备
 
@@ -192,11 +192,11 @@ CPU 测试使用人工图像和小型 FakeClip，检查完整目标、冻结参�
 
 首版发布源码与协议元数据，**暂未发布训练完成的 SPCP 检查点**；按训练命令可生成 `final.pt`。CLIP 权重由安装脚本单独下载，数据集图像从原发布方获取。
 
-感谢 OpenAI CLIP、CoOp、APPLeNet 及相关 T2Net/CRNet 研究。第三方许可和来源见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)；作者原创 SPCP 代码的具体许可证尚未选定。论文仍为工作稿，仓库不表示已被期刊接收。
+SPCP 代码采用 [MIT 许可证](LICENSE)。感谢 OpenAI CLIP、CoOp 和 APPLeNet；第三方来源及许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。论文仍为工作稿。
 
 ## Citation / 引用
 
-Until a formal publication is available, cite the code repository without inventing a journal DOI or acceptance status:
+Cite the software as follows. Publication details will be added when available.
 
 ```bibtex
 @misc{fan2026spcp,

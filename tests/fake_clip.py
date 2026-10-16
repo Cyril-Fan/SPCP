@@ -44,7 +44,7 @@ class Visual(nn.Module):
         return self.ln_post(x) @ self.proj
 
 class FakeClip(nn.Module):
-    """Small, genuinely differentiable CLIP-shaped CPU object, not real CLIP."""
+    """Differentiable CLIP-shaped model for small CPU fixtures."""
     def __init__(self, depth=12, text_width=8, visual_width=12, embedding=8, input_size=8):
         super().__init__()
         self.visual = Visual(visual_width, embedding, depth, input_size)

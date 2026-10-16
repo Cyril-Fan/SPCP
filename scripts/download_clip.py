@@ -8,7 +8,7 @@ import urllib.request
 
 ROOT = Path(__file__).absolute().parents[1]
 sys.path.insert(0, str(ROOT))
-from t2methods.config import CLIP_SOURCE_SHA, CLIP_BPE_SHA, CLIP_WEIGHT_SHA
+from spcp.config import CLIP_SOURCE_SHA, CLIP_BPE_SHA, CLIP_WEIGHT_SHA
 
 COOP_COMMIT = "ff61507c790454bce7c5052c3ac39e60772f1f89"
 SOURCE_BASE = "https://raw.githubusercontent.com/KaiyangZhou/CoOp/" + COOP_COMMIT + "/"

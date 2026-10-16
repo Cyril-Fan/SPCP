@@ -1,17 +1,17 @@
 # Release checks / 发布检查
 
-Date / 日期：2026-10-16. Scope / 范围：full SPCP, B2N, CD and DG.
+Date / 日期：2026-10-16. Scope / 范围：SPCP, B2N, CD and DG.
 
-- Six full-method configurations checked for seeds 1/2/3: **18 metadata checks passed**, without loading a model.
-- **Eight synthetic CPU tests passed**, covering the joint objective, frozen parameters, source graph, same-input teacher, checkpoint integrity, optimizer resume, and transfer evaluation.
-- **20 original source files** match their retained SHA-256 identities. Public interface changes restrict registration/validation to full SPCP and add the `spcp` entry point; prompt/loss kernels are unchanged.
-- Protocol metadata are losslessly bundled and verified against per-file hashes when restored. Dataset images, local asset bindings and downloaded weights are excluded from Git.
-- Documentation provides English and Chinese instructions, provider download links, the pinned CoOp-distributed CLIP source, and the official OpenAI weight hash. Command-line network downloads were not completed in the release-check environment because DNS resolution was unavailable; the downloader's URLs are pinned, and actual file hashes remain mandatory.
-- No new benchmark training and no paid GPU session were used for this release.
+- Six full-method configurations pass validation for seeds 1, 2 and 3: **18 metadata checks**, without loading PyTorch or CLIP.
+- **Nine synthetic CPU tests** cover the joint objective, frozen encoders, same-input image alignment, fixed graph integrity, optimizer/checkpoint resume, DG seed-one training, replay and transfer evaluation.
+- A before/after numerical comparison verifies that **16 forward-output, loss and trainable-gradient tensors are bitwise identical** after the package and method naming cleanup.
+- The release source inventory is recorded in `source_identity.json` and checked by `scripts/check_release.py`.
+- Taxonomy class entries, frozen description strings, split bytes, image ledgers and numeric result fields are unchanged. Descriptive metadata and runtime names have been updated; checkpoints remain tied to their source/configuration identity.
+- Protocol metadata restoration verifies the archive inventory, CRC, byte lengths and SHA-256 hashes. Images, weights and local bindings are excluded from Git.
+- Original SPCP code uses the MIT License. Third-party copyright and license notices are retained.
+- Checks run locally with Python 3.8.20, PyTorch 2.4.1+cpu and torchvision 0.19.1+cpu. Dataset downloads and full benchmark training are outside these release checks; no GPU experiment was run.
 
-已完成六份完整方法配置的 18 项 seed 检查、8 项人工数据 CPU 测试及 20 份原始源码身份核对。中英文文档包括下载、资产绑定、训练、评估和恢复命令。发布环境的命令行 DNS 无法解析外网，因此未声称已完成实际权重/数据下载；固定地址及哈希检查继续保留。发布检查不替代真实基准实验。
-
-Run / 复查命令：
+已完成 18 项配置检查、9 项 CPU 测试及 16 个张量的修改前后逐位一致性核验。固定描述、类别映射、划分、图像 ledger 和实验数值保留。发布检查不替代真实数据集训练。
 
 ```bash
 python scripts/prepare_protocol_assets.py

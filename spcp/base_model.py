@@ -1,9 +1,4 @@
-"""Frozen original CLIP with explicitly declared T2Net prompt reconstruction.
-
-The paper does not supply TKI tensor equations. This implementation transfers
-static source prompt tokens with two shared projections; see model_logic.md.
-It contains no NSCP, adapter, hierarchy classifier, or logit correction.
-"""
+"""Frozen CLIP encoders with layer-group cross-modal prompt interaction."""
 
 from __future__ import annotations
 
@@ -15,7 +10,7 @@ from torch import Tensor, nn
 from torch.nn import functional as F
 
 
-class T2NetModel(nn.Module):
+class PromptedCLIP(nn.Module):
     """Prompted students and unchanged CLIP teachers with dynamic vocabulary."""
 
     def __init__(
@@ -84,7 +79,7 @@ class T2NetModel(nn.Module):
             raise TypeError("clip_model must implement the original OpenAI CLIP API")
         visual = getattr(self.clip_model, "visual", None)
         if visual is None or any(not hasattr(visual, item) for item in required_visual):
-            raise TypeError("T2NetModel requires original CLIP VisionTransformer, not ResNet")
+            raise TypeError("PromptedCLIP requires original CLIP VisionTransformer, not ResNet")
         text_blocks = getattr(self.clip_model.transformer, "resblocks", None)
         visual_blocks = getattr(visual.transformer, "resblocks", None)
         if text_blocks is None or visual_blocks is None:
@@ -122,7 +117,7 @@ class T2NetModel(nn.Module):
             raise ValueError("CLIP tokenizer returned an unexpected token tensor")
         return tokens.to(device=self.device, dtype=torch.long)
 
-    def train(self, mode: bool = True) -> "T2NetModel":
+    def train(self, mode: bool = True) -> "PromptedCLIP":
         super().train(mode)
         self.clip_model.eval()
         return self

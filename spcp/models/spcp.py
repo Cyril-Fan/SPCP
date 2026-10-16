@@ -1,7 +1,7 @@
-"""CPTA reconstructs directed coordinate differences, including their lengths."""
+"""SPCP reconstructs directed coordinate differences, including their lengths."""
 import torch
 from .source_graph import SourceGraphModel
-from ..round2_settings import settings
+from ..settings import settings
 
 
 def edge_loss(text, q, index, mask, reference_delta, denominator, control="difference"):
@@ -15,7 +15,7 @@ def edge_loss(text, q, index, mask, reference_delta, denominator, control="diffe
             if control == "difference":
                 values = values / denominator.detach()
             elif control != "unnormalized":
-                raise ValueError("Unknown CPTA edge objective")
+                raise ValueError("Unknown SPCP edge objective")
         count = mask.sum(-1)
         node = (values * mask).sum(-1) / count.clamp_min(1)
         fallback = 1 - (t*q).sum(-1)
@@ -23,8 +23,8 @@ def edge_loss(text, q, index, mask, reference_delta, denominator, control="diffe
         return node.mean(), node, delta
 
 
-class CPTAModel(SourceGraphModel):
-    method_name = "CPTA"
+class SPCPModel(SourceGraphModel):
+    method_name = "SPCP"
     exclude_duplicates = True
 
     def __init__(self, clip_model, clip_module, config):
@@ -73,4 +73,4 @@ class CPTAModel(SourceGraphModel):
         return terms
 
     def mechanism_diagnostics(self):
-        return {"method": "CPTA", "enabled": self.enabled, **self._last_diagnostics}
+        return {"method": "SPCP", "enabled": self.enabled, **self._last_diagnostics}

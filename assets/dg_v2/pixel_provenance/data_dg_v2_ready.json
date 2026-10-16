@@ -5,11 +5,9 @@
   "source_commit": "42bc4654311da9773b59979dc71fe9f60534ab84",
   "helper_sha256": "d753d94f5c5a64212d9e370b5d29f61abfb91e49948955836e5786300799595c",
   "checked_at_utc": "2026-10-07T05:56:47Z",
-  "archives_dir": "/root/autodl-tmp/t2net_dg_archives_20261007",
   "results": [
     {
       "dataset": "PatternNetv2",
-      "image_root": "/root/autodl-tmp/datasets/PatternNetv2/images",
       "split_file": "patternnetv2.json",
       "split_sha256": "2db9f8f14226c52f5d857e0d323b1cc21761ed2d1a378b7cd520e52d1c1b8df0",
       "source_commit": "42bc4654311da9773b59979dc71fe9f60534ab84",
@@ -56,15 +54,13 @@
         "dense_residential",
         "beach"
       ],
-      "ledger_path": "/root/autodl-tmp/t2net_reproduction_20261007/v3/dg_v2_preparation/PatternNetv2.images.jsonl",
+      "ledger_path": "PatternNetv2.images.jsonl",
       "ledger_sha256": "1b236794134df64f48a1809c156e00961a02f24626268c208f6ae218153b741a",
       "rgb_decode_complete": true,
-      "official_published_json_coverage_verified": true,
-      "paper_exact_image_identity_confirmed": false
+      "official_published_json_coverage_verified": true
     },
     {
       "dataset": "RSICDv2",
-      "image_root": "/root/autodl-tmp/datasets/RSICDv2/images",
       "split_file": "rsicdv2.json",
       "split_sha256": "191adf02a1a76d64e4e840fa8383bd141ab2b45f93ef29263a5d5fc25ea2ea77",
       "source_commit": "42bc4654311da9773b59979dc71fe9f60534ab84",
@@ -111,15 +107,13 @@
         "dense_residential",
         "beach"
       ],
-      "ledger_path": "/root/autodl-tmp/t2net_reproduction_20261007/v3/dg_v2_preparation/RSICDv2.images.jsonl",
+      "ledger_path": "RSICDv2.images.jsonl",
       "ledger_sha256": "f306204beaa8315089eb51255e3b3de5423e2bd900861f88922b66a17211db54",
       "rgb_decode_complete": true,
-      "official_published_json_coverage_verified": true,
-      "paper_exact_image_identity_confirmed": false
+      "official_published_json_coverage_verified": true
     },
     {
       "dataset": "NWPU-RESISC45v2",
-      "image_root": "/root/autodl-tmp/datasets/NWPU-RESISC45v2/images",
       "split_file": "resisc45v2.json",
       "split_sha256": "8e8c7bf1b316e0c6936dcba33a393903c52910ba375ef5fed47bf577319d0f49",
       "source_commit": "42bc4654311da9773b59979dc71fe9f60534ab84",
@@ -166,15 +160,13 @@
         "dense_residential",
         "beach"
       ],
-      "ledger_path": "/root/autodl-tmp/t2net_reproduction_20261007/v3/dg_v2_preparation/NWPU-RESISC45v2.images.jsonl",
+      "ledger_path": "NWPU-RESISC45v2.images.jsonl",
       "ledger_sha256": "19d08ef44337683c495912cd6c0aba756ce2949d1af51267be2b43a995917dac",
       "rgb_decode_complete": true,
-      "official_published_json_coverage_verified": true,
-      "paper_exact_image_identity_confirmed": false
+      "official_published_json_coverage_verified": true
     },
     {
       "dataset": "MLRSNetv2",
-      "image_root": "/root/autodl-tmp/datasets/MLRSNetv2/images",
       "split_file": "mlrsnetv2.json",
       "split_sha256": "759e826e7f706afc822253947c4dd6926a9e5906664685b4f5d44dcdf12ca4d6",
       "source_commit": "42bc4654311da9773b59979dc71fe9f60534ab84",
@@ -221,11 +213,10 @@
         "dense_residential",
         "beach"
       ],
-      "ledger_path": "/root/autodl-tmp/t2net_reproduction_20261007/v3/dg_v2_preparation/MLRSNetv2.images.jsonl",
+      "ledger_path": "MLRSNetv2.images.jsonl",
       "ledger_sha256": "68d83afd0091d590bf9438347e29a35a93c4229a707237aa32c871f6446e966c",
       "rgb_decode_complete": true,
-      "official_published_json_coverage_verified": true,
-      "paper_exact_image_identity_confirmed": false
+      "official_published_json_coverage_verified": true
     }
   ],
   "full_dg_images_prepared": true,

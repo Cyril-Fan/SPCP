@@ -5,16 +5,16 @@ import unittest
 import torch
 from tests.fake_clip import FakeClip,CLIP_MODULE,config,vocabulary
 from spcp.models import SPCPModel
-from t2methods.models.cpta import edge_loss
-from t2methods.models import build_model
-from t2methods.models.source_graph import neighbors
-from t2methods.checkpoint import model_state_hash
+from spcp.models.spcp import edge_loss
+from spcp.models import build_model
+from spcp.models.source_graph import neighbors
+from spcp.checkpoint import model_state_hash
 
 torch.set_num_threads(1)
 
 def model():
     torch.manual_seed(123)
-    m=SPCPModel(FakeClip(),CLIP_MODULE,config('CPTA',eta=.5))
+    m=SPCPModel(FakeClip(),CLIP_MODULE,config('SPCP',eta=.5))
     vocabulary(m)
     m.prepare(SimpleNamespace(train=[{'id':'synthetic'}],metadata={'role':'source','support_sha256':'synthetic'}),None,1,None)
     return m
