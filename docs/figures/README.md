@@ -1,8 +1,8 @@
 # Paper figures / 论文图件
 
-Figures synchronized with the current SPCP working manuscript (v11, 21 October 2026). PNG files provide previews, SVG files retain editable figure sources, and PDF files provide the versions used by the manuscript where applicable. The core-constraint PDF contains the high-resolution image; the overall-framework and analysis PDFs retain vector content.
+Figures synchronized with the current SPCP working manuscript (21 October 2026). PNG files provide previews, SVG files retain editable figure sources, and PDF files provide the versions used by the manuscript where applicable. The core-constraint PDF contains the high-resolution image; the overall-framework and analysis PDFs retain vector content.
 
-本目录与当前 SPCP v11 稿件图件保持一致。PNG 用于预览，SVG 为可编辑原稿；总体框架与三张分析图另提供矢量 PDF。同步图件不改变实验数据、方法或训练配置。
+本目录与当前 SPCP 稿件图件保持一致。PNG 用于预览，SVG 为可编辑原稿；总体框架与三张分析图另提供矢量 PDF。同步图件不改变实验数据、方法或训练配置。
 
 | Manuscript figure | Content | Files |
 |---|---|---|
