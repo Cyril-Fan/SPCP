@@ -3,7 +3,7 @@
 **Generalizable remote sensing scene classification with frozen CLIP.**  
 **基于冻结 CLIP 的可泛化遥感场景分类。**
 
-[English](#english) · [中文](#中文) · [Downloads / 下载](docs/DOWNLOADS.md) · [Reproducibility / 复现说明](docs/REPRODUCIBILITY.md) · [Paper figures / 论文图件](docs/figures/README.md)
+[English](#english) · [中文](#中文) · [Downloads / 下载](docs/DOWNLOADS.md) · [Reproducibility / 复现说明](docs/REPRODUCIBILITY.md) · [Paper figures / 论文图件](docs/figures/README.md) · [Analysis data and plots / 分析数据与绘图](analysis/README.md)
 
 Implementation accompanying the working manuscript **“Semantics-preserving cross-modal prompting for generalizable remote sensing scene classification.”**  
 Authors: **Xingyu Fan, Shengsheng Wang, and Zihao Fu**.
