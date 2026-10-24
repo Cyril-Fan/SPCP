@@ -1,8 +1,6 @@
-"""Atomic artifacts and strict, relocatable checkpoint identities.
+"""Atomic artifacts and relocatable checkpoint identities.
 
-The metadata helpers deliberately have no torch import: queue dry runs do not
-initialize the model runtime. Tensor serialization is imported only on demand.
-"""
+Metadata utilities import tensor serialization only when required."""
 import hashlib
 import json
 import os

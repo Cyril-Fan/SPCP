@@ -17,11 +17,11 @@
     },
     {
       "path": "spcp/checkpoint.py",
-      "sha256": "5a69e25aaf7c3edb7304ec37367553b04f0d4548967904507cd9cf9b938e4b2b"
+      "sha256": "bb3a8ad034650d1c4860feccc114d244b2c61f79eec2f3494f59ff49d116d443"
     },
     {
       "path": "spcp/cli.py",
-      "sha256": "d4b8c674806c5cc24640c821b2f8071270d09fcb750ca37d55d89f9f3aef2e80"
+      "sha256": "1ec1db151f1a5df7c7375d33c32b1cf2f9b9204de1adc0c11a0edea0c871f1ab"
     },
     {
       "path": "spcp/config.py",
@@ -45,7 +45,7 @@
     },
     {
       "path": "spcp/models/source_graph.py",
-      "sha256": "c896854dd5f913319be977b7978700d7baff1f45e188af2b8c4368695974245a"
+      "sha256": "905cda1ec331a771c98ceb60a5ac695256d828bfd96369d6d3699ec63c9b0e6a"
     },
     {
       "path": "spcp/models/spcp.py",
@@ -57,11 +57,11 @@
     },
     {
       "path": "spcp/statistics.py",
-      "sha256": "091cce00db781916450662d63878fcdd2ed9890bdcb6018e839bbaabe3785f08"
+      "sha256": "b12cc62e43748b4e4d503699df1c2d0aeefd584c503b459d10f14786bc787767"
     },
     {
       "path": "spcp/training.py",
-      "sha256": "0d81e0ddebc6bd26c998ec9638bf7fd66e06557ffa758009d33ae12f25a0758a"
+      "sha256": "466e53ac952d748290e834b4923f4870333fcb130afb4e5ad9fc7c16f45b5800"
     },
     {
       "path": "scripts/bind_external_assets.py",
@@ -73,7 +73,7 @@
     },
     {
       "path": "scripts/download_clip.py",
-      "sha256": "224f68de153bfd62e03082920e97441bc50c8c4b3b657913249d9ee4bf605a9a"
+      "sha256": "48a77f9f8cb405ca363893c337b0cac0513a78805516fdc3b7d32f6e47cd7404"
     },
     {
       "path": "scripts/prepare_protocol_assets.py",

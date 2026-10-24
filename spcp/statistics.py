@@ -1,4 +1,4 @@
-"""Paper/internal summaries: dataset-first HM and seed-first target averages."""
+"""Three-seed summaries with dataset-first HM and target-domain averages."""
 import math
 import statistics
 

@@ -1,4 +1,4 @@
-"""Download the fixed, hash-checked historical CLIP assets (no model execution)."""
+"""Download and verify the pinned CoOp-distributed CLIP source and weights."""
 import argparse
 import hashlib
 import json

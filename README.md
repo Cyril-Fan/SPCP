@@ -105,7 +105,7 @@ CPU tests use synthetic data and a small fake CLIP to check the full objective, 
 
 ### Results, checkpoints, and attribution
 
-Existing three-seed summaries: **80.38% B2N macro HM**, **63.07% CD target average**, **84.04% DG target average**. The `results/` directory contains means and seed records; these are saved experiments, not newly executed release tests. B2N HM is computed per dataset and seed before aggregation. Read the reproducibility notes before interpreting comparisons or selecting hyperparameters.
+Three-seed results: **80.38% B2N macro HM**, **63.07% CD target average**, **84.04% DG target average**. The `results/` directory provides per-seed scores and their summaries. B2N HM is computed per dataset and seed before aggregation. Read the reproducibility notes before interpreting comparisons or selecting hyperparameters.
 
 This first release contains source and protocol metadata. **Trained SPCP checkpoints are not distributed in this release**; the commands above produce `final.pt`. The CLIP backbone download is provided separately by the setup script. Dataset images remain with their providers.
 
@@ -188,7 +188,7 @@ python -m unittest discover -s tests
 
 CPU 测试使用人工图像和小型 FakeClip，检查完整目标、冻结参数、源图、优化、检查点恢复及迁移评估，不替代真实基准实验。
 
-已有结果为 B2N 宏平均 HM **80.38%**、CD 目标域均值 **63.07%**、DG 目标域均值 **84.04%**。`results/` 仅保留完整方法的逐 seed 与汇总记录；这些是已有实验，不是本次发布重新训练的成绩。HM 按数据集和 seed 计算后再汇总，探索性参数选择的边界见复现说明。
+已有结果为 B2N 宏平均 HM **80.38%**、CD 目标域均值 **63.07%**、DG 目标域均值 **84.04%**。`results/` 提供完整方法的逐 seed 结果及汇总。HM 按数据集和 seed 计算后再汇总，探索性参数选择的边界见复现说明。
 
 首版发布源码与协议元数据，**暂未发布训练完成的 SPCP 检查点**；按训练命令可生成 `final.pt`。CLIP 权重由安装脚本单独下载，数据集图像从原发布方获取。
 

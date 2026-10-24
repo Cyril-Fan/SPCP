@@ -1,4 +1,4 @@
-"""Offline real execution; help/config validation never load torch or CLIP."""
+"""SPCP training, evaluation and lightweight configuration validation."""
 import argparse
 import json
 from pathlib import Path
@@ -37,7 +37,7 @@ def parser():
 
 
 def offline_clip(config):
-    """Load only an explicit file: original clip.load cannot download by name."""
+    """Load pinned CLIP source and weights from verified local paths."""
     root = Path(config["runtime"].get("clip_root", "")).resolve(strict=True)
     package = root / "clip"
     for name in ("__init__.py", "clip.py", "model.py", "simple_tokenizer.py", "bpe_simple_vocab_16e6.txt.gz"):

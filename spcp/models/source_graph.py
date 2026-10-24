@@ -1,4 +1,4 @@
-"""Immutable source-only taxonomy graph, independent of evaluation vocabulary."""
+"""Fixed source-class neighbor graph built from frozen semantic features."""
 import copy
 import torch
 from .common import MethodModel

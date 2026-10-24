@@ -93,7 +93,7 @@ class Trainer:
                 raise ValueError("Checkpoint provenance differs: " + key)
 
     def _recovery_audit(self, saved, origin):
-        """Recheck frozen weights; absent historical measurements remain null."""
+        """Check frozen weights during recovery; unavailable measurements remain null."""
         final_backbone = backbone_hash(self.model)
         audit = {"all_backbone_weights_frozen": all(not p.requires_grad for p in self.model.clip_model.parameters()),
                  "frozen_backbone_before": self.initial_backbone, "frozen_backbone_after": final_backbone,
