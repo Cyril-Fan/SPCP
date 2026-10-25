@@ -24,11 +24,6 @@ The panels illustrate semantic drift and the SPCP preservation objective using
 conceptual coordinates, not measured embeddings. The supplied figure is 160 × 64 mm.
 Its ordinary text has embedded fonts in the PDF; mathematical symbols are outlines.
 
-Optional regeneration uses `motivation_source/draw_motivation.py` and the dependencies
-in `motivation_source/requirements.txt`, in a separate plotting environment with
-Times New Roman installed. It writes `SPCP_introduction_motivation.*` in this directory
-and a `qa/` directory. It does not train a model or read experimental measurements.
-
 ## Analysis figures
 
 ![Directional distortion on base and new classes](Fig3_direction_distortion.png)
@@ -37,13 +32,12 @@ and a `qa/` directory. It does not train a model or read experimental measuremen
 
 ![Class-wise recognition changes on NWPU-RESISC45 and PatternNet](Fig5_classwise_errors.png)
 
-The [analysis data and plotting tools](../../analysis/README.md) reproduce these plots
-from seed-level and class-level records. Full and w/o S differ jointly in the absolute
+Full and w/o S differ jointly in the absolute
 and interclass text losses. New-class graphs are used solely for analysis, not training.
 Closer reference geometry does not imply uniform recognition gains: Full increases
 NWPU-RESISC45 new-class accuracy by 5.30 percentage points and decreases PatternNet
 new-class accuracy by 3.67 points relative to w/o S.
 
 本目录按图件内容组织，不绑定稿件版本。动机图是概念示意，不是实验嵌入结果；
-分析数据和绘图工具见上述链接。Full 与 w/o S 同时涉及两项文本损失，
+Full 与 w/o S 同时涉及两项文本损失，
 不能把 HM 差异直接归因于某一种畸变的变化。
