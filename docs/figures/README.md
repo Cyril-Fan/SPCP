@@ -1,8 +1,8 @@
 # Paper figures / 论文图件
 
 PNG files provide previews, SVG files retain editable sources, and PDFs provide
-publication exports. The core-constraint PDF contains a high-resolution raster;
-the other PDFs retain vector content. Filenames are stable asset identifiers,
+publication exports. Both architecture schematics retain vector geometry and
+embedded fonts in their PDFs; PNGs are screen previews. Filenames are stable asset identifiers,
 not manuscript version identifiers or a promise of current figure numbering.
 
 | Content | Files |
