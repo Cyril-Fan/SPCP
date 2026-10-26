@@ -44,9 +44,9 @@ All use 16-shot source supports, seeds 1/2/3, CLIP ViT-B/16, 16 prompt tokens, 1
 
 Compute B2N HM for each dataset and seed, then average the four datasets within a seed and finally average the three seed aggregates. CD/DG target averages exclude PatternNet/PatternNetv2 source accuracy. Sample SD uses `ddof=1`. Do not reconstruct HM from already rounded mean Base/New values.
 
-Full-method per-seed results and summaries are in `results/`. The setting η=0.50 was selected through target-informed exploratory DG screening, documented in `assets/admissions/spcp_eta050.json`. The reported DG result therefore does not independently validate source-only hyperparameter selection. The command-line interface supports full-method training and evaluation for B2N, CD and DG.
+Full-method per-seed results and summaries are in `results/`. We selected η = 0.5 based on exploratory evaluation on the DG target domains. The command-line interface supports full-method training and evaluation for B2N, CD and DG.
 
-HM 先按数据集和 seed 计算再汇总，CD/DG 的目标域均值不包含源域。`results/` 提供完整方法的逐 seed 结果及汇总。η=0.50 的选择使用了探索性的 DG 目标域结果，因此报告的 DG 成绩不构成独立的源域超参数选择验证。
+HM 先按数据集和 seed 计算再汇总，CD/DG 的目标域均值不包含源域。`results/` 提供完整方法的逐 seed 结果及汇总。我们基于 DG 目标域的探索性评估选择 η=0.5。
 
 ## Checkpoints and data / 检查点与数据
 
