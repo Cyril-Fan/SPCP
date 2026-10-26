@@ -1,11 +1,11 @@
 # SPCP: Semantics-Preserving Cross-Modal Prompting
 
-**Generalizable remote sensing scene classification with frozen CLIP.**  
-**基于冻结 CLIP 的可泛化遥感场景分类。**
+**Remote sensing scene classification with frozen CLIP.**  
+**基于冻结 CLIP 的遥感场景分类。**
 
 [English](#english) · [中文](#中文) · [Downloads / 下载](docs/DOWNLOADS.md) · [Reproducibility / 复现说明](docs/REPRODUCIBILITY.md) · [Paper figures / 论文图件](docs/figures/README.md)
 
-Implementation accompanying the working manuscript **“Semantics-preserving cross-modal prompting for generalizable remote sensing scene classification.”**  
+Implementation accompanying the working manuscript **“Semantics-preserving cross-modal prompting for remote sensing scene classification.”**  
 Authors: **Xingyu Fan, Shengsheng Wang, and Zihao Fu**.
 
 <img src="docs/figures/SPCP_overall.png" alt="Overview of SPCP" width="850">
@@ -29,11 +29,11 @@ The `spcp` package provides the model, training loop, evaluation, and checkpoint
 ```bash
 git clone https://github.com/Cyril-Fan/SPCP.git
 cd SPCP
-conda create -n spcp python=3.10 -y
+conda create -n spcp python=3.8.20 -y
 conda activate spcp
 ```
 
-Install a matching PyTorch/torchvision build for your driver. The reference versions are **PyTorch 2.4.1 / torchvision 0.19.1**; historical GPU runs used CUDA 11.8. For that CUDA build:
+The original experiments used **Python 3.8.20, PyTorch 2.4.1, torchvision 0.19.1, CUDA 11.8, NumPy 1.24.4 and Pillow 10.4.0**. `requirements.txt` pins these Python packages; install the matching CUDA build first:
 
 ```bash
 python -m pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cu118
@@ -127,10 +127,12 @@ SPCP 在冻结 CLIP 编码器及其预训练 logit scale 的前提下，联合�
 
 ### 下载、安装与准备
 
+原始实验环境为 **Python 3.8.20、PyTorch 2.4.1、torchvision 0.19.1、CUDA 11.8、NumPy 1.24.4、Pillow 10.4.0**。依赖文件固定上述 Python 包版本，先安装对应 CUDA 构建。CI 使用相同 Python 和核心包版本的 CPU 构建进行工程检查，不替代 GPU 实验。
+
 ```bash
 git clone https://github.com/Cyril-Fan/SPCP.git
 cd SPCP
-conda create -n spcp python=3.10 -y
+conda create -n spcp python=3.8.20 -y
 conda activate spcp
 python -m pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cu118
 python -m pip install -r requirements.txt

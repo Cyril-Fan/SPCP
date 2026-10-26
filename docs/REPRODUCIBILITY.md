@@ -16,6 +16,18 @@ SPCP jointly integrates text semantic preservation S, image alignment I, and pro
 
 S/I/X 共同组成完整方法，S 包含逐类锚点 A 与完整坐标差 E。模型与运行接口统一使用 SPCP。固定描述、类别映射、图像身份和结果数值均属于复现协议。
 
+## Software environment / 软件环境
+
+Original experiment versions: Python 3.8.20, PyTorch 2.4.1, torchvision 0.19.1,
+CUDA 11.8, NumPy 1.24.4 and Pillow 10.4.0. The README installation commands
+and pinned core dependencies reproduce these versions. CPU CI uses Python
+3.8.20 and the matching PyTorch/torchvision CPU builds on Ubuntu 22.04; it
+checks installation, release integrity and synthetic tests, not GPU accuracy.
+
+原始实验版本为 Python 3.8.20、PyTorch 2.4.1、torchvision 0.19.1、CUDA 11.8、
+NumPy 1.24.4 和 Pillow 10.4.0。安装命令及核心依赖与这些版本一致；CPU CI
+只检查依赖、源码完整性及合成测试，不代表重新运行了 GPU 实验。历史实验记录保留。
+
 ## Fixed protocols / 固定协议
 
 | Protocol | Source / 源域 | Evaluation / 评估 | Epochs |
