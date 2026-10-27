@@ -13,6 +13,20 @@ embedded fonts in their PDFs; PNGs are screen previews. Filenames identify the f
 | Length distortion / 长度畸变 | [PNG](Fig4_length_distortion.png) · [SVG](Fig4_length_distortion.svg) · [PDF](Fig4_length_distortion.pdf) |
 | Class-wise recognition changes / 类别识别变化 | [PNG](Fig5_classwise_errors.png) · [SVG](Fig5_classwise_errors.svg) · [PDF](Fig5_classwise_errors.pdf) |
 
+## Structure diagrams
+
+![SPCP framework](SPCP_overall.png)
+
+![Text semantic constraint](SPCP_core.png)
+
+Both diagrams are 160 mm wide. The PDFs preserve vector geometry and embedded
+fonts; PNGs are previews. The semantic diagram compares prompted and reference
+differences for the same class pair on fixed source-class neighborhoods.
+Image-alignment symbols match the manuscript's calligraphic I.
+
+See [the export instructions](source/README.md) for the self-contained
+figure-building code and its separate optional authoring dependencies.
+
 ## Motivation
 
 ![Motivation for semantic preservation](SPCP_introduction_motivation.png)

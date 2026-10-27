@@ -3,10 +3,8 @@
   <title>SPCP architecture: semantic preparation, prompt interaction, framework</title>
   <desc>SPCP paper architecture. Editable vector drawing; coordinate sketches are schematic, not measured features.</desc>
   <defs>
-    <marker id="arrow" markerWidth="9" markerHeight="8" refX="8.3" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0L8.3 4L0 8Z" fill="#252525" />
-    </marker>
     <style>text{font-family:"Times New Roman","Liberation Serif",serif;fill:#252525}path,line,rect,polygon,circle{}</style>
+    <style>@font-face{font-family:"SPCP NewTX Math I";src:url("data:font/woff;base64,d09GRk9UVE8AAAR4AAkAAAAABdwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAADlAAAANsAAADbXpzPT09TLzIAAAFAAAAAMAAAAGBFMWU2Y21hcAAAA1QAAAAxAAAAPEHo395oZWFkAAAA4AAAADYAAAA2L62HVGhoZWEAAAEYAAAAHwAAACQFrAHLaG10eAAABHAAAAAGAAAABgKRAABtYXhwAAABOAAAAAYAAAAGAAJQAG5hbWUAAAFwAAAB4gAAAzlRUJDQcG9zdAAAA4gAAAAMAAAAIAADAAAAAQAAAAEAAAjs1LFfDzz1AAMD6AAAAADnBiHqAAAAAOcGIeoAB//nAoMCuQAAAAMAAgAAAAAAAHicY2BkYGBW+G/BwMDUxcDOwM7UzAAUQQGMAEGWAn0AAABQAAACAAB4nGNgZupinMDAysDCQBgwAjEHjGMPBEDKU1GAWeG/BQMDswLDCTT1CgwMANRKBQ54nE2RzWrbQBSFjxInJYEW2lUpLVy6SsBjbEgJNLsYE7RIMHEI2XShyGNJoL+MRlh+hL5M36fP0k3PjBXHGjQ69853z8xcAfiAPwjgngAf/eyeA7xjtNWH+IbPvR7sMUd4jx+9PqbPda9P8RtzVgWDE2a+42+vD8j86/UhfgYnvR7sMUf4Ekx7fYyvwa9enwafgs1iPp3LnV4/PMltZFMJ73XS5pFxeeXzyuVVqGZdFFt1k2/q9FGbJqtKmYzG47EjPei4cJGVSa5V4jDRxbNeLpmRaiW2azaNhEPRnTW00ktZZzatWiuJrgptTRZLnEZlohtZmaoQm2qJWiJGNW1d5xlL/HmLqGyb2GS1HcrsZSRnF+dXUuq17Qp3h8nocjLCgg2b8hXcQWONBzxR3yKCRUoV4p75BC1y5syOV3u82vGKvMIMHeOYGYUb1m1Qc+2RvEGDDBVKOk8wwtiPV883x1e/kGsZ6YQumm7Jzk0YF3jmvOTYMkLnFWfL/RtyjT//0LMds6Y/lasR7pT5PSrezTJOmK/oqT2ZkRS+KWtKv+bcVlxxjPhKzW/kq52L4fkaRjVHzvrtLm/9LbxTSyb2/jXr3NlmeGEnBGe4wDmuqErfB3eLYvcfXLcu3fwfIDmenQAAeJxjYGBgYmBgYAZiESDJCKZZGDSANBuQZgTKeioK/P8P5IPp/zvufQSrAgIAj0wI4gAAAHicY2BmwAsAAH0ABAEABAEAAQEBD1NQQ1BOZXdUWE1hdGhJAAEBARn4HAL4HAP4GASScvkX+U0F4A+L928S4xEAAgEBCRptYXRoY2FsSVNQQ1AgTmV3VFggTWF0aCBJAAAAAYcAAgEBBH75Hg75HvkX+TQVlImUhZIecoh2hXZERZlEG1n7DIlDgY6CkYMftY33E5OrG6GgiomhHzr7bLb8dfsZG1w4hkuDkIOShx+ljbSSn8/Oes8bu9mvw5CJj4mPH2R3WoZkG2dokI9nH6meupWipgjVzb74Q8+npoanG6+6lbgfDgACigAAAAcAAA==") format("woff");font-weight:400;font-style:normal;} .newtx-mathcal-I{font-family:"SPCP NewTX Math I";font-weight:400;font-style:normal;}</style>
   </defs>
   <rect width="1440" height="1095" fill="white" />
   <rect x="40" y="20" width="670" height="320" rx="16" fill="#fbfdf9" stroke="#b4c6aa" stroke-width="1.1" />
@@ -18,13 +16,22 @@
   <text x="127.5" y="127" font-size="23" font-weight="400" text-anchor="middle" style="fill:#252525">names</text>
   <path data-role="llm" d="M 245.64 123.80000000000001 C 220.68 123.80000000000001,223.8 99.4,241.48 97.57 C 236.28 79.88,272.68 70.12,288.28 84.15 C 320.52 73.17,341.32 94.52,322.6 104.28 C 346.52 123.19,304.92 140.88,286.2 128.07 C 267.48 140.27,242.52 134.78,245.64 123.80000000000001 Z" fill="#c9f0f5" stroke="#55a5b0" stroke-width="1.3" />
   <text x="281.0" y="113.0" font-size="25" font-weight="400" text-anchor="middle" style="fill:#252525">LLM</text>
-  <path d="M190 107H228" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-  <path d="M333 107H371" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+  <g id="overall-arrow-01" data-role="arrow">
+    <path d="M190.65 107L219.370100246 107" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-01-shaft" />
+    <path id="overall-arrow-01-head" d="M219.370100246 111L227.670100246 107L219.370100246 103Z" fill="#252525" />
+  </g>
+  <g id="overall-arrow-02" data-role="arrow">
+    <path d="M326.259597725 107L363.05 107" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-02-shaft" />
+    <path id="overall-arrow-02-head" d="M363.05 111L371.35 107L363.05 103Z" fill="#252525" />
+  </g>
   <rect x="372" y="86" width="166" height="42" rx="0" fill="#ffe9c5" stroke="#c7a572" stroke-width="1.3" />
   <text x="455" y="114" font-size="22" font-weight="400" text-anchor="middle" style="fill:#252525">Root category</text>
-  <rect x="372" y="151" width="166" height="42" rx="0" fill="#ffe9c5" stroke="#c7a572" stroke-width="1.3" />
-  <text x="455" y="179" font-size="22" font-weight="400" text-anchor="middle" style="fill:#252525">Child category</text>
-  <path d="M455 128V150" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+  <rect x="372" y="158" width="166" height="42" rx="0" fill="#ffe9c5" stroke="#c7a572" stroke-width="1.3" />
+  <text x="455" y="186" font-size="22" font-weight="400" text-anchor="middle" style="fill:#252525">Child category</text>
+  <g id="overall-arrow-03" data-role="arrow">
+    <path d="M455 128.65L455 149.05" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-03-shaft" />
+    <path id="overall-arrow-03-head" d="M451 149.05L455 157.35L459 149.05Z" fill="#252525" />
+  </g>
   <rect x="65" y="230" width="620" height="78" rx="4" fill="#e6f3dc" stroke="#9eb18d" stroke-width="1.3" />
   <g data-role="fixed-reference-icon" transform="translate(662 246) scale(0.75)">
     <path d="M-8 -1V-8A8 8 0 0 1 8 -8V-1" fill="none" stroke="#586e66" stroke-width="2.2" />
@@ -34,8 +41,14 @@
   </g>
   <text x="375" y="257" font-size="24" font-weight="400" text-anchor="middle" style="fill:#252525">Fixed semantic templates</text>
   <text x="375" y="289" font-size="20" font-weight="400" text-anchor="middle" style="fill:#252525">A photo of a {class}, belonging to the {child} within {root}</text>
-  <path d="M127 137V229" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-  <path d="M455 193V229" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+  <g id="overall-arrow-04" data-role="arrow">
+    <path d="M127 137.65L127 221.05" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-04-shaft" />
+    <path id="overall-arrow-04-head" d="M123 221.05L127 229.35L131 221.05Z" fill="#252525" />
+  </g>
+  <g id="overall-arrow-05" data-role="arrow">
+    <path d="M455 200.65L455 221.05" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-05-shaft" />
+    <path id="overall-arrow-05-head" d="M451 221.05L455 229.35L459 221.05Z" fill="#252525" />
+  </g>
   <g id="interaction-text-to-visual" data-flow="left-to-right">
     <text x="750" y="132" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Layers 1–6</text>
     <rect x="870" y="80" width="158" height="41" rx="0" fill="#dbe8fc" stroke="#849bb1" stroke-width="1.3" />
@@ -70,8 +83,14 @@
     <rect x="1246" y="154" width="22" height="17" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1" />
     <rect x="1273" y="154" width="22" height="17" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1" />
     <rect x="1300" y="154" width="22" height="17" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1" />
-    <path d="M944 154 V122" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M1284 154 V122" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-06" data-role="arrow">
+      <path d="M944 153.5L944 129.95" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-06-shaft" />
+      <path id="overall-arrow-06-head" d="M948 129.95L944 121.65L940 129.95Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-07" data-role="arrow">
+      <path d="M1284 153.5L1284 129.95" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-07-shaft" />
+      <path id="overall-arrow-07-head" d="M1288 129.95L1284 121.65L1280 129.95Z" fill="#252525" />
+    </g>
     <polygon data-role="shared-projection" points="1064,144 1176,144 1166,180 1074,180" fill="#ffe9c5" stroke="#d3a247" stroke-width="1.3" />
     <text x="1120.0" y="170.0" font-size="23" font-weight="400" text-anchor="middle" style="fill:#252525">Share</text>
     <g data-role="trainable-icon" transform="translate(1170 141) scale(0.6666666666666666)">
@@ -82,8 +101,14 @@
       <path d="M0 -16C-5 -13 -2 -6 -7 -5C-10 -10 -12 -6 -13 0C-17 10 -9 16 0 16C11 16 16 9 12 1C11 -3 8 -5 7 -9C5 -7 6 -2 2 0C5 -8 5 -12 0 -16Z" fill="#f21111" />
       <path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a" />
     </g>
-    <path d="M983 162H1063" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M1177 162H1245" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-08" data-role="arrow">
+      <path d="M982.5 162L1060.025388772224 162" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-08-shaft" />
+      <path id="overall-arrow-08-head" d="M1060.025388772224 166L1068.325388772224 162L1060.025388772224 158Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-09" data-role="arrow">
+      <path d="M1171.674611227776 162L1237.2 162" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-09-shaft" />
+      <path id="overall-arrow-09-head" d="M1237.2 166L1245.5 162L1237.2 158Z" fill="#252525" />
+    </g>
     <text x="1120" y="198" font-size="20" font-weight="400" text-anchor="middle" style="fill:#252525">Text → Visual</text>
   </g>
   <g id="interaction-visual-to-text" data-flow="right-to-left">
@@ -120,8 +145,14 @@
     <rect x="1246" y="278" width="22" height="17" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1" />
     <rect x="1273" y="278" width="22" height="17" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1" />
     <rect x="1300" y="278" width="22" height="17" rx="0" fill="#f8d4cd" stroke="#bd938d" stroke-width="1" />
-    <path d="M944 278 V246" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M1284 278 V246" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-10" data-role="arrow">
+      <path d="M944 277.5L944 253.95" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-10-shaft" />
+      <path id="overall-arrow-10-head" d="M948 253.95L944 245.65L940 253.95Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-11" data-role="arrow">
+      <path d="M1284 277.5L1284 253.95" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-11-shaft" />
+      <path id="overall-arrow-11-head" d="M1288 253.95L1284 245.65L1280 253.95Z" fill="#252525" />
+    </g>
     <polygon data-role="shared-projection" points="1064,268 1176,268 1166,304 1074,304" fill="#ffe9c5" stroke="#d3a247" stroke-width="1.3" />
     <text x="1120.0" y="294.0" font-size="23" font-weight="400" text-anchor="middle" style="fill:#252525">Share</text>
     <g data-role="trainable-icon" transform="translate(1170 265) scale(0.6666666666666666)">
@@ -132,8 +163,14 @@
       <path d="M0 -16C-5 -13 -2 -6 -7 -5C-10 -10 -12 -6 -13 0C-17 10 -9 16 0 16C11 16 16 9 12 1C11 -3 8 -5 7 -9C5 -7 6 -2 2 0C5 -8 5 -12 0 -16Z" fill="#f21111" />
       <path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a" />
     </g>
-    <path d="M1246 286H1177" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M1064 286H983" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-12" data-role="arrow">
+      <path d="M1245.5 286L1179.974611227776 286" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-12-shaft" />
+      <path id="overall-arrow-12-head" d="M1179.974611227776 282L1171.674611227776 286L1179.974611227776 290Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-13" data-role="arrow">
+      <path d="M1068.325388772224 286L990.8 286" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-13-shaft" />
+      <path id="overall-arrow-13-head" d="M990.8 282L982.5 286L990.8 290Z" fill="#252525" />
+    </g>
     <text x="1120" y="322" font-size="20" font-weight="400" text-anchor="middle" style="fill:#252525">Text ← Visual</text>
   </g>
   <g id="framework" transform="translate(0 360)">
@@ -155,8 +192,14 @@
     </g>
     <text x="436" y="150" font-size="25" font-weight="400" text-anchor="middle" style="fill:#252525">Text</text>
     <text x="436" y="181" font-size="25" font-weight="400" text-anchor="middle" style="fill:#252525">encoder</text>
-    <path d="M 230 155 H 349" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M 530 155 H 649" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-14" data-role="arrow">
+      <path d="M230.65 155L341.05 155" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-14-shaft" />
+      <path id="overall-arrow-14-head" d="M341.05 159L349.35 155L341.05 151Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-15" data-role="arrow">
+      <path d="M530.65 155L641.15 155" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-15-shaft" />
+      <path id="overall-arrow-15-head" d="M641.15 159L649.45 155L641.15 151Z" fill="#252525" />
+    </g>
     <rect x="650" y="119" width="24" height="72" rx="1" fill="#e6f3dc" stroke="#879785" stroke-width="1.1" />
     <g data-role="math-symbol" data-base="t" transform="translate(655.801 104)">
       <text x="0" y="0" font-size="25" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
@@ -204,7 +247,10 @@
         <path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a" />
       </g>
     </g>
-    <path d="M440 260V220" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-16" data-role="arrow">
+      <path d="M440 259.4L440 222.951442843063" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-16-shaft" />
+      <path id="overall-arrow-16-head" d="M444 222.951442843063L440 214.651442843063L436 222.951442843063Z" fill="#252525" />
+    </g>
     <g transform="translate(0 -10)">
       <g data-role="math-symbol" data-base="P" transform="translate(459 255)">
         <text x="0" y="0" font-size="22" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">P</text>
@@ -212,7 +258,10 @@
         <text x="14.322000000000001" y="-8.36" font-size="16.2" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">t</text>
       </g>
     </g>
-    <path d="M440 390V430" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-17" data-role="arrow">
+      <path d="M440 390.6L440 427.048557156937" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-17-shaft" />
+      <path id="overall-arrow-17-head" d="M436 427.048557156937L440 435.348557156937L444 427.048557156937Z" fill="#252525" />
+    </g>
     <g transform="translate(0 -24)">
       <g data-role="math-symbol" data-base="P" transform="translate(0 -7) translate(459 448)">
         <text x="0" y="0" font-size="22" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">P</text>
@@ -243,7 +292,10 @@
       <text x="436" y="561" font-size="25" font-weight="400" text-anchor="middle" style="fill:#252525">encoder</text>
     </g>
     <g transform="translate(0 -40)">
-      <path d="M 530 535 H 649" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+      <g id="overall-arrow-18" data-role="arrow">
+        <path d="M530.65 535L641.15 535" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-18-shaft" />
+        <path id="overall-arrow-18-head" d="M641.15 539L649.45 535L641.15 531Z" fill="#252525" />
+      </g>
     </g>
     <g transform="translate(0 -40)">
       <rect x="650" y="499" width="24" height="72" rx="1" fill="#ece0f1" stroke="#879785" stroke-width="1.1" />
@@ -269,10 +321,19 @@
     <g transform="translate(0 -45)">
       <text x="146" y="721" font-size="25" font-weight="400" text-anchor="middle" font-style="italic" style="fill:#252525">Images x</text>
     </g>
-    <path d="M226 565H275" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-19" data-role="arrow">
+      <path d="M226.5 565L264.2 565" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-19-shaft" />
+      <path id="overall-arrow-19-head" d="M264.2 569L272.5 565L264.2 561Z" fill="#252525" />
+    </g>
     <circle cx="275" cy="565" r="2.5" fill="#252525" />
-    <path d="M275 565V495H349" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M275 565V645H349" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="4 3" />
+    <g id="overall-arrow-20" data-role="arrow">
+      <path d="M275 565L275 495L341.05 495" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-20-shaft" />
+      <path id="overall-arrow-20-head" d="M341.05 499L349.35 495L341.05 491Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-21" data-role="arrow">
+      <path d="M275 565L275 645L341.05 645" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="4 3" id="overall-arrow-21-shaft" stroke-dashoffset="2.95" />
+      <path id="overall-arrow-21-head" d="M341.05 649L349.35 645L341.05 641Z" fill="#252525" />
+    </g>
     <g transform="translate(0 -50)">
       <polygon points="350,630 530,642 530,748 350,760" fill="#ece0f1" stroke="#8292a4" stroke-width="1.3" />
     </g>
@@ -296,7 +357,10 @@
       <text x="436" y="721" font-size="25" font-weight="400" text-anchor="middle" style="fill:#252525">teacher</text>
     </g>
     <g transform="translate(0 -50)">
-      <path d="M 530 695 H 649" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)" />
+      <g id="overall-arrow-22" data-role="arrow">
+        <path d="M530.65 695L641.15 695" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="7 5" id="overall-arrow-22-shaft" stroke-dashoffset="1" />
+        <path id="overall-arrow-22-head" d="M641.15 699L649.45 695L641.15 691Z" fill="#252525" />
+      </g>
     </g>
     <g transform="translate(0 -50)">
       <rect x="650" y="659" width="24" height="72" rx="1" fill="#ece0f1" stroke="#879785" stroke-width="1.1" />
@@ -308,8 +372,14 @@
         <text x="10.725" y="-9.5" font-size="16.2" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">0</text>
       </g>
     </g>
-    <path d="M666 191L757 305" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M666 459L757 344" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-23" data-role="arrow">
+      <path d="M666.439035087723 191.55L751.94967547961 298.673219830722" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-23-shaft" />
+      <path id="overall-arrow-23-head" d="M748.823526680109 301.168654398764L757.127702208298 305.159978589685L755.07582427911 296.177785262679Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-24" data-role="arrow">
+      <path d="M666.435217391303 458.45L751.458840599828 351.002564076769" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-24-shaft" />
+      <path id="overall-arrow-24-head" d="M754.595576907792 353.484677155236L756.609225237648 344.493836237743L748.322104291864 348.520450998301Z" fill="#252525" />
+    </g>
     <g transform="translate(0 -20)">
       <circle cx="770" cy="345" r="23" fill="#e5edf5" stroke="#252525" stroke-width="1.3" />
     </g>
@@ -317,7 +387,10 @@
       <text x="770" y="354" font-size="31" font-weight="400" text-anchor="middle" style="fill:#252525">×</text>
     </g>
     <g transform="translate(0 -20)">
-      <path d="M 794 345 H 929" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+      <g id="overall-arrow-25" data-role="arrow">
+        <path d="M793.65 345L921.05 345" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-25-shaft" />
+        <path id="overall-arrow-25-head" d="M921.05 349L929.35 345L921.05 341Z" fill="#252525" />
+      </g>
     </g>
     <g transform="translate(0 -20)">
       <rect x="930" y="316" width="156" height="58" rx="0" fill="#e5edf5" stroke="#8297a7" stroke-width="1.3" />
@@ -326,7 +399,10 @@
       <text x="1008" y="353" font-size="23" font-weight="400" text-anchor="middle" style="fill:#252525">Scaled logits</text>
     </g>
     <g transform="translate(0 -20)">
-      <path d="M 1086 345 H 1209" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+      <g id="overall-arrow-26" data-role="arrow">
+        <path d="M1086.65 345L1201.05 345" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-26-shaft" />
+        <path id="overall-arrow-26-head" d="M1201.05 349L1209.35 345L1201.05 341Z" fill="#252525" />
+      </g>
     </g>
     <g transform="translate(0 -20)">
       <rect x="1210" y="316" width="165" height="58" rx="0" fill="#e5edf5" stroke="#8297a7" stroke-width="1.3" />
@@ -334,7 +410,10 @@
     <g transform="translate(0 -20)">
       <text x="1292" y="352" font-size="25" font-weight="400" text-anchor="middle" style="fill:#252525">Prediction</text>
     </g>
-    <path d="M1008 354V389" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="4 3" />
+    <g id="overall-arrow-27" data-role="arrow">
+      <path d="M1008 354.65L1008 381.05" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="4 3" id="overall-arrow-27-shaft" stroke-dashoffset="-3.4" />
+      <path id="overall-arrow-27-head" d="M1004 381.05L1008 389.35L1012 381.05Z" fill="#252525" />
+    </g>
     <g transform="translate(0 -20)">
       <rect data-role="loss-badge" x="930" y="410" width="156" height="48" rx="2" fill="#fff3b0" stroke="#252525" stroke-width="1.3" />
     </g>
@@ -349,12 +428,18 @@
       <text x="1162" y="441" font-size="22" font-weight="400" text-anchor="middle" style="fill:#252525">Labels y</text>
     </g>
     <g transform="translate(0 -20)">
-      <path d="M 1120 434 H 1087" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)" />
+      <g id="overall-arrow-28" data-role="arrow">
+        <path d="M1120 434L1094.95 434" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="7 5" id="overall-arrow-28-shaft" stroke-dashoffset="2.45" />
+        <path id="overall-arrow-28-head" d="M1094.95 430L1086.65 434L1094.95 438Z" fill="#252525" />
+      </g>
     </g>
     <text x="1008" y="80" font-size="25" font-weight="600" text-anchor="middle" style="fill:#252525">Semantic constraint S</text>
     <rect data-role="loss-badge" x="930" y="131" width="156" height="48" rx="2" fill="#fff3b0" stroke="#252525" stroke-width="1.3" />
     <text x="1008.0" y="163.0" font-size="25" font-weight="400" text-anchor="middle" font-style="italic" style="fill:#252525">S</text>
-    <path d="M 674 155 H 929" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)" />
+    <g id="overall-arrow-29" data-role="arrow">
+      <path d="M674.55 155L921.05 155" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="7 5" id="overall-arrow-29-shaft" stroke-dashoffset="-3" />
+      <path id="overall-arrow-29-head" d="M921.05 159L929.35 155L921.05 151Z" fill="#252525" />
+    </g>
     <polygon points="1200,90 1380,102 1380,208 1200,220" fill="#dbe8fc" stroke="#8292a4" stroke-width="1.3" />
     <g data-role="frozen-icon" transform="translate(1356 118) scale(0.9642857142857143)" stroke="#00a6ed" stroke-width="1.9" stroke-linecap="round" fill="none">
       <g transform="rotate(0)">
@@ -383,73 +468,85 @@
     <g transform="translate(0 -20)">
       <text x="1303" y="288" font-size="20" font-weight="400" text-anchor="middle" style="fill:#252525">Fixed templates</text>
     </g>
-    <path d="M1290 240V220" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+    <g id="overall-arrow-30" data-role="arrow">
+      <path d="M1290 239.35L1290 222.951442843063" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-30-shaft" />
+      <path id="overall-arrow-30-head" d="M1294 222.951442843063L1290 214.651442843063L1286 222.951442843063Z" fill="#252525" />
+    </g>
     <rect x="1115" y="119" width="20" height="72" rx="1" fill="#e6f3dc" stroke="#879785" stroke-width="1.1" />
     <g data-role="math-symbol" data-base="q" transform="translate(1116.026 104)">
       <text x="0" y="0" font-size="25" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">q</text>
       <text x="13.5" y="5.5" font-size="16.2" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
     </g>
-    <path d="M1200 155H1136" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
-    <path d="M1115 155H1087" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)" />
-    <path d="M674 495H1008V545" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="4 3" />
+    <g id="overall-arrow-31" data-role="arrow">
+      <path d="M1199.35 155L1143.85 155" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" id="overall-arrow-31-shaft" />
+      <path id="overall-arrow-31-head" d="M1143.85 151L1135.55 155L1143.85 159Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-32" data-role="arrow">
+      <path d="M1114.45 155L1094.95 155" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="7 5" id="overall-arrow-32-shaft" stroke-dashoffset="-4" />
+      <path id="overall-arrow-32-head" d="M1094.95 151L1086.65 155L1094.95 159Z" fill="#252525" />
+    </g>
+    <g id="overall-arrow-33" data-role="arrow">
+      <path d="M674.55 495L1008 495L1008 537.05" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="4 3" id="overall-arrow-33-shaft" stroke-dashoffset="-2.5" />
+      <path id="overall-arrow-33-head" d="M1004 537.05L1008 545.35L1012 537.05Z" fill="#252525" />
+    </g>
     <g transform="translate(0 -45)">
       <rect data-role="loss-badge" x="930" y="591" width="156" height="48" rx="2" fill="#fff3b0" stroke="#252525" stroke-width="1.3" />
     </g>
     <g transform="translate(0 -45)">
       <g data-role="loss-label" data-symbol="mathcal-I" data-cx="1008.0" data-cy="615.0" data-rendering="text" aria-label="Image alignment ℐ">
         <title>Image alignment ℐ</title>
-        <text data-glyph="mathcal-I" x="1008" y="624" font-family="Times New Roman, Liberation Serif, serif" font-size="25" font-weight="400" text-anchor="middle" fill="#252525">ℐ</text>
+        <text id="image-alignment-loss-symbol" data-glyph="mathcal-I" data-latex="\mathcal{I}" x="1001.797607421875" y="626.742041015625" font-size="25" text-anchor="start" class="newtx-mathcal-I" fill="#252525">ℐ</text>
       </g>
     </g>
-    <path d="M674 645H1008V595" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="4 3" />
-    <text x="914" y="580" font-size="23" font-weight="600" text-anchor="end" style="fill:#252525">Image alignment ℐ</text>
+    <g id="overall-arrow-34" data-role="arrow">
+      <path d="M674.55 645L1008 645L1008 602.95" fill="none" stroke="#252525" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="4 3" id="overall-arrow-34-shaft" stroke-dashoffset="-2.5" />
+      <path id="overall-arrow-34-head" d="M1012 602.95L1008 594.65L1004 602.95Z" fill="#252525" />
+    </g>
+    <g id="image-alignment-label">
+      <text id="image-alignment-label-text" x="726.96484375" y="580" font-size="23" font-weight="600" text-anchor="start" style="fill:#252525">Image alignment</text>
+      <text id="image-alignment-label-symbol" data-latex="\mathcal{I}" x="900.31162109375" y="582.500216796875" font-size="23" text-anchor="start" class="newtx-mathcal-I" fill="#252525">ℐ</text>
+    </g>
     <g id="framework-legend">
-      <rect x="1140" y="450" width="260" height="252" rx="6" fill="#fff2ca" stroke="#d4be7c" stroke-width="1.2" />
-      <g transform="translate(977 -342)">
-        <g data-role="frozen-icon" transform="translate(197 818) scale(0.9285714285714286)" stroke="#00a6ed" stroke-width="1.9" stroke-linecap="round" fill="none">
-          <g transform="rotate(0)">
-            <path d="M-13 0H13M-7 0L-11 -4M-7 0L-11 4M7 0L11 -4M7 0L11 4" />
-          </g>
-          <g transform="rotate(60)">
-            <path d="M-13 0H13M-7 0L-11 -4M-7 0L-11 4M7 0L11 -4M7 0L11 4" />
-          </g>
-          <g transform="rotate(120)">
-            <path d="M-13 0H13M-7 0L-11 -4M-7 0L-11 4M7 0L11 -4M7 0L11 4" />
-          </g>
+      <rect x="1125" y="450" width="275" height="252" rx="6" fill="#fff2ca" stroke="#d4be7c" stroke-width="1.2" />
+      <g data-role="frozen-icon" transform="translate(1166 476) scale(0.9285714285714286)" stroke="#00a6ed" stroke-width="1.9" stroke-linecap="round" fill="none">
+        <g transform="rotate(0)">
+          <path d="M-13 0H13M-7 0L-11 -4M-7 0L-11 4M7 0L11 -4M7 0L11 4" />
+        </g>
+        <g transform="rotate(60)">
+          <path d="M-13 0H13M-7 0L-11 -4M-7 0L-11 4M7 0L11 -4M7 0L11 4" />
+        </g>
+        <g transform="rotate(120)">
+          <path d="M-13 0H13M-7 0L-11 -4M-7 0L-11 4M7 0L11 -4M7 0L11 4" />
         </g>
       </g>
-      <text x="1203" y="483" font-size="21" fill="#252525">Frozen parameters</text>
-      <g transform="translate(547.5 -303)">
-        <g data-role="trainable-icon" transform="translate(626.5 818) scale(0.8333333333333334)">
-          <path d="M0 -16C-5 -13 -2 -6 -7 -5C-10 -10 -12 -6 -13 0C-17 10 -9 16 0 16C11 16 16 9 12 1C11 -3 8 -5 7 -9C5 -7 6 -2 2 0C5 -8 5 -12 0 -16Z" fill="#f21111" />
-          <path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a" />
-        </g>
+      <text x="1211" y="483" font-size="21" text-anchor="start" fill="#252525">Frozen parameters</text>
+      <g data-role="trainable-icon" transform="translate(1166 515) scale(0.8333333333333334)">
+        <path d="M0 -16C-5 -13 -2 -6 -7 -5C-10 -10 -12 -6 -13 0C-17 10 -9 16 0 16C11 16 16 9 12 1C11 -3 8 -5 7 -9C5 -7 6 -2 2 0C5 -8 5 -12 0 -16Z" fill="#f21111" />
+        <path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a" />
       </g>
-      <text x="1203" y="522" font-size="21" fill="#252525">Trainable parameters</text>
-      <g transform="translate(90 -262)">
-        <g data-role="fixed-reference-icon" transform="translate(1084 816) scale(0.8928571428571429)">
-          <path d="M-8 -1V-8A8 8 0 0 1 8 -8V-1" fill="none" stroke="#586e66" stroke-width="2.2" />
-          <rect x="-11" y="-2" width="22" height="18" rx="3" fill="#dbeee6" stroke="#586e66" stroke-width="1.6" />
-          <circle cx="0" cy="5" r="2" fill="#586e66" />
-          <path d="M0 6V11" stroke="#586e66" stroke-width="2" />
-        </g>
+      <text x="1211" y="522" font-size="21" text-anchor="start" fill="#252525">Trainable parameters</text>
+      <g data-role="fixed-reference-icon" transform="translate(1166 554) scale(0.8928571428571429)">
+        <path d="M-8 -1V-8A8 8 0 0 1 8 -8V-1" fill="none" stroke="#586e66" stroke-width="2.2" />
+        <rect x="-11" y="-2" width="22" height="18" rx="3" fill="#dbeee6" stroke="#586e66" stroke-width="1.6" />
+        <circle cx="0" cy="5" r="2" fill="#586e66" />
+        <path d="M0 6V11" stroke="#586e66" stroke-width="2" />
       </g>
-      <text x="1203" y="561" font-size="21" fill="#252525">Fixed references</text>
-      <g transform="translate(1174 593) scale(.72) translate(-202 -865)">
-        <path data-role="llm" d="M 176.16 876.2 C 157.92 876.2,160.2 860.6,173.12 859.43 C 169.32 848.12,195.92 841.88,207.32 850.85 C 230.88 843.83,246.08 857.48,232.4 863.72 C 249.88 875.81,219.48 887.12,205.8 878.93 C 192.12 886.73,173.88 883.22,176.16 876.2 Z" fill="#c9f0f5" stroke="#55a5b0" stroke-width="1.3" />
-        <text x="202.0" y="870.314" font-size="23" font-weight="400" text-anchor="middle" style="fill:#252525">LLM</text>
+      <text x="1211" y="561" font-size="21" text-anchor="start" fill="#252525">Fixed references</text>
+      <g id="legend-language-model">
+        <path data-role="llm" d="M 176.16 876.2 C 157.92 876.2,160.2 860.6,173.12 859.43 C 169.32 848.12,195.92 841.88,207.32 850.85 C 230.88 843.83,246.08 857.48,232.4 863.72 C 249.88 875.81,219.48 887.12,205.8 878.93 C 192.12 886.73,173.88 883.22,176.16 876.2 Z" fill="#c9f0f5" stroke="#55a5b0" stroke-width="1.554670060301422" transform="matrix(0.829720818773 0 0 0.842710193649 999.794287733605 -135.916813746050)" />
+        <text x="1167.95" y="600" font-size="21" text-anchor="middle" fill="#252525">LLM</text>
       </g>
-      <text x="1218" y="600" font-size="21" fill="#252525">Language model</text>
-      <g transform="translate(520 -232)">
-        <polygon data-role="shared-projection" points="629,847 709,847 699,881 639,881" fill="#ffe9c5" stroke="#d3a247" stroke-width="1.3" />
-        <text x="669.0" y="872.0" font-size="23" font-weight="400" text-anchor="middle" style="fill:#252525">Share</text>
+      <text x="1211" y="600" font-size="21" text-anchor="start" fill="#252525">Language model</text>
+      <g id="legend-projection">
+        <polygon data-role="shared-projection" points="1135,616.5 1197,616.5 1189,647.5 1143,647.5" fill="#ffe9c5" stroke="#d3a247" stroke-width="1.3" />
+        <text x="1166" y="639" font-size="21" text-anchor="middle" fill="#252525">Share</text>
       </g>
-      <text x="1241" y="639" font-size="21" fill="#252525">Projection</text>
-      <g transform="translate(77 -194)">
-        <circle cx="1097" cy="865" r="14" fill="#e5edf5" stroke="#252525" stroke-width="1.1" />
-        <text x="1097" y="872" font-size="24" font-weight="400" text-anchor="middle" style="fill:#252525">×</text>
+      <text x="1211" y="639" font-size="21" text-anchor="start" fill="#252525">Projection</text>
+      <g id="legend-inner-product">
+        <circle cx="1166" cy="671" r="14" fill="#e5edf5" stroke="#252525" stroke-width="1.1" />
+        <text x="1166" y="678" font-size="24" text-anchor="middle" fill="#252525">×</text>
       </g>
-      <text x="1203" y="678" font-size="21" fill="#252525">Inner product</text>
+      <text x="1211" y="678" font-size="21" text-anchor="start" fill="#252525">Inner product</text>
     </g>
   </g>
 </svg>
