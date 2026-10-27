@@ -2,8 +2,7 @@
 
 PNG files provide previews, SVG files retain editable sources, and PDFs provide
 publication exports. Both architecture schematics retain vector geometry and
-embedded fonts in their PDFs; PNGs are screen previews. Filenames are stable asset identifiers,
-not manuscript version identifiers or a promise of current figure numbering.
+embedded fonts in their PDFs; PNGs are screen previews. Filenames identify the figure assets.
 
 | Content | Files |
 |---|---|
@@ -38,6 +37,6 @@ Closer reference geometry does not imply uniform recognition gains: Full increas
 NWPU-RESISC45 new-class accuracy by 5.30 percentage points and decreases PatternNet
 new-class accuracy by 3.67 points relative to w/o S.
 
-本目录按图件内容组织，不绑定稿件版本。动机图是概念示意，不是实验嵌入结果；
+本目录按图件内容组织。动机图是概念示意，不是实验嵌入结果；
 Full 与 w/o S 同时涉及两项文本损失，
 不能把 HM 差异直接归因于某一种畸变的变化。

@@ -48,31 +48,6 @@ Full-method per-seed results and summaries are in `results/`. We selected η = 0
 
 HM 先按数据集和 seed 计算再汇总，CD/DG 的目标域均值不包含源域。`results/` 提供完整方法的逐 seed 结果及汇总。我们基于 DG 目标域的探索性评估选择 η=0.5。
 
-## Text-objective control labels / 文本目标控制编号
-
-The manuscript orders the text-objective controls as follows. The identifiers
-describe ablation settings; the released CLI and configurations still support
-the full SPCP method only.
-
-| Current label | Setting | Previous display label | Historical execution ID |
-|---|---|---|---|
-| D1 | Absolute only | D1 | D1 |
-| D2 | Edge only | D2 | D2 |
-| D3 | Length only | D3 | D3 |
-| D4 | Gradient-matched length | D6 | G2 |
-| D5 | Common edge weight | D4 | D4 |
-| D6 | No text constraint | D5 | G1 |
-
-Full precedes D1–D6. Renumbering does not change objectives, coefficients,
-seeds, results or protocols. Historical execution IDs identify the original
-runs and must not be interpreted as current display labels. In particular,
-historical execution D4 means common edge weight, whereas current D4 means
-gradient-matched length. Control configurations and seed-level control
-results are not added to this full-method release.
-
-当前展示顺序为 Full、D1、D2、D3、D4（梯度尺度匹配长度）、D5（共同边权）、D6（无文本约束）。
-此调整仅改变编号与叙述顺序；原始运行 ID 保留。读取旧记录时必须显式区分历史执行 ID、旧展示编号与当前编号，不能直接连续替换。
-
 ## Checkpoints and data / 检查点与数据
 
 Preserve the whole output directory when backing up a run, including `metadata.json`, checkpoint and completion/audit records. Replays and resume operations enforce the same configuration, source tree, seed and data identities. Original archive checkpoints may be rejected after a source-tree change even when the mathematical kernels are unchanged. This code release is intended for fresh reproducible runs and does not remove those guards.
