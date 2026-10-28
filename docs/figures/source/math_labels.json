@@ -1,0 +1,290 @@
+[
+  {
+    "id": "overall-math-0",
+    "figure": "SPCP_overall.svg",
+    "latex": "\\vect{t}_i",
+    "size": 25.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "overall-math-1",
+    "figure": "SPCP_overall.svg",
+    "latex": "\\vect{z}_b",
+    "size": 25.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "overall-math-2",
+    "figure": "SPCP_overall.svg",
+    "latex": "\\vect{z}_b^{0}",
+    "size": 25.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "overall-math-3",
+    "figure": "SPCP_overall.svg",
+    "latex": "\\vect{q}_i",
+    "size": 25.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "overall-math-4",
+    "figure": "SPCP_overall.svg",
+    "latex": "\\mathcal L_{\\mathrm{CE}}",
+    "size": 25,
+    "x": 1008,
+    "y": 439.42,
+    "anchor": "middle"
+  },
+  {
+    "id": "overall-math-5",
+    "figure": "SPCP_overall.svg",
+    "latex": "\\mathcal S",
+    "size": 25,
+    "x": 1108,
+    "y": 80,
+    "anchor": "start"
+  },
+  {
+    "id": "overall-math-6",
+    "figure": "SPCP_overall.svg",
+    "latex": "\\mathcal S",
+    "size": 25,
+    "x": 1008,
+    "y": 163,
+    "anchor": "middle"
+  },
+  {
+    "id": "core-math-7",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{q}",
+    "size": 23.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-8",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{q}_i",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-9",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{q}_j",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-10",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{q}_k",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-11",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{q}_l",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-12",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{t}",
+    "size": 23.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-13",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{t}_i",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-14",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{t}_j",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-15",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{t}_k",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-16",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{t}_l",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-17",
+    "figure": "SPCP_core.svg",
+    "latex": "\\mathcal{A}",
+    "size": 24.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-18",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{q}_i",
+    "size": 23.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-19",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect{t}_i",
+    "size": 23.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-20",
+    "figure": "SPCP_core.svg",
+    "latex": "\\theta_i",
+    "size": 21.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-22",
+    "figure": "SPCP_core.svg",
+    "latex": "\\mathcal{E}",
+    "size": 24.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-23",
+    "figure": "SPCP_core.svg",
+    "latex": "\\mathcal{S}",
+    "size": 30.0,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-24",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect q,\\vect t",
+    "size": 24,
+    "x": 433,
+    "y": 369.5,
+    "anchor": "middle"
+  },
+  {
+    "id": "core-math-25",
+    "figure": "SPCP_core.svg",
+    "latex": "1-\\cos\\theta_i",
+    "size": 25,
+    "x": 0,
+    "y": 0,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-26",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect\\Delta_{ij}^{0}",
+    "size": 23,
+    "x": 845.99243,
+    "y": 551.164253,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-27",
+    "figure": "SPCP_core.svg",
+    "latex": "\\vect\\Delta_{ij}",
+    "size": 23,
+    "x": 817.38093,
+    "y": 533.008559,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-28",
+    "figure": "SPCP_core.svg",
+    "latex": "j\\in\\mathcal N_i",
+    "size": 22,
+    "x": 0,
+    "y": 603,
+    "anchor": "start"
+  },
+  {
+    "id": "core-math-29",
+    "figure": "SPCP_core.svg",
+    "latex": "\\displaystyle\\frac{\\|\\vect\\Delta_{ij}-\\vect\\Delta_{ij}^{0}\\|_2^2}{D_{ij}}",
+    "size": 23,
+    "x": 925,
+    "y": 578,
+    "anchor": "middle"
+  },
+  {
+    "id": "core-math-30",
+    "figure": "SPCP_core.svg",
+    "latex": "1-\\eta",
+    "size": 27,
+    "x": 1155,
+    "y": 224,
+    "anchor": "middle"
+  },
+  {
+    "id": "core-math-31",
+    "figure": "SPCP_core.svg",
+    "latex": "\\eta",
+    "size": 27,
+    "x": 1155,
+    "y": 524,
+    "anchor": "middle"
+  },
+  {
+    "id": "core-math-32",
+    "figure": "SPCP_core.svg",
+    "latex": "\\mathcal L",
+    "size": 22,
+    "x": 1270,
+    "y": 599,
+    "anchor": "middle"
+  }
+]

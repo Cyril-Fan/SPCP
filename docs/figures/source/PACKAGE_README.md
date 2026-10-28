@@ -10,6 +10,7 @@ semantic diagram, prompted and reference difference vectors use the same class
 pair; neighbor sets are constructed from fixed source-class reference features
 before training. Denominators and averaging follow the manuscript definitions.
 
-SVG text uses Times New Roman; the core neighbor-set symbol uses Cambria Math.
-The image-alignment glyph matches newtxmath's calligraphic I. PDF use does not
-require installing the supplied glyph font.
+SVG text uses Times New Roman. Other mathematical labels are LaTeX-generated
+NewTX vector paths; their expressions and placement are editable through the
+source math manifest. The image-alignment glyph uses newtxmath's calligraphic I.
+PDF use does not require installing the supplied glyph font.

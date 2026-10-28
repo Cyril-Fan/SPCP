@@ -22,7 +22,9 @@ embedded fonts in their PDFs; PNGs are screen previews. Filenames identify the f
 Both diagrams are 160 mm wide. The PDFs preserve vector geometry and embedded
 fonts; PNGs are previews. The semantic diagram compares prompted and reference
 differences for the same class pair on fixed source-class neighborhoods.
-Image-alignment symbols match the manuscript's calligraphic I.
+Mathematical labels use NewTX calligraphic losses and bold-italic vectors.
+Layer indices are superscripts and modality indices are subscripts. The full-layer
+prompt labels include both native and projected prompts.
 
 See [the export instructions](source/README.md) for the self-contained
 figure-building code and its separate optional authoring dependencies.
