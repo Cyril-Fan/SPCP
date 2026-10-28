@@ -7,12 +7,12 @@
 | Frozen CLIP and cross-modal prompt interaction X | `spcp/base_model.py` |
 | Individual text anchors A and same-input image alignment I | `spcp/models/common.py` |
 | Fixed source-class neighbor graph | `spcp/models/source_graph.py` |
-| Full coordinate differences E; `CE + I + 0.5 A + 0.5 E` | `spcp/models/spcp.py` |
+| Full class-difference vectors E; `CE + I + 0.5 A + 0.5 E` | `spcp/models/spcp.py` |
 | Training, evaluation and checkpoint restoration | `training.py`, `evaluation.py`, `checkpoint.py` in `spcp/` |
 | Frozen data/CLIP contracts | `spcp/config.py` |
 | Public CLI / 对外入口 | `python -m spcp` |
 
-SPCP jointly integrates text semantic preservation S, image alignment I, and prompt interaction X. S combines individual class anchoring A with full coordinate differences E. All model and runtime interfaces use the SPCP name. The source inventory in `source_identity.json` lists SHA-256 hashes for runtime modules, setup scripts, tests and configurations.
+SPCP jointly integrates text semantic preservation S, image alignment I, and prompt interaction X. S combines individual class anchoring A with full class-difference vectors E. All model and runtime interfaces use the SPCP name. The source inventory in `source_identity.json` lists SHA-256 hashes for runtime modules, setup scripts, tests and configurations.
 
 S/I/X 共同组成完整方法，S 包含逐类锚点 A 与完整坐标差 E。模型与运行接口统一使用 SPCP。固定描述、类别映射、图像身份和结果数值均属于复现协议。
 

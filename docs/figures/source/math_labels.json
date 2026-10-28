@@ -279,12 +279,21 @@
     "anchor": "middle"
   },
   {
-    "id": "core-math-32",
-    "figure": "SPCP_core.svg",
-    "latex": "\\mathcal L",
-    "size": 22,
-    "x": 1270,
-    "y": 599,
-    "anchor": "middle"
+    "id": "overall-component-X-top",
+    "figure": "SPCP_overall.svg",
+    "latex": "X",
+    "size": 25,
+    "x": 1122.7785664190528,
+    "y": 55.0,
+    "anchor": "start"
+  },
+  {
+    "id": "overall-component-X-box",
+    "figure": "SPCP_overall.svg",
+    "latex": "X",
+    "size": 25,
+    "x": 536.2893131993519,
+    "y": 317.0,
+    "anchor": "start"
   }
 ]
