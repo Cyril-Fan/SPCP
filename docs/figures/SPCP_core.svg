@@ -272,7 +272,7 @@
 <use data-text="A" xlink:href="#core-math-17-font_3_3" transform="matrix(23.910336,0,0,-23.910336,.11999893,19.248272)" />
 </g>
 </g></g>
-    <text x="589" y="138" font-size="23" font-weight="400" text-anchor="start" style="fill:#252525">Class anchoring</text>
+    <text x="579" y="138" font-size="23" font-weight="400" text-anchor="start" style="fill:#252525">Class anchoring</text>
     <g id="same-class-heading">
   <text x="561.18951171875" y="178" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Same class </text>
   <text x="654.50005859375" y="178" font-size="20" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">i</text>
@@ -390,7 +390,7 @@
 <use data-text="E" xlink:href="#core-math-22-font_3_4" transform="matrix(23.910336,0,0,-23.910336,.11999893,19.248272)" />
 </g>
 </g></g>
-    <text x="589" y="433" font-size="23" font-weight="400" text-anchor="start" style="fill:#252525">Class differences</text>
+    <text x="579" y="433" font-size="23" font-weight="400" text-anchor="start" style="fill:#252525">Class differences</text>
 
     <g id="neighbor-pair">
     <text x="555.44732421875" y="473" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Neighbor pair</text>
