@@ -53,7 +53,8 @@ Its ordinary text has embedded fonts in the PDF; mathematical symbols are outlin
 
 In the class-wise figure, thin cell and marker outlines are 0.32 pt;
 the left-side class indices use neutral gray #666666 (5.74:1 against white).
-Other plotted colors, positions and values are unchanged.
+The recall-axis labels and the combined mean/SD legend are visually centered
+under their axes. The legend sample line aligns with the lower color-bar edge.
 
 Full and w/o S differ jointly in the absolute
 and interclass text losses. New-class graphs are used solely for analysis, not training.
