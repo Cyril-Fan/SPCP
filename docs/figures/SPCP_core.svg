@@ -29,13 +29,13 @@
       <path d="M0 6V11" stroke="#586e66" stroke-width="2" />
     </g>
     <text x="56" y="180" font-size="19" font-weight="400" text-anchor="start" style="fill:#252525">Fixed reference</text>
-    <circle cx="190.0" cy="240" r="47" fill="none" stroke="#bcc8bb" stroke-width="0.9" />
+    <circle cx="190.0" cy="240" r="47" fill="none" stroke="#bcc8bb" stroke-width=".96" />
     <g id="core-arrow-01" data-role="arrow">
-      <path d="M125 240L246.7 240" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-01-shaft" />
+      <path d="M125 240L246.7 240" fill="none" stroke="#252525" stroke-width=".96" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-01-shaft" />
       <path id="core-arrow-01-head" d="M246.7 244L255 240L246.7 236Z" fill="#252525" />
     </g>
     <g id="core-arrow-02" data-role="arrow">
-      <path d="M190 298L190 190.3" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-02-shaft" />
+      <path d="M190 298L190 190.3" fill="none" stroke="#252525" stroke-width=".96" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-02-shaft" />
       <path id="core-arrow-02-head" d="M194 190.3L190 182L186 190.3Z" fill="#252525" />
     </g>
     <g data-role="math-symbol" data-base="u" transform="translate(263.0 246)">
@@ -45,10 +45,10 @@
       <text x="0" y="0" font-size="18" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">v</text>
     </g>
     <text x="177.0" y="258" font-size="17" font-weight="400" text-anchor="start" style="fill:#252525">0</text>
-    <path d="M 190.0 240 L 234.1655531769377 223.92505326369357" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
-    <path d="M 190.0 240 L 151.4998539184174 213.04190749150084" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
-    <path d="M 190.0 240 L 170.13694169818714 282.59646599072255" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
-    <path d="M 190.0 240 L 224.92780679743754 271.4491384988663" fill="none" stroke="#a7b1a4" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 240 L 234.1655531769377 223.92505326369357" fill="none" stroke="#a7b1a4" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 240 L 151.4998539184174 213.04190749150084" fill="none" stroke="#a7b1a4" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 240 L 170.13694169818714 282.59646599072255" fill="none" stroke="#a7b1a4" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 240 L 224.92780679743754 271.4491384988663" fill="none" stroke="#a7b1a4" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
     <g id="core-arrow-03" data-role="arrow">
       <path d="M157.051945142111 213.772854167933L220.384469603842 222.110739191835" fill="none" stroke="#64825c" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-03-shaft" />
       <path id="core-arrow-03-head" d="M219.862364834962 226.07651863733L228.613461953244 223.194106587261L220.906574372722 218.14495974634Z" fill="#252525" />
@@ -137,13 +137,13 @@
       <path d="M0 -16C-5 -13 -2 -6 -7 -5C-10 -10 -12 -6 -13 0C-17 10 -9 16 0 16C11 16 16 9 12 1C11 -3 8 -5 7 -9C5 -7 6 -2 2 0C5 -8 5 -12 0 -16Z" fill="#f21111" />
       <path d="M0 1C-3 5 -7 7 -5 12C-2 17 6 15 6 10C6 6 3 6 3 3C2 5 1 7 0 1Z" fill="#ffe11a" />
     </g>
-    <circle cx="190.0" cy="540" r="47" fill="none" stroke="#B6C6DB" stroke-width="0.9" />
+    <circle cx="190.0" cy="540" r="47" fill="none" stroke="#B6C6DB" stroke-width=".96" />
     <g id="core-arrow-04" data-role="arrow">
-      <path d="M125 540L246.7 540" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-04-shaft" />
+      <path d="M125 540L246.7 540" fill="none" stroke="#252525" stroke-width=".96" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-04-shaft" />
       <path id="core-arrow-04-head" d="M246.7 544L255 540L246.7 536Z" fill="#252525" />
     </g>
     <g id="core-arrow-05" data-role="arrow">
-      <path d="M190 598L190 490.3" fill="none" stroke="#252525" stroke-width="0.9" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-05-shaft" />
+      <path d="M190 598L190 490.3" fill="none" stroke="#252525" stroke-width=".96" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-05-shaft" />
       <path id="core-arrow-05-head" d="M194 490.3L190 482L186 490.3Z" fill="#252525" />
     </g>
     <g data-role="math-symbol" data-base="u" transform="translate(263.0 546)">
@@ -153,10 +153,10 @@
       <text x="0" y="0" font-size="18" font-weight="400" text-anchor="start" font-style="italic" style="fill:#252525">v</text>
     </g>
     <text x="177.0" y="558" font-size="17" font-weight="400" text-anchor="start" style="fill:#252525">0</text>
-    <path d="M 190.0 540 L 216.95809250849916 501.4998539184174" fill="none" stroke="#A5B6CD" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
-    <path d="M 190.0 540 L 157.94607707706257 505.62637602389896" fill="none" stroke="#A5B6CD" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
-    <path d="M 190.0 540 L 162.37409314225374 578.0237987356226" fill="none" stroke="#A5B6CD" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
-    <path d="M 190.0 540 L 220.21101765526734 576.004088826592" fill="none" stroke="#A5B6CD" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 540 L 216.95809250849916 501.4998539184174" fill="none" stroke="#A5B6CD" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 540 L 157.94607707706257 505.62637602389896" fill="none" stroke="#A5B6CD" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 540 L 162.37409314225374 578.0237987356226" fill="none" stroke="#A5B6CD" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
+    <path d="M 190.0 540 L 220.21101765526734 576.004088826592" fill="none" stroke="#A5B6CD" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" />
     <g id="core-arrow-06" data-role="arrow">
       <path d="M163.532435758518 505.235739770932L203.091952209888 502.469468903461" fill="none" stroke="#6988a7" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-06-shaft" />
       <path id="core-arrow-06-head" d="M203.370978104864 506.4597251045L211.371733827044 501.890490171384L202.812926314911 498.479212702421Z" fill="#252525" />
@@ -247,7 +247,7 @@
 <use data-text="𝒕" xlink:href="#core-math-24-font_3_2" transform="matrix(23.910336,0,0,-23.910336,24.35709,19.248269)" />
 </g>
 </g></g><path d="M 466 365 H 486" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="486" cy="365" r="2.8" fill="#252525" stroke="#252525" stroke-width="0.8" />
+    <circle cx="486" cy="365" r="2.8" fill="#252525" stroke="#252525" stroke-width=".96" />
     <g id="core-arrow-09" data-role="arrow">
       <path d="M486 365L486 215L501.22 215" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-09-shaft" />
       <path id="core-arrow-09-head" d="M501.22 219L509.52 215L501.22 211Z" fill="#252525" />
@@ -259,9 +259,9 @@
   </g>
   <g id="individual-anchoring">
     <rect id="core-absolute-anchoring" x="510" y="100" width="570" height="230" rx="5" fill="#FFF8EB" stroke="#D6C7AC" stroke-width=".96" />
-    <rect x="528" y="115" width="44" height="30" rx="2" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
+    <rect x="533" y="113" width="34" height="34" rx="2" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
     <g data-role="math-symbol" data-base="A" transform="translate(543.4 138)" data-math-key="core-math-17" data-latex="\mathcal{A}">
-    <g transform="translate(0.000000 -19.248269)" fill="#252525"><defs>
+    <g transform="translate(-3.878753 -19.248269)" fill="#252525"><defs>
 <clipPath id="core-math-17-clip_1">
 <path transform="matrix(1,0,0,-1,-37.50194,83.1088)" d="M37.50194 58.958467H58.543935V83.1088H37.50194Z" clip-rule="evenodd" />
 </clipPath>
@@ -280,8 +280,8 @@
     <text id="cosine-distance-heading" x="801.421875" y="178" font-size="20" font-weight="400" text-anchor="middle" style="fill:#252525">Cosine distance</text>
     <g id="core-anchor-flow">
     <g id="same-class-sketch">
-    <circle id="anchor-unit-circle" cx="611.19439453125" cy="254" r="52" fill="none" stroke="#bcc8bb" stroke-width="0.9" />
-    <circle cx="611.19439453125" cy="254" r="2.4" fill="#252525" stroke="#252525" stroke-width="0.8" />
+    <circle id="anchor-unit-circle" cx="611.19439453125" cy="254" r="52" fill="none" stroke="#bcc8bb" stroke-width=".96" />
+    <circle cx="611.19439453125" cy="254" r="2.4" fill="#252525" stroke="#252525" stroke-width=".96" />
     <text x="597.19439453125" y="274" font-size="18" font-weight="400" text-anchor="start" style="fill:#252525">0</text>
     <g id="anchor-q-vector" data-role="arrow">
       <path d="M611.19439453125 254L647.466529693586 240.798022467629" fill="none" stroke="#64825c" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" id="anchor-q-vector-shaft" />
@@ -322,7 +322,7 @@
 </g>
 </g></g>
     <path d="M633.941436593033 245.72075377191A24.206896551724 24.206896551724 0 0 0 625.078899990506 234.170871203763" fill="none" stroke="#697865" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M675.746118669181 218.137931034483L630.399016768645 239.263775063306" fill="none" stroke="#9aa495" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M675.746118669181 218.137931034483L630.399016768645 239.263775063306" fill="none" stroke="#9aa495" stroke-width=".96" stroke-linecap="round" stroke-linejoin="round" />
     <g data-role="math-symbol" data-base="θ" transform="translate(679.332325565733 214.551724137931)" data-math-key="core-math-20" data-latex="\theta_i">
   <g transform="translate(0.000000 -16.857234)" fill="#252525"><defs>
 <clipPath id="core-math-20-clip_1">
@@ -377,9 +377,9 @@
     </g></g></g>
   <g id="local-differences">
     <rect id="core-class-difference-comparison" x="510" y="395" width="570" height="240" rx="5" fill="#FFF8EB" stroke="#D6C7AC" stroke-width=".96" />
-    <rect x="528" y="410" width="44" height="30" rx="2" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
+    <rect x="533" y="408" width="34" height="34" rx="2" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
     <g data-role="math-symbol" data-base="E" transform="translate(543.4 433)" data-math-key="core-math-22" data-latex="\mathcal{E}">
-      <g transform="translate(0.000000 -19.248269)" fill="#252525"><defs>
+      <g transform="translate(-0.926003 -19.248269)" fill="#252525"><defs>
 <clipPath id="core-math-22-clip_1">
 <path transform="matrix(1,0,0,-1,-37.62149,83.1088)" d="M37.62149 58.958467H52.73372V83.1088H37.62149Z" clip-rule="evenodd" />
 </clipPath>
@@ -564,12 +564,12 @@
     <circle cx="1245" cy="365" r="26" fill="#EAF0F5" stroke="#B3BFCA" stroke-width=".96" />
     <path d="M 1235.12 365 H 1254.88 M 1245 355.12 V 374.88" fill="none" stroke="#252525" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
     <g id="core-arrow-26" data-role="arrow">
-      <path d="M1271.48 365L1305.72 365" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-26-shaft" />
-      <path id="core-arrow-26-head" d="M1305.72 369L1314.02 365L1305.72 361Z" fill="#252525" />
+      <path d="M1271.48 365L1309.72 365" fill="none" stroke="#252525" stroke-width="1.2" stroke-linecap="butt" stroke-linejoin="round" id="core-arrow-26-shaft" />
+      <path id="core-arrow-26-head" d="M1309.72 369L1318.02 365L1309.72 361Z" fill="#252525" />
     </g>
-    <rect id="core-semantic-output" x="1314.5" y="336.0" width="66" height="58" rx="4" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
+    <rect id="core-semantic-output" x="1318.5" y="336" width="58" height="58" rx="4" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
     <g data-role="math-symbol" data-base="S" transform="translate(1339.25 375)" data-math-key="core-math-23" data-latex="\mathcal{S}">
-      <g transform="translate(0.000000 -24.030337)" fill="#252525"><defs>
+      <g transform="translate(-2.002008 -24.030337)" fill="#252525"><defs>
 <clipPath id="core-math-23-clip_1">
 <path transform="matrix(1,0,0,-1,-58.466955,82.88464)" d="M58.466955 52.756727H79.000858V82.88464H58.466955Z" clip-rule="evenodd" />
 </clipPath>
@@ -586,7 +586,7 @@
   <g id="constraint-legend" transform="translate(0 -15)">
     <rect id="core-legend" x="1240" y="568" width="160" height="82" rx="6" fill="#fff2ca" stroke="#D9C88C" stroke-width=".96" />
     <g id="legend-constraint">
-      <rect x="1256" y="577.5" width="28" height="28" rx="2" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
+      <rect x="1257" y="578.5" width="26" height="26" rx="2" fill="#fff3b0" stroke="#CDBD7C" stroke-width=".96" />
       </g>
     <text x="1298" y="599" font-size="20" font-weight="400" text-anchor="start" style="fill:#252525">Loss term</text>
     <g id="legend-addition">

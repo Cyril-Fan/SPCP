@@ -157,7 +157,7 @@
     "figure": "SPCP_core.svg",
     "latex": "\\mathcal{A}",
     "size": 24.0,
-    "x": 0,
+    "x": -3.878753,
     "y": 0,
     "anchor": "start"
   },
@@ -193,7 +193,7 @@
     "figure": "SPCP_core.svg",
     "latex": "\\mathcal{E}",
     "size": 24.0,
-    "x": 0,
+    "x": -0.926003,
     "y": 0,
     "anchor": "start"
   },
@@ -202,7 +202,7 @@
     "figure": "SPCP_core.svg",
     "latex": "\\mathcal{S}",
     "size": 30.0,
-    "x": 0,
+    "x": -2.002008,
     "y": 0,
     "anchor": "start"
   },
