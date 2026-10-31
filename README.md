@@ -6,7 +6,7 @@
 [English](#english) · [中文](#中文) · [Downloads / 下载](docs/DOWNLOADS.md) · [Reproducibility / 复现说明](docs/REPRODUCIBILITY.md) · [Paper figures / 论文图件](docs/figures/README.md)
 
 Implementation accompanying the working manuscript **“Semantics-preserving cross-modal prompting for remote sensing scene classification.”**  
-Authors: **Xingyu Fan, Shengsheng Wang, and Zihao Fu**.
+Authors: **Xingyu Fan, Yongbo Yang, and Zihao Fu**.
 
 <img src="docs/figures/SPCP_overall.png" alt="Overview of SPCP" width="850">
 
@@ -203,7 +203,7 @@ Cite the software as follows. Publication details will be added when available.
 ```bibtex
 @misc{fan2026spcp,
   title = {SPCP: Semantics-Preserving Cross-Modal Prompting},
-  author = {Fan, Xingyu and Wang, Shengsheng and Fu, Zihao},
+  author = {Fan, Xingyu and Yang, Yongbo and Fu, Zihao},
   year = {2026},
   howpublished = {\url{https://github.com/Cyril-Fan/SPCP}},
   note = {Code accompanying a working manuscript}
