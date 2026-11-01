@@ -3,6 +3,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"]=""
 import copy
 import json
+from itertools import count
 import tempfile
 import shutil
 import unittest
@@ -48,6 +49,41 @@ class IntegrationChecks(unittest.TestCase):
             self.assertEqual(result['target_mean'], replay_result['target_mean'])
             self.assertEqual(result['state_sha256'], replay_result['state_sha256'])
 
+    def test_elapsed_time_does_not_stop_training_or_resume(self):
+        import spcp.training as training
+        scratch = Path(os.path.abspath(__file__)).parents[1] / 'test_scratch'
+        scratch.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=str(scratch)) as directory:
+            root = Path(directory)
+            bundle, config = self.fixture(root / 'source', 'SPCP')
+            full = root / 'full'
+            partial = root / 'partial'
+            full.mkdir()
+            partial.mkdir()
+            # Advance a simulated clock by an hour per call without waiting.
+            with patch.object(training.time, 'monotonic', side_effect=count(0, 3600).__next__):
+                result = Trainer(self.model('SPCP', config), bundle, config, full).run()
+            self.assertGreater(result['training_seconds'], 110 * 60)
+            self.assertEqual(result['completed_epochs'], 2)
+            original_save = training.save_checkpoint
+
+            def save_and_interrupt(path, state):
+                original_save(path, state)
+                if state['completed_epochs'] == 1:
+                    raise RuntimeError('simulated interruption after a long epoch')
+
+            with patch.object(training.time, 'monotonic', side_effect=count(0, 3600).__next__), \
+                    patch.object(training, 'save_checkpoint', save_and_interrupt):
+                with self.assertRaisesRegex(RuntimeError, 'simulated interruption'):
+                    Trainer(self.model('SPCP', config), bundle, config, partial).run()
+            saved = load_checkpoint(partial / 'last.pt')
+            self.assertGreater(saved['training_seconds'], 110 * 60)
+            resumed = Trainer(self.model('SPCP', config), bundle, config, partial).run(
+                resume=partial / 'last.pt')
+            self.assertEqual(resumed['completed_epochs'], 2)
+            self.assertEqual(result['state_sha256'], resumed['state_sha256'])
+            self.assertEqual(result['hm'], resumed['hm'])
+
     def fixture(self, root, method):
         root.mkdir(); classes=["class0","class1","class2"]
         taxonomy={"classes":{name:{"leaf":name,"template":"a photo of land "+name+"."} for name in classes}}
@@ -67,7 +103,7 @@ class IntegrationChecks(unittest.TestCase):
         config=model_config(method); config.update(data={"taxonomy":str(taxonomy_path),"task":"b2n","dataset":"SyntheticCPU"},
             train={"device":"cpu","precision":"fp32","epochs":2,"workers":0,"batch_size":3,"eval_batch_size":3,
                    "learning_rate":.0025,"weight_decay":.00001,"warmup_epochs":1,"warmup_learning_rate":.00001,
-                   "crop_min":.08,"horizontal_flip":.5,"grad_scaler_initial_scale":128,"max_minutes_per_run":2},
+                   "crop_min":.08,"horizontal_flip":.5,"grad_scaler_initial_scale":128},
             runtime={"phase":"formal", "save_scores":True, "save_features":True, "diagnostic_gradient_batches":1},_seed=1,_request_identity={"fixture":"engineering CPU synthetic only","method":method},
             _clip_source_hashes={"fake":"not_original_clip"},_clip_checkpoint_sha256="synthetic_only",
             _eval_preprocess=transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),

@@ -25,7 +25,7 @@
     },
     {
       "path": "spcp/config.py",
-      "sha256": "465b484386354074a5044aca715bd72a27135e9ba67a7de99c4d580fd7c7a18b"
+      "sha256": "6eb896bf107d2319db551375ee9aa79265f32bc26557aa5a95f1877599be4fa2"
     },
     {
       "path": "spcp/dataset_loader.py",
@@ -61,7 +61,7 @@
     },
     {
       "path": "spcp/training.py",
-      "sha256": "466e53ac952d748290e834b4923f4870333fcb130afb4e5ad9fc7c16f45b5800"
+      "sha256": "0868ebeef95dc39f2ca0f3b36b862ec0cdc1ab69a8da442f3ee70a0eee6e8052"
     },
     {
       "path": "scripts/bind_external_assets.py",
@@ -89,7 +89,7 @@
     },
     {
       "path": "tests/test_integration.py",
-      "sha256": "b706cf669070f32bc02fef8863f0e9799ed13ccab6f86b67ac546c72dfddb619"
+      "sha256": "acc7606a10729cefe87e5adc17d1560348af4b871bd8798f65db0a9adeb2aa06"
     },
     {
       "path": "tests/test_spcp.py",
@@ -97,27 +97,27 @@
     },
     {
       "path": "configs/SPCP_b2n_mlrsnet.yaml",
-      "sha256": "47711e357a2106dddb622284b1d490cf5f4e305bfae1be1936205a63354d2abf"
+      "sha256": "30fb547add9e8c3c9606f41173fc7f5de3315c7def972b77e2cd558ba24f279a"
     },
     {
       "path": "configs/SPCP_b2n_patternnet.yaml",
-      "sha256": "af408ef3d97814d499f9dbb012cf277cc5e42ee4036d22fd9f492ad0d7dc48a2"
+      "sha256": "472d1a1650d17d9c910b72c7f5ceadd20e09ae1dd76bd2214eff617ebefff431"
     },
     {
       "path": "configs/SPCP_b2n_resisc45.yaml",
-      "sha256": "854f2d3c724deefe3caddcac6b68852332be0b7dca283e6f7319e6f25582caed"
+      "sha256": "e81d383064f74164bc8a4b93f0ab28d2a89999575db794f3ed98309d833efb40"
     },
     {
       "path": "configs/SPCP_b2n_rsicd.yaml",
-      "sha256": "a350518da7b05fcc3cc649e3b6206956e22dc2100684aa462dc737019547e0a0"
+      "sha256": "47b9e104f4e9cfcd36f6134f80ea920512735f26b4772e7779e48216cc12fe47"
     },
     {
       "path": "configs/SPCP_cd_patternnet.yaml",
-      "sha256": "ac52489541b73973e76b970e63175eec5d9a4374c05043b959a78c9f3680a4f5"
+      "sha256": "970d684edeba8a385b94b88baae5a262e1d107d824587af3ba2273969eda04b7"
     },
     {
       "path": "configs/SPCP_dg_patternnetv2.yaml",
-      "sha256": "630f381816df143b3a78080ed49cc1045e105ae9e65ccee7b3964a1c9cf9fd36"
+      "sha256": "499d06f5af3edee7672b6d0bd5be4b30365ca05bf61e7f4911aae186ac95743a"
     }
   ]
 }

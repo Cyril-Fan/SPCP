@@ -1,7 +1,6 @@
 """Configuration and pinned protocol checks; no model runtime imports."""
 import copy
 import json
-import math
 from pathlib import Path
 
 from .checkpoint import absolute_path, file_hash, json_hash, source_hashes
@@ -122,8 +121,6 @@ def validate_config(config):
         require(train.get(key) == value, "Published training recipe differs: " + key)
     require(type(train.get("workers")) is int and train["workers"] >= 0, "workers must be a nonnegative integer")
     require(train.get("device") in ("cpu", "cuda") and train.get("precision") in ("fp32", "amp"), "Invalid device/precision")
-    minutes = train.get("max_minutes_per_run")
-    require(isinstance(minutes, (int, float)) and not isinstance(minutes, bool) and math.isfinite(minutes) and 0 < minutes <= 110, "Invalid per-fit time limit")
     _check_taxonomy(data)
     targets = config.get("targets", [])
     require(isinstance(targets, list), "targets must be a list")

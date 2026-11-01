@@ -210,8 +210,6 @@ class Trainer:
                 totals = dict(loss=0.0, ce=0.0, text_alignment=0.0, image_alignment=0.0, correct=0, count=0)
                 mechanism_batches = []
                 for images, labels, ids in loader:
-                    if prior_seconds + time.monotonic() - start >= train["max_minutes_per_run"] * 60:
-                        raise TimeoutError("Declared cumulative training limit reached; last completed epoch remains recoverable")
                     tick = time.monotonic()
                     images, labels = images.to(device, non_blocking=amp), labels.to(device, non_blocking=amp)
                     optimizer.zero_grad(set_to_none=True)

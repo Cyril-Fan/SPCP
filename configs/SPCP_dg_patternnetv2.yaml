@@ -1,5 +1,5 @@
 paper:
-  title: Semantics-preserving cross-modal prompting for generalizable remote sensing scene classification
+  title: Semantics-preserving cross-modal prompting for remote sensing scene classification
   method: SPCP
   status: working manuscript; no acceptance or publication claim
 model:
@@ -86,7 +86,6 @@ train:
   precision: amp
   grad_scaler_initial_scale: 128
   device: cuda
-  max_minutes_per_run: 110
   checkpoint_selection: final_epoch
 runtime:
   clip_root: ../external/original_clip
