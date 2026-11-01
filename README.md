@@ -22,7 +22,7 @@ SPCP jointly trains prompts and two interaction projections while keeping the CL
 - **I — Image alignment:** prompted and frozen features of the **same augmented image**.
 - **X — Cross-modal prompt interaction:** text-to-visual projection in layers 1–6 and visual-to-text projection in layers 7–12, shared within each group.
 
-The full objective is `CE + I + (1−η) A + η E`, with `η=0.50`, `K=3`, and denominator floor `ε=0.20`. We provide base-to-new (**B2N**), cross-dataset (**CD**), and shared-class domain generalization (**DG**) configurations, synthetic CPU tests, fixed templates/splits, and full-method result summaries.
+The full objective is `CE + I + (1−η) A + η E`, with `η=0.50`, `K=3`, and stabilization parameter `ε=0.20`. We provide base-to-new (**B2N**), cross-dataset (**CD**), and shared-class domain generalization (**DG**) configurations, synthetic CPU tests, fixed templates/splits, and full-method result summaries.
 
 The `spcp/` package contains the model, training, evaluation and checkpoint utilities. The six configurations in `configs/` reproduce the full SPCP method on B2N, CD and DG. See the [reproducibility guide](docs/REPRODUCIBILITY.md) for the fixed settings and configuration checks.
 
