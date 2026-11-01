@@ -46,6 +46,10 @@ Back up each complete run directory, including checkpoints, `metadata.json` and 
 
 ## Metadata fields / 元数据字段
 
+Published configs specify `data.split` explicitly. Direct loader calls for the four original datasets may omit it to use `assets/raw/splits/`; prepare these files with `python scripts/prepare_protocol_assets.py`. DG and custom datasets require an explicit split path.
+
+公开配置均显式指定 `data.split`。直接调用加载器时，四个原始数据集可省略此字段，使用 `assets/raw/splits/` 中的随附划分；先运行 `python scripts/prepare_protocol_assets.py` 准备文件。DG 和自定义数据集须明确指定划分路径。
+
 - `split_sha256` and `split_commit` identify the split file and its pinned upstream revision.
 - `runtime.phase` and `runtime.require_source_selection` are retained configuration fields, not objective coefficients. The published configurations use their existing fixed values.
 

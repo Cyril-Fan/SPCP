@@ -2,8 +2,12 @@
 import hashlib
 import json
 from pathlib import Path, PurePosixPath, PureWindowsPath
+import shutil
+import tempfile
 import unittest
 import zipfile
+
+from scripts.prepare_protocol_assets import prepare
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +18,23 @@ def digest(data):
 
 
 class ProtocolAssetChecks(unittest.TestCase):
+    def test_preparation_only_creates_protocol_assets_and_is_repeatable(self):
+        scratch = ROOT / 'test_scratch'
+        scratch.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=str(scratch)) as directory:
+            root = Path(directory)
+            (root / 'assets').mkdir()
+            for name in ('protocol_assets.zip', 'protocol_bundle_manifest.json'):
+                shutil.copyfile(ROOT / 'assets' / name, root / 'assets' / name)
+            first = prepare(root)
+            before = {p.relative_to(root).as_posix(): digest(p.read_bytes())
+                      for p in root.rglob('*') if p.is_file()}
+            self.assertEqual(prepare(root), first)
+            after = {p.relative_to(root).as_posix(): digest(p.read_bytes())
+                     for p in root.rglob('*') if p.is_file()}
+            self.assertEqual(before, after)
+            self.assertEqual({p.name for p in root.iterdir()}, {'assets'})
+
     def test_archive_inventory_and_hashes(self):
         manifest = json.loads((ROOT / 'assets/protocol_bundle_manifest.json').read_text(encoding='utf-8'))
         archive_path = ROOT / 'assets/protocol_assets.zip'

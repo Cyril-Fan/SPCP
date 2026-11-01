@@ -272,9 +272,18 @@ def load_dataset(config: dict, task: Optional[str] = None,
     metadata_only = bool(data.get("metadata_only", False))
     base = Path(config.get("_config_dir", Path(__file__).resolve().parent))
     split_value = data.get("split")
-    if split_value is None and key in PINNED_SPLITS:
-        split_value = Path(__file__).resolve().parent.parent / "rccp_experiment" / "references" / "rs_benchmarks" / "applenet_42bc4654311d" / PINNED_SPLITS[key][0]
-    split_path = _configured_path(split_value, base, "data.split").resolve(strict=True)
+    if split_value is None:
+        if actual_task == "dg" or data.get("dg_verified"):
+            raise ValueError("DG requires an explicit data.split for the published v2 dataset")
+        if key in PINNED_SPLITS:
+            split_value = Path(__file__).resolve().parents[1] / "assets" / "raw" / "splits" / PINNED_SPLITS[key][0]
+    split_path = _configured_path(split_value, base, "data.split").resolve()
+    if not split_path.is_file():
+        raise FileNotFoundError(
+            "Split file is unavailable: " + str(split_path)
+            + ". For bundled splits, run python scripts/prepare_protocol_assets.py "
+              "from the repository root; otherwise set data.split to an existing split JSON."
+        )
     expected_sha = data.get("split_sha256")
     if expected_sha is None and key in PINNED_SPLITS:
         expected_sha = PINNED_SPLITS[key][1]

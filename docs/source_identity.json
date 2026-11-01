@@ -25,11 +25,11 @@
     },
     {
       "path": "spcp/config.py",
-      "sha256": "6eb896bf107d2319db551375ee9aa79265f32bc26557aa5a95f1877599be4fa2"
+      "sha256": "9c35e88a1f5747b09972cf1fba4519ed232d584e462ac7d8d846e8573d428d2c"
     },
     {
       "path": "spcp/dataset_loader.py",
-      "sha256": "82c01efa8b25e651f9b65d399005b8e02cccc61f821d5b75dbb98e01b12ca007"
+      "sha256": "2d333d84c67d6389e5ccba9eba7caa4540756c65964d47ec134e31b0acce3d26"
     },
     {
       "path": "spcp/evaluation.py",
@@ -77,7 +77,7 @@
     },
     {
       "path": "scripts/prepare_protocol_assets.py",
-      "sha256": "bdbaf95392c783f96a59fb0eede987ebf285e25c7c02cd3128b1c8a2f3edef9d"
+      "sha256": "fb65671887bbabb903acd4907585a0658b5b36d25c4225d9916a39e94f6313dc"
     },
     {
       "path": "tests/__init__.py",
@@ -121,7 +121,11 @@
     },
     {
       "path": "tests/test_protocol_assets.py",
-      "sha256": "7f43270f6d63ba57994db6b862e3611604eda97114dc9efeb639a8efa06cc1bc"
+      "sha256": "716eaeec94ba52aa63a04b1559bccce8b287700130a681353f1eed44667513f7"
+    },
+    {
+      "path": "tests/test_dataset_loader.py",
+      "sha256": "dede8ff8c2677bb909e6f11a5651defffffa5bfcc9925242706fa012eb1a1071"
     }
   ]
 }

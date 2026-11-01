@@ -80,7 +80,9 @@ def load_config(path, seed=1, overrides=None):
 
 
 def _check_taxonomy(data):
-    require(Path(data["split"]).is_file() and Path(data["taxonomy"]).is_file(), "Split/taxonomy file is unavailable")
+    require(Path(data["split"]).is_file() and Path(data["taxonomy"]).is_file(),
+            "Split/taxonomy file is unavailable; run python scripts/prepare_protocol_assets.py "
+            "from the repository root and check data.split/data.taxonomy")
     taxonomy = read_json(data["taxonomy"])
     require(isinstance(taxonomy.get("classes"), dict), "Taxonomy classes missing")
     for name, values in taxonomy["classes"].items():

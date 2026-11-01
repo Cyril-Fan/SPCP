@@ -42,8 +42,6 @@ def prepare(root=ROOT):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 with target.open("xb") as stream:
                     stream.write(z.read(name))
-    for directory in ["test_scratch", "checks", "queue_plans"]:
-        (root / directory).mkdir(exist_ok=True)
     return {"valid": True, "metadata_files": len(records), "dataset_images": 0, "downloads": 0}
 
 
