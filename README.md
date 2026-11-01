@@ -16,13 +16,13 @@ Authors: **Xingyu Fan, Yongbo Yang, and Zihao Fu**.
 
 SPCP jointly trains prompts and two interaction projections while keeping the CLIP encoders and pretrained logit scale frozen:
 
-- **S — Text semantic preservation:** individual frozen class anchors and full coordinate differences on a fixed source-class neighbor graph.
+- **S — Text semantic preservation:** individual frozen class anchors and full class-difference vectors on a fixed source-class neighbor graph.
 - **I — Image alignment:** prompted and frozen features of the **same augmented image**.
 - **X — Cross-modal prompt interaction:** text-to-visual projection in layers 1–6 and visual-to-text projection in layers 7–12, shared within each group.
 
 The full objective is `CE + I + (1−η) A + η E`, with `η=0.50`, `K=3`, and denominator floor `ε=0.20`. We provide base-to-new (**B2N**), cross-dataset (**CD**), and shared-class domain generalization (**DG**) configurations, synthetic CPU tests, fixed templates/splits, and full-method result summaries.
 
-The `spcp` package provides the model, training loop, evaluation, and checkpoint utilities. Configurations and runtime metadata use the method name `SPCP`. See [source identities](docs/source_identity.json) for the release file inventory.
+The `spcp/` package contains the model, training, evaluation and checkpoint utilities. The six configurations in `configs/` reproduce the full SPCP method on B2N, CD and DG. See the [reproducibility guide](docs/REPRODUCIBILITY.md) for the fixed settings and configuration checks.
 
 ### 1. Download and install
 
@@ -42,7 +42,7 @@ python scripts/prepare_protocol_assets.py
 python scripts/check_release.py
 ```
 
-For CPU engineering tests, replace `cu118` with `cpu` in the PyTorch installation command. Formal configs select CUDA with AMP. The metadata preparation command only expands and verifies bundled split files and image-hash ledgers; **it does not download or contain dataset images**. No Dassl installation is required by this implementation.
+For CPU tests, replace `cu118` with `cpu` in the PyTorch installation command. The training configs use CUDA with AMP. The metadata preparation command extracts bundled splits and image-hash ledgers; obtain dataset images separately in the next step. Dassl is not required.
 
 ### 2. Obtain CLIP and datasets
 
@@ -52,7 +52,7 @@ python scripts/download_clip.py --weights
 python scripts/download_clip.py --weights --check-only
 ```
 
-The historical experiments use the CLIP implementation distributed with **CoOp**, pinned to commit `ff61507c790454bce7c5052c3ac39e60772f1f89`. The four source-file hashes, BPE hash, and original OpenAI ViT-B/16 checkpoint hash are enforced. Installing an arbitrary latest `clip` package will not satisfy this contract. Downloads are explicit setup steps; training itself never downloads a model.
+SPCP uses the CLIP implementation distributed with **CoOp** at commit `ff61507c790454bce7c5052c3ac39e60772f1f89`. The setup script downloads and checks the pinned source files, tokenizer and OpenAI ViT-B/16 weights. Complete this setup before training; the training command loads the verified local files.
 
 Download images from the original providers listed in [DOWNLOADS.md](docs/DOWNLOADS.md). B2N/CD use PatternNet, RSICD, NWPU-RESISC45, and MLRSNet. DG uses the **APPLeNet v2 image releases** with the fixed 16 shared classes; substituting the full original datasets changes the protocol.
 
@@ -63,7 +63,7 @@ python scripts/bind_external_assets.py --clip-root external/original_clip --clip
 python scripts/bind_external_assets.py --check-binding external_assets.json
 ```
 
-The binding is local and ignored by Git. It verifies the CLIP assets and path existence; actual training also validates the selected image IDs and DG image bytes against the bundled records. It does not copy data or alter labels.
+The binding stores local asset paths and is ignored by Git. Training checks image IDs and, for DG, image hashes against the bundled records.
 
 ### 3. Train and evaluate
 
@@ -92,7 +92,7 @@ The other B2N configs are `SPCP_b2n_rsicd.yaml`, `SPCP_b2n_resisc45.yaml`, and `
 python -m spcp train --config configs/SPCP_b2n_patternnet.yaml --asset-binding external_assets.json --seed 1 --output runs/SPCP_b2n_patternnet_seed1 --resume runs/SPCP_b2n_patternnet_seed1/last.pt
 ```
 
-See `python -m spcp train --help` for checkpoint recovery and completed-run verification. A fresh clone is intended for fresh runs; strict identities can reject old checkpoints from a different source tree. Do not remove guards to force a replay.
+See `python -m spcp train --help` for recovery options and the [checkpoint guide](docs/REPRODUCIBILITY.md#checkpoints) for compatibility requirements.
 
 ### 4. Engineering checks
 
@@ -107,7 +107,7 @@ CPU tests use synthetic data and a small fake CLIP to check the full objective, 
 
 Three-seed results: **80.38% B2N macro HM**, **63.07% CD target average**, **84.04% DG target average**. The `results/` directory provides per-seed scores and their summaries. B2N HM is computed per dataset and seed before aggregation.
 
-This first release contains source and protocol metadata. **Trained SPCP checkpoints are not distributed in this release**; the commands above produce `final.pt`. The CLIP backbone download is provided separately by the setup script. Dataset images remain with their providers.
+**Trained SPCP checkpoints are not currently distributed**; the training commands produce `final.pt`. Download the CLIP backbone with the setup script and dataset images from their providers.
 
 SPCP code is released under the [MIT License](LICENSE). We acknowledge [OpenAI CLIP](https://github.com/openai/CLIP), [CoOp](https://github.com/KaiyangZhou/CoOp), and [APPLeNet](https://github.com/mainaksingha01/APPLeNet). See [third-party notices](THIRD_PARTY_NOTICES.md) for upstream licenses and dataset terms.
 
@@ -117,13 +117,13 @@ SPCP code is released under the [MIT License](LICENSE). We acknowledge [OpenAI C
 
 SPCP 在冻结 CLIP 编码器及其预训练 logit scale 的前提下，联合学习提示参数和两组交互投影，包含三个部分：
 
-- **S：文本语义保持**，结合逐类冻结锚点与固定源类邻居图上的完整坐标差约束。
+- **S：文本语义保持**，结合逐类冻结锚点与固定源类邻居图上的完整类间差向量约束。
 - **I：图像对齐**，约束同一增强图像的提示分支与冻结分支特征。
 - **X：跨模态提示交互**，第 1–6 层文本到视觉、第 7–12 层视觉到文本，各层组共享对应投影。
 
 完整目标为 `CE + I + (1−η) A + η E`，默认 `η=0.50`、`K=3`、分母稳定项 `ε=0.20`。仓库提供完整 SPCP 的 B2N、CD、DG 配置、固定语义模板/划分、既有结果及 CPU 工程测试。
 
-统一使用 `spcp` 包和 `SPCP` 方法名。模型、训练、评估及检查点工具均位于该包，发布文件哈希见 [source_identity.json](docs/source_identity.json)。
+`spcp/` 包包含模型、训练、评估和检查点工具。`configs/` 中的六份配置用于复现完整 SPCP 的 B2N、CD 和 DG 实验；固定设置及配置检查见[复现说明](docs/REPRODUCIBILITY.md)。
 
 ### 下载、安装与准备
 
@@ -143,7 +143,7 @@ python scripts/download_clip.py --weights
 
 也可从仓库 **Code → Download ZIP** 下载后解压。CUDA 安装命令须与驱动匹配；CPU 工程检查可将 `cu118` 换成 `cpu`。本实现无需安装 Dassl。
 
-`prepare_protocol_assets.py` 只解压并校验随仓库提供的划分和像素哈希记录，不包含、下载或复制数据集图像。CLIP 安装脚本获取固定版本的 **CoOp 随附 CLIP 实现**、BPE 和可选的 OpenAI ViT-B/16 权重，并检查 SHA；训练阶段没有自动下载行为。不要用任意新版 `clip` 包替代。
+`prepare_protocol_assets.py` 解压并校验随仓库提供的划分和像素哈希记录，数据集图像需单独获取。CLIP 安装脚本下载并校验固定版本的 **CoOp 随附 CLIP 实现**、BPE 和可选的 OpenAI ViT-B/16 权重；训练命令加载这些本地文件。
 
 数据集下载链接与目录示例见 [DOWNLOADS.md](docs/DOWNLOADS.md)。B2N/CD 使用四个原始数据集；DG 使用 APPLeNet 发布的四个 **v2 图像集合**及固定 16 个共有类别。下载后：
 
@@ -179,7 +179,7 @@ python -m spcp evaluate --config configs/SPCP_b2n_patternnet.yaml --asset-bindin
 
 其他 B2N 配置为 `configs/SPCP_b2n_rsicd.yaml`、`SPCP_b2n_resisc45.yaml` 和 `SPCP_b2n_mlrsnet.yaml`。训练采用 16 shots，B2N 50 epochs，CD/DG 10 epochs，固定使用最终 epoch，不按目标域成绩挑选检查点。
 
-输出目录已有内容时不会直接覆盖。恢复时保持源代码、配置、seed、绑定和输出目录一致，并加上 `--resume 原输出目录/last.pt`；记录过的失败恢复及完成结果复用选项见 `python -m spcp train --help`。旧归档检查点可能因源树身份不同而被拒绝，不应删除校验来强行加载。
+训练命令保留已有输出。恢复训练时使用相同的源代码、配置、seed 和数据，并指定 `--resume 原输出目录/last.pt`。其他恢复选项见 `python -m spcp train --help`，兼容条件见[检查点说明](docs/REPRODUCIBILITY.md#checkpoints)。
 
 ### 工程检查、结果与发布范围
 
@@ -192,7 +192,7 @@ CPU 测试使用人工图像和小型 FakeClip，检查完整目标、冻结参�
 
 已有结果为 B2N 宏平均 HM **80.38%**、CD 目标域均值 **63.07%**、DG 目标域均值 **84.04%**。`results/` 提供完整方法的逐 seed 结果及汇总。HM 按数据集和 seed 计算后再汇总。
 
-首版发布源码与协议元数据，**暂未发布训练完成的 SPCP 检查点**；按训练命令可生成 `final.pt`。CLIP 权重由安装脚本单独下载，数据集图像从原发布方获取。
+**暂未发布训练完成的 SPCP 检查点**；训练命令生成 `final.pt`。CLIP 权重由安装脚本下载，数据集图像从原发布方获取。
 
 SPCP 代码采用 [MIT 许可证](LICENSE)。感谢 OpenAI CLIP、CoOp 和 APPLeNet；第三方来源及许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。论文仍为工作稿。
 

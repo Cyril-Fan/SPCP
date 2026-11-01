@@ -8,7 +8,7 @@ The overall diagram presents fixed LLM-assisted class descriptions, complementar
 prompt interaction, and the semantic and image-alignment constraints. In the
 semantic diagram, prompted and reference difference vectors use the same class
 pair; neighbor sets are constructed from fixed source-class reference features
-before training. Denominators and averaging follow the manuscript definitions.
+before training.
 
 SVG text uses Times New Roman. Other mathematical labels are LaTeX-generated
 NewTX vector paths; their expressions and placement are editable through the

@@ -170,10 +170,10 @@ def verify_dg_metadata(config):
 
 
 def verify_dg_pixels(config, bundles):
-    """Verify the published DG image ledgers and the pixels used by this run.
+    """Validate DG split records, image ledgers and local image hashes.
 
-    Explicit ledger_root remaps remote receipt paths without relaxing content
-    identity. This is called only by a real execution, never by a dry run.
+    ledger_root relocates the ledgers; their expected contents remain fixed.
+    Called during execution, after metadata-only configuration validation.
     """
     data = config["data"]
     ready_path = Path(data["v2_data_ready"])
@@ -225,6 +225,8 @@ def configuration_identity(config):
         for key in ("image_root", "ledger_root"):
             item.pop(key, None)
     runtime = public["runtime"]
+    # These orchestration fields are excluded from the checkpoint identity.
+    # Their existing configuration validation is handled by validate_config.
     for key in ("phase", "candidate", "selection_receipt", "require_source_selection", "require_winner"):
         runtime.pop(key, None)
     checkpoint = runtime.get("clip_checkpoint")

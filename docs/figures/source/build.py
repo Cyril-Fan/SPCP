@@ -1,4 +1,4 @@
-"""Build the confirmed SPCP figures from self-contained, editable SVG sources."""
+"""Export SPCP structure diagrams from their editable SVG sources."""
 from pathlib import Path
 import argparse
 import ctypes.util

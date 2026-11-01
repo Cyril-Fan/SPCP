@@ -52,7 +52,7 @@ These are the four image archives linked by APPLeNet, with **16 shared classes**
 
 Extract each archive and point the binding at the directory resolving IDs such as `baseballfield/baseballfield_225.jpg`. A nested `images/` directory is normal. The bundled pixel ledgers identify the released image bytes; RGB decoding and hash mismatches are errors. Do not generate a new 16-class subset from the original datasets and call it the same v2 cohort.
 
-解压后绑定到能解析对应相对 ID 的图像目录，常见结构包含 `images/`。DG 会按已有像素 ledger 核验字节，不能从原始数据集自行抽出 16 类后直接替代 v2 发布集合。下载链接由上游维护；本仓库提供出处，不声明持续验证其下载可用性。
+解压后绑定到能解析对应相对 ID 的图像目录，常见结构包含 `images/`。DG 会按已有像素 ledger 核验字节，不能从原始数据集自行抽出 16 类后直接替代 v2 发布集合。下载链接由上游维护，失效时请查看对应的数据集发布页。
 
 ## Local binding / 本地路径绑定
 
@@ -70,4 +70,4 @@ Windows 路径可写成 `D:/datasets/PatternNet`，含空格的命令参数加�
 
 The training commands produce `final.pt`, which contains trained prompts and method state. Pretrained SPCP checkpoints are not included in this release. Download the frozen CLIP backbone separately using the setup script.
 
-首版暂未托管训练完成的 SPCP 权重。训练命令生成 `final.pt`，保存提示及方法状态；冻结骨干通过外部资产提供。
+暂未托管训练完成的 SPCP 权重。训练命令生成 `final.pt`，保存提示及方法状态；冻结骨干通过外部资产提供。

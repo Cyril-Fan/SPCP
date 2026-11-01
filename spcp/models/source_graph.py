@@ -6,6 +6,13 @@ from ..checkpoint import state_hash
 
 
 def neighbors(q, k=3, exclude_duplicates=False):
+    """Return neighbor indices and a validity mask, each shaped (C, K).
+
+    q contains C unit class features. K is min(k, C-1); self-edges are excluded.
+    Candidates are ranked by descending cosine similarity, with class index
+    breaking ties. Optional duplicate filtering excludes distances below 1e-6.
+    Unfilled entries have index zero and mask False.
+    """
     q = q.detach().float().cpu()
     count = len(q)
     indices = torch.zeros(count, min(k, max(0, count-1)), dtype=torch.long)

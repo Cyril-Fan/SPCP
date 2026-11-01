@@ -26,10 +26,6 @@ Mathematical labels use NewTX calligraphic losses and bold-italic vectors.
 Layer indices are superscripts and modality indices are subscripts. The full-layer
 prompt labels include both native and projected prompts.
 
-At the native 160 mm width, strokes in the text-semantic diagram are at least
-0.302 pt. Its loss backgrounds are centered squares, with math positions stored
-in the editable manifest.
-
 See [the export instructions](source/README.md) for the self-contained
 figure-building code and its separate optional authoring dependencies.
 
@@ -45,16 +41,18 @@ Its ordinary text has embedded fonts in the PDF; mathematical symbols are outlin
 
 ## Analysis figures
 
+The three analysis figures are provided as SVG/PDF exports and PNG previews.
+The scripts in `source/` export the two structure diagrams and their mathematical
+labels; they do not regenerate the analysis plots from experimental data.
+
+The `Fig3`, `Fig4` and `Fig5` prefixes are stable asset identifiers. Match figures
+to the paper by the content names in the table above.
+
 ![Directional distortion on base and new classes](Fig3_direction_distortion.png)
 
 ![Length distortion on base and new classes](Fig4_length_distortion.png)
 
 ![Class-wise recognition changes on NWPU-RESISC45 and PatternNet](Fig5_classwise_errors.png)
-
-In the class-wise figure, thin cell and marker outlines are 0.32 pt;
-the left-side class indices use neutral gray #666666 (5.74:1 against white).
-The recall-axis labels and the combined mean/SD legend are visually centered
-under their axes. The legend sample line aligns with the lower color-bar edge.
 
 Full and w/o S differ jointly in the absolute
 and interclass text losses. New-class graphs are used solely for analysis, not training.

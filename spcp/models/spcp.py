@@ -1,10 +1,19 @@
-"""SPCP reconstructs directed coordinate differences, including their lengths."""
+"""SPCP objective with class anchors and full class-difference vectors."""
 import torch
 from .source_graph import SourceGraphModel
 from ..settings import settings
 
 
 def edge_loss(text, q, index, mask, reference_delta, denominator, control="difference"):
+    """Return the mean edge loss, per-class losses and prompted differences.
+
+    text and q are unit features shaped (C, D); index and mask have shape
+    (C, K). reference_delta has shape (C, K, D), and denominator has shape
+    (C, K). The difference objective divides squared vector error by the
+    fixed reference denominator. Average valid edges within each class, then
+    across classes; isolated classes use cosine class anchoring instead.
+    Reference features and denominators do not receive gradients.
+    """
     with torch.autocast(device_type=text.device.type, enabled=False):
         t, q = text.float(), q.detach().float()
         delta = t[:, None] - t[index]

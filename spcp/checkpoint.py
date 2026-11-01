@@ -158,7 +158,7 @@ def finish_run(output, request_identity, state_sha256):
 
 
 def completed_run(output, request_identity):
-    """A status string alone never makes an existing fit reusable."""
+    """Check that the completion record and artifact hashes match this request."""
     output = absolute_path(output)
     try:
         if _is_link(output) or _is_link(output / "complete.json"):
@@ -181,7 +181,7 @@ def completed_run(output, request_identity):
 
 
 def _recovery_status(output):
-    """Inspect recovery eligibility without changing successful evidence."""
+    """Read run status and reject outputs that are already complete."""
     output = absolute_path(output)
     if not output.is_dir() or _is_link(output):
         raise ValueError("Recovery requires an existing managed output directory, never a link/junction")
@@ -200,7 +200,7 @@ def _recovery_status(output):
 
 
 def validate_epoch_resume(output, checkpoint):
-    """An explicit epoch resume also cannot bypass successful-output guards."""
+    """Validate last.pt for an epoch-boundary resume in the same output directory."""
     output, checkpoint = absolute_path(output), absolute_path(checkpoint)
     _recovery_status(output)
     if (output / "final.pt").exists():
@@ -210,7 +210,7 @@ def validate_epoch_resume(output, checkpoint):
 
 
 def failed_retry_kind(output):
-    """Never treat a corrupt/mismatched success marker as permission to redo."""
+    """Select the recovery stage for a recorded failed run."""
     output = absolute_path(output)
     status = _recovery_status(output)
     if not (output / "failure.json").is_file() and status.get("status") not in ("failed", "runtime_limit"):
