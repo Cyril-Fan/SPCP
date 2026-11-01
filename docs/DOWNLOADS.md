@@ -16,13 +16,13 @@ python scripts/download_clip.py --weights
 
 | Asset / 资产 | Source / 来源 | SHA-256 |
 |---|---|---|
-| Source / 源码 | [CoOp pinned commit](https://github.com/KaiyangZhou/CoOp/tree/ff61507c790454bce7c5052c3ac39e60772f1f89/clip) | Four exact hashes in `spcp/config.py` |
+| Source / 源码 | [CoOp pinned commit](https://github.com/KaiyangZhou/CoOp/tree/ff61507c790454bce7c5052c3ac39e60772f1f89/clip) | Download checksums in `spcp/config.py` |
 | BPE tokenizer | Same commit / 同一提交 | `924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a` |
 | ViT-B/16 weights / 权重 | [OpenAI official file](https://openaipublic.azureedge.net/clip/models/5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f/ViT-B-16.pt) | `5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f` |
 
-Default locations are `external/original_clip/clip/` and `external/ViT-B-16.pt`. The script performs explicit downloads and hashes each file; `--check-only` uses no network. Files with a different existing hash are not silently replaced. Keep third-party copyright/license notices when redistributing upstream material; license copies are in `third_party/`.
+Default locations are `external/original_clip/clip/` and `external/ViT-B-16.pt`. The script performs explicit downloads and hashes each file; `--check-only` uses no network. The download checker reports changed files without replacing them; source checksums are download-integrity records, not checkpoint compatibility requirements. Keep third-party copyright/license notices when redistributing upstream material; license copies are in `third_party/`.
 
-默认路径为上表对应的 `external/` 目录。脚本校验每个文件；已有内容不同会报错，不会静默覆盖。离线用户可在联网机器下载同一版本，拷贝到本机后运行 `--weights --check-only`。源码是历史实验使用的 CoOp 随附版本，不应被任意最新版本替代。
+默认路径为上表对应的 `external/` 目录。下载检查会报告已有文件的差异而不覆盖；源码校验和用于核对下载，不作为检查点兼容门槛。离线用户可在联网机器下载同一版本，拷贝到本机后运行 `--weights --check-only`。源码是历史实验使用的 CoOp 随附版本，不应被任意最新版本替代。
 
 ## Original image collections: B2N / CD
 
@@ -68,6 +68,6 @@ Windows 路径可写成 `D:/datasets/PatternNet`，含空格的命令参数加�
 
 ## SPCP checkpoints / SPCP 训练检查点
 
-The training commands produce `final.pt`, which contains trained prompts and method state. Pretrained SPCP checkpoints are not included in this release. Download the frozen CLIP backbone separately using the setup script.
+The training commands produce `final.pt`, which contains trained prompts and method state. Trained SPCP checkpoints are not distributed. Download the frozen CLIP backbone separately using the setup script.
 
 暂未托管训练完成的 SPCP 权重。训练命令生成 `final.pt`，保存提示及方法状态；冻结骨干通过外部资产提供。

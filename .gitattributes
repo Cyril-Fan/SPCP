@@ -1,8 +1,8 @@
 * -text
-# Release hashes cover stored file bytes, including line endings.
-*.py -text
+# Normalize code and prose; preserve protocol/result asset bytes.
+*.py text eol=lf
 *.md text eol=lf
-*.yaml -text
+*.yaml text eol=lf
 *.yml text eol=lf
 *.json -text
 *.jsonl -text

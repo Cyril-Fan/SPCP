@@ -1,4 +1,5 @@
 """Restore losslessly packaged protocol metadata. No downloads or model imports."""
+
 import argparse
 import hashlib
 import json
@@ -14,7 +15,9 @@ def sha(data):
 
 def prepare(root=ROOT):
     root = Path(root).resolve()
-    manifest = json.loads((root / "assets/protocol_bundle_manifest.json").read_text(encoding="utf-8"))
+    manifest = json.loads(
+        (root / "assets/protocol_bundle_manifest.json").read_text(encoding="utf-8")
+    )
     archive = root / "assets/protocol_assets.zip"
     if sha(archive.read_bytes()) != manifest["archive_sha256"]:
         raise ValueError("Protocol archive SHA-256 mismatch")
@@ -34,8 +37,12 @@ def prepare(root=ROOT):
             data = z.read(name)
             if len(data) != record["bytes"] or sha(data) != record["sha256"]:
                 raise ValueError("Protocol member SHA-256 mismatch: " + name)
-            if target.exists() and (not target.is_file() or sha(target.read_bytes()) != record["sha256"]):
-                raise FileExistsError("Existing metadata differs; inspect rather than overwrite: " + name)
+            if target.exists() and (
+                not target.is_file() or sha(target.read_bytes()) != record["sha256"]
+            ):
+                raise FileExistsError(
+                    "Existing metadata differs; inspect rather than overwrite: " + name
+                )
         for name in records:
             target = root / name
             if not target.exists():

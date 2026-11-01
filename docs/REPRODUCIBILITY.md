@@ -32,6 +32,12 @@ All configurations use 16-shot source supports, seeds 1/2/3, CLIP ViT-B/16, 16 p
 
 各协议均使用 16-shot 源域支持集、seed 1/2/3、ViT-B/16、16 个提示 token、12 个提示层及最终 epoch 检查点。B2N 按排序后的整数标签取前一半并向上取整为 Base；目标域仅用于评估。DG 使用 v2 图像发布集合及固定共有类别映射。
 
+## Implementation details / 实现细节
+
+The first four shallow text context tokens use the embeddings of “a photo of a”; remaining context tokens and deeper source prompts use Normal(0, 0.02). Two projections are shared within the respective layer groups. Prompted and frozen image features use the same augmented input. Frozen text references use the fixed hierarchy sentences, prepared before inspecting experiment scores. Readable class-name mappings are stored in the taxonomy JSON; integer labels and support IDs are unchanged.
+
+浅层首组文本提示的前四个 token 使用 “a photo of a” 的词嵌入，其余 token 和深层源提示按 Normal(0, 0.02) 初始化；两个投影分别在各自层组内共享。图像对齐的两个分支使用同一增强输入。冻结文本参考使用查看实验结果前准备的固定层级描述；可读类名映射保存在 taxonomy JSON 中，整数标签及支持集 ID 不变。
+
 ## Result aggregation / 结果汇总
 
 Compute B2N HM separately for each dataset and seed, average the four datasets within each seed, then summarize the three seed aggregates. CD/DG averages exclude source accuracy. Sample SD uses `ddof=1`. The `results/` directory contains full-method per-seed results and summaries; calculate aggregates from unrounded values.
@@ -40,9 +46,9 @@ HM 按数据集和 seed 分别计算，再在每个 seed 内对四个数据集�
 
 ## Checkpoints
 
-Back up each complete run directory, including checkpoints, `metadata.json` and completion records. Resume and replay require matching configuration, seed, data and runtime source hashes. Editing a runtime source file, including its comments, changes that source identity. Use the original source revision for an existing run or a new output directory for a fresh run.
+Keep each run directory together. `last.pt` resumes training at a completed epoch, including optimizer, AMP scaler and random states; `final.pt` supports evaluation. Matching execution settings, seed, source supports/class mapping, templates, tokenizer and CLIP weights are required. Prompt names/shapes, fixed graph buffers and artifact integrity are checked. Comments, formatting, local paths and descriptive metadata do not determine checkpoint compatibility. Older checkpoints use the same checks on their saved configuration; no conversion is needed.
 
-备份时保留完整运行目录。恢复和重放需要配置、seed、数据及运行源码哈希一致；修改源码注释也会改变代码身份。已有运行使用其对应的源码修订，新的运行使用新的输出目录。
+保留完整运行目录。`last.pt` 恢复最后完成的 epoch、优化器、AMP scaler 和随机状态；`final.pt` 用于评估。实际配置、seed、支持集与类别映射、模板、tokenizer 和 CLIP 权重必须匹配，并检查提示参数名称/形状、固定源图及输出完整性。注释、格式、本机路径和说明性元数据不影响兼容性；旧检查点直接按其中保存的配置核对，无需转换。
 
 ## Metadata fields / 元数据字段
 
@@ -51,7 +57,6 @@ Published configs specify `data.split` explicitly. Direct loader calls for the f
 公开配置均显式指定 `data.split`。直接调用加载器时，四个原始数据集可省略此字段，使用 `assets/raw/splits/` 中的随附划分；先运行 `python scripts/prepare_protocol_assets.py` 准备文件。DG 和自定义数据集须明确指定划分路径。
 
 - `split_sha256` and `split_commit` identify the split file and its pinned upstream revision.
-- `runtime.phase` and `runtime.require_source_selection` are retained configuration fields, not objective coefficients. The published configurations use their existing fixed values.
 
 Bundled image ledgers use relative image IDs; local paths are resolved from the asset binding. The preparation receipt preserves image-verification provenance, and its ledger hashes identify the portable public copies.
 

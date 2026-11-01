@@ -1,11 +1,13 @@
 # SPCP: Semantics-Preserving Cross-Modal Prompting
 
-**Remote sensing scene classification with frozen CLIP.**  
+**Remote sensing scene classification with frozen CLIP.**
+
 **基于冻结 CLIP 的遥感场景分类。**
 
 [English](#english) · [中文](#中文) · [Downloads / 下载](docs/DOWNLOADS.md) · [Reproducibility / 复现说明](docs/REPRODUCIBILITY.md) · [Paper figures / 论文图件](docs/figures/README.md)
 
-Implementation accompanying the working manuscript **“Semantics-preserving cross-modal prompting for remote sensing scene classification.”**  
+Implementation of **“Semantics-preserving cross-modal prompting for remote sensing scene classification.”**
+
 Authors: **Xingyu Fan, Yongbo Yang, and Zihao Fu**.
 
 <img src="docs/figures/SPCP_overall.png" alt="Overview of SPCP" width="850">
@@ -39,7 +41,6 @@ The original experiments used **Python 3.8.20, PyTorch 2.4.1, torchvision 0.19.1
 python -m pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cu118
 python -m pip install -r requirements.txt
 python scripts/prepare_protocol_assets.py
-python scripts/check_release.py
 ```
 
 For CPU tests, replace `cu118` with `cpu` in the PyTorch installation command. The training configs use CUDA with AMP. The metadata preparation command extracts bundled splits and image-hash ledgers; obtain dataset images separately in the next step. Dassl is not required.
@@ -52,7 +53,7 @@ python scripts/download_clip.py --weights
 python scripts/download_clip.py --weights --check-only
 ```
 
-SPCP uses the CLIP implementation distributed with **CoOp** at commit `ff61507c790454bce7c5052c3ac39e60772f1f89`. The setup script downloads and checks the pinned source files, tokenizer and OpenAI ViT-B/16 weights. Complete this setup before training; the training command loads the verified local files.
+SPCP uses the CLIP implementation distributed with **CoOp** at commit `ff61507c790454bce7c5052c3ac39e60772f1f89`. The setup script downloads and verifies these source files, the tokenizer and OpenAI ViT-B/16 weights. Training loads them locally; it does not download assets.
 
 Download images from the original providers listed in [DOWNLOADS.md](docs/DOWNLOADS.md). B2N/CD use PatternNet, RSICD, NWPU-RESISC45, and MLRSNet. DG uses the **APPLeNet v2 image releases** with the fixed 16 shared classes; substituting the full original datasets changes the protocol.
 
@@ -82,11 +83,11 @@ python -m spcp train --config configs/SPCP_cd_patternnet.yaml --asset-binding ex
 # DG: PatternNetv2 source -> the three v2 target domains.
 python -m spcp train --config configs/SPCP_dg_patternnetv2.yaml --asset-binding external_assets.json --seed 1 --output runs/SPCP_dg_seed1
 
-# Replay a final checkpoint into a NEW output directory.
+# Evaluate a final checkpoint in a new output directory.
 python -m spcp evaluate --config configs/SPCP_b2n_patternnet.yaml --asset-binding external_assets.json --seed 1 --checkpoint runs/SPCP_b2n_patternnet_seed1/final.pt --output runs/SPCP_b2n_patternnet_seed1_replay
 ```
 
-The other B2N configs are `SPCP_b2n_rsicd.yaml`, `SPCP_b2n_resisc45.yaml`, and `SPCP_b2n_mlrsnet.yaml`. Training uses 16 shots, final-epoch checkpoint selection, 50 B2N epochs or 10 CD/DG epochs. Existing output directories are protected. Resume an interrupted completed-epoch checkpoint using the **same config, seed, binding, source tree, and output directory**:
+The other B2N configs are `SPCP_b2n_rsicd.yaml`, `SPCP_b2n_resisc45.yaml`, and `SPCP_b2n_mlrsnet.yaml`. Training uses 16 shots, final-epoch checkpoint selection, 50 B2N epochs or 10 CD/DG epochs. To continue after an interruption, use the same training settings, seed, assets and output directory. Resume starts at the last completed epoch:
 
 ```bash
 python -m spcp train --config configs/SPCP_b2n_patternnet.yaml --asset-binding external_assets.json --seed 1 --output runs/SPCP_b2n_patternnet_seed1 --resume runs/SPCP_b2n_patternnet_seed1/last.pt
@@ -94,7 +95,7 @@ python -m spcp train --config configs/SPCP_b2n_patternnet.yaml --asset-binding e
 
 See `python -m spcp train --help` for recovery options and the [checkpoint guide](docs/REPRODUCIBILITY.md#checkpoints) for compatibility requirements.
 
-### 4. Engineering checks
+### 4. Check the installation
 
 ```bash
 python scripts/check_release.py
@@ -103,7 +104,7 @@ python -m unittest discover -s tests
 
 CPU tests use synthetic data and a small fake CLIP to check the full objective, frozen parameters, graph integrity, optimizer/checkpoint recovery, and transfer evaluation. They do not reproduce benchmark accuracies. CI performs these checks without dataset downloads or GPUs.
 
-### Results, checkpoints, and attribution
+### Results and checkpoints
 
 Three-seed results: **80.38% B2N macro HM**, **63.07% CD target average**, **84.04% DG target average**. The `results/` directory provides per-seed scores and their summaries. B2N HM is computed per dataset and seed before aggregation.
 
@@ -137,7 +138,6 @@ conda activate spcp
 python -m pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cu118
 python -m pip install -r requirements.txt
 python scripts/prepare_protocol_assets.py
-python scripts/check_release.py
 python scripts/download_clip.py --weights
 ```
 
@@ -179,9 +179,9 @@ python -m spcp evaluate --config configs/SPCP_b2n_patternnet.yaml --asset-bindin
 
 其他 B2N 配置为 `configs/SPCP_b2n_rsicd.yaml`、`SPCP_b2n_resisc45.yaml` 和 `SPCP_b2n_mlrsnet.yaml`。训练采用 16 shots，B2N 50 epochs，CD/DG 10 epochs，固定使用最终 epoch，不按目标域成绩挑选检查点。
 
-训练命令保留已有输出。恢复训练时使用相同的源代码、配置、seed 和数据，并指定 `--resume 原输出目录/last.pt`。其他恢复选项见 `python -m spcp train --help`，兼容条件见[检查点说明](docs/REPRODUCIBILITY.md#checkpoints)。
+恢复训练时使用相同的训练设置、seed、资产及输出目录，并指定 `--resume 原输出目录/last.pt`，从最后完成的 epoch 继续。其他恢复选项见 `python -m spcp train --help`，兼容条件见[检查点说明](docs/REPRODUCIBILITY.md#checkpoints)。
 
-### 工程检查、结果与发布范围
+### 安装检查与结果
 
 ```bash
 python scripts/check_release.py
@@ -194,19 +194,18 @@ CPU 测试使用人工图像和小型 FakeClip，检查完整目标、冻结参�
 
 **暂未发布训练完成的 SPCP 检查点**；训练命令生成 `final.pt`。CLIP 权重由安装脚本下载，数据集图像从原发布方获取。
 
-SPCP 代码采用 [MIT 许可证](LICENSE)。感谢 OpenAI CLIP、CoOp 和 APPLeNet；第三方来源及许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。论文仍为工作稿。
+SPCP 代码采用 [MIT 许可证](LICENSE)。感谢 OpenAI CLIP、CoOp 和 APPLeNet；第三方来源及许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
 ## Citation / 引用
 
-Cite the software as follows. Publication details will be added when available.
+To cite this implementation:
 
 ```bibtex
 @misc{fan2026spcp,
   title = {SPCP: Semantics-Preserving Cross-Modal Prompting},
   author = {Fan, Xingyu and Yang, Yongbo and Fu, Zihao},
   year = {2026},
-  howpublished = {\url{https://github.com/Cyril-Fan/SPCP}},
-  note = {Code accompanying a working manuscript}
+  howpublished = {\url{https://github.com/Cyril-Fan/SPCP}}
 }
 ```
 

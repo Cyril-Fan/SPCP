@@ -13,9 +13,7 @@ from torch.nn import functional as F
 class PromptedCLIP(nn.Module):
     """Prompted students and unchanged CLIP teachers with dynamic vocabulary."""
 
-    def __init__(
-        self, clip_model: nn.Module, clip_module: Any, config: dict[str, Any]
-    ) -> None:
+    def __init__(self, clip_model: nn.Module, clip_module: Any, config: dict[str, Any]) -> None:
         super().__init__()
         settings = config.get("model", config)
         if not isinstance(settings, Mapping):
@@ -26,8 +24,8 @@ class PromptedCLIP(nn.Module):
         self.context_init = str(settings.get("context_init", "a photo of a"))
         self.init_std = float(settings.get("init_std", 0.02))
         self.interaction = str(settings.get("interaction", "directional_shared_projection"))
-        if self.interaction not in {"directional_shared_projection", "none"}:
-            raise ValueError("interaction must be directional_shared_projection or none")
+        if self.interaction != "directional_shared_projection":
+            raise ValueError("SPCP requires directional_shared_projection")
         if not 0 < self.shallow_layers < self.depth:
             raise ValueError("shallow_layers must lie strictly between zero and depth")
         if not 0 < self.init_std < float("inf"):
@@ -47,24 +45,33 @@ class PromptedCLIP(nn.Module):
             parameter.requires_grad_(False)
         clip_model.eval()
 
-        if self.interaction == "directional_shared_projection":
-            self.shallow_text_prompts = self._prompt_bank(self.shallow_layers, self.text_width)
-            self.deep_visual_prompts = self._prompt_bank(self.depth - self.shallow_layers, self.visual_width)
-            self.text_to_visual = nn.Linear(self.text_width, self.visual_width)
-            self.visual_to_text = nn.Linear(self.visual_width, self.text_width)
-            self.text_to_visual.to(self.device)
-            self.visual_to_text.to(self.device)
-            self._initialize_phrase(self.shallow_text_prompts[0])
-        else:
-            self.text_prompts = self._prompt_bank(self.depth, self.text_width)
-            self.visual_prompts = self._prompt_bank(self.depth, self.visual_width)
-            self._initialize_phrase(self.text_prompts[0])
+        self.shallow_text_prompts = self._prompt_bank(self.shallow_layers, self.text_width)
+        self.deep_visual_prompts = self._prompt_bank(
+            self.depth - self.shallow_layers, self.visual_width
+        )
+        self.text_to_visual = nn.Linear(self.text_width, self.visual_width)
+        self.visual_to_text = nn.Linear(self.visual_width, self.text_width)
+        self.text_to_visual.to(self.device)
+        self.visual_to_text.to(self.device)
+        self._initialize_phrase(self.shallow_text_prompts[0])
 
         self.classnames: tuple[str, ...] = ()
         self.taxonomy_templates: tuple[str, ...] = ()
-        self.register_buffer("_student_tokens", torch.empty(0, self.context_length, dtype=torch.long, device=self.device), persistent=False)
-        self.register_buffer("_student_fixed_embedding", torch.empty(0, self.context_length, self.text_width, device=self.device), persistent=False)
-        self.register_buffer("_reference_text_features", torch.empty(0, self.embedding_dim, device=self.device), persistent=False)
+        self.register_buffer(
+            "_student_tokens",
+            torch.empty(0, self.context_length, dtype=torch.long, device=self.device),
+            persistent=False,
+        )
+        self.register_buffer(
+            "_student_fixed_embedding",
+            torch.empty(0, self.context_length, self.text_width, device=self.device),
+            persistent=False,
+        )
+        self.register_buffer(
+            "_reference_text_features",
+            torch.empty(0, self.embedding_dim, device=self.device),
+            persistent=False,
+        )
 
     @staticmethod
     def _integer(value: Any, name: str) -> int:
@@ -73,8 +80,25 @@ class PromptedCLIP(nn.Module):
         return value
 
     def _validate_backbone(self) -> None:
-        required_text = ("transformer", "token_embedding", "positional_embedding", "ln_final", "text_projection", "logit_scale", "encode_text", "encode_image")
-        required_visual = ("conv1", "class_embedding", "positional_embedding", "ln_pre", "transformer", "ln_post", "proj")
+        required_text = (
+            "transformer",
+            "token_embedding",
+            "positional_embedding",
+            "ln_final",
+            "text_projection",
+            "logit_scale",
+            "encode_text",
+            "encode_image",
+        )
+        required_visual = (
+            "conv1",
+            "class_embedding",
+            "positional_embedding",
+            "ln_pre",
+            "transformer",
+            "ln_post",
+            "proj",
+        )
         if any(not hasattr(self.clip_model, item) for item in required_text):
             raise TypeError("clip_model must implement the original OpenAI CLIP API")
         visual = getattr(self.clip_model, "visual", None)
@@ -96,7 +120,9 @@ class PromptedCLIP(nn.Module):
         return self.clip_model.token_embedding.weight.device
 
     def _prompt_bank(self, layers: int, width: int) -> nn.Parameter:
-        bank = torch.empty(layers, self.prompt_length, width, device=self.device, dtype=torch.float32)
+        bank = torch.empty(
+            layers, self.prompt_length, width, device=self.device, dtype=torch.float32
+        )
         nn.init.normal_(bank, std=self.init_std)
         return nn.Parameter(bank)
 
@@ -112,7 +138,9 @@ class PromptedCLIP(nn.Module):
             context[:count].copy_(embedding.to(dtype=context.dtype))
 
     def _tokenize(self, texts: Sequence[str]) -> Tensor:
-        tokens = self.clip_module.tokenize(list(texts), context_length=self.context_length, truncate=False)
+        tokens = self.clip_module.tokenize(
+            list(texts), context_length=self.context_length, truncate=False
+        )
         if not isinstance(tokens, Tensor) or tokens.shape != (len(texts), self.context_length):
             raise ValueError("CLIP tokenizer returned an unexpected token tensor")
         return tokens.to(device=self.device, dtype=torch.long)
@@ -145,7 +173,9 @@ class PromptedCLIP(nn.Module):
             raise TypeError("taxonomy_templates must be sentences or a mapping")
         else:
             templates = tuple(taxonomy_templates)
-        if len(templates) != len(names) or any(not isinstance(text, str) or not text.strip() for text in templates):
+        if len(templates) != len(names) or any(
+            not isinstance(text, str) or not text.strip() for text in templates
+        ):
             raise ValueError("one nonempty fixed taxonomy sentence is required per class")
         prefix = " ".join(["X"] * self.prompt_length)
         student_sentences = [f"{prefix} {name.replace('_', ' ')}." for name in names]
@@ -153,11 +183,16 @@ class PromptedCLIP(nn.Module):
         teacher_tokens = self._tokenize(templates)
         # OpenAI CLIP keeps token_embedding in fp32 even when attention/projection
         # weights are fp16. Its text encoder casts embeddings to visual.dtype.
-        embeddings = self.clip_model.token_embedding(student_tokens).to(
-            dtype=self.clip_model.visual.conv1.weight.dtype
-        ).detach()
+        embeddings = (
+            self.clip_model.token_embedding(student_tokens)
+            .to(dtype=self.clip_model.visual.conv1.weight.dtype)
+            .detach()
+        )
         reference = self._normalize(self.clip_model.encode_text(teacher_tokens)).detach()
-        if reference.shape != (len(names), self.embedding_dim) or not torch.isfinite(reference).all():
+        if (
+            reference.shape != (len(names), self.embedding_dim)
+            or not torch.isfinite(reference).all()
+        ):
             raise ValueError("frozen taxonomy teacher returned invalid features")
         # Assignment occurs only after all validation/encoding succeeds.
         self.classnames = names
@@ -175,15 +210,11 @@ class PromptedCLIP(nn.Module):
         return F.normalize(features.float(), dim=-1)
 
     def _text_prompt(self, layer: int) -> Tensor:
-        if self.interaction == "none":
-            return self.text_prompts[layer]
         if layer < self.shallow_layers:
             return self.shallow_text_prompts[layer]
         return self.visual_to_text(self.deep_visual_prompts[layer - self.shallow_layers])
 
     def _visual_prompt(self, layer: int) -> Tensor:
-        if self.interaction == "none":
-            return self.visual_prompts[layer]
         if layer < self.shallow_layers:
             return self.text_to_visual(self.shallow_text_prompts[layer])
         return self.deep_visual_prompts[layer - self.shallow_layers]
@@ -192,13 +223,23 @@ class PromptedCLIP(nn.Module):
         """Return normalized prompted class features with student autograd."""
         self._require_vocabulary()
         fixed = self._student_fixed_embedding
-        prompt = self._text_prompt(0).to(dtype=fixed.dtype).unsqueeze(0).expand(len(self.classnames), -1, -1)
+        prompt = (
+            self._text_prompt(0)
+            .to(dtype=fixed.dtype)
+            .unsqueeze(0)
+            .expand(len(self.classnames), -1, -1)
+        )
         x = torch.cat((fixed[:, :1], prompt, fixed[:, 1 + self.prompt_length :]), dim=1)
         x = x + self.clip_model.positional_embedding.to(dtype=x.dtype)
         x = x.permute(1, 0, 2)
         for layer, block in enumerate(self.clip_model.transformer.resblocks):
             if layer:
-                prompt = self._text_prompt(layer).to(dtype=x.dtype).unsqueeze(1).expand(-1, x.shape[1], -1)
+                prompt = (
+                    self._text_prompt(layer)
+                    .to(dtype=x.dtype)
+                    .unsqueeze(1)
+                    .expand(-1, x.shape[1], -1)
+                )
                 x = torch.cat((x[:1], prompt, x[1 + self.prompt_length :]), dim=0)
             x = block(x)
         x = self.clip_model.ln_final(x.permute(1, 0, 2))
@@ -226,7 +267,12 @@ class PromptedCLIP(nn.Module):
         x = visual.ln_pre(torch.cat((x, prompt), dim=1)).permute(1, 0, 2)
         for layer, block in enumerate(visual.transformer.resblocks):
             if layer:
-                prompt = self._visual_prompt(layer).to(dtype=x.dtype).unsqueeze(1).expand(-1, x.shape[1], -1)
+                prompt = (
+                    self._visual_prompt(layer)
+                    .to(dtype=x.dtype)
+                    .unsqueeze(1)
+                    .expand(-1, x.shape[1], -1)
+                )
                 x = torch.cat((x[: self.original_visual_tokens], prompt), dim=0)
             x = block(x)
         features = visual.ln_post(x[0])
@@ -255,14 +301,22 @@ class PromptedCLIP(nn.Module):
 
     def prompt_state_dict(self) -> dict[str, Tensor]:
         """Return only trainable prompts/projections, independent of vocabulary."""
-        return {name: parameter.detach().cpu().clone() for name, parameter in self.named_parameters() if parameter.requires_grad}
+        return {
+            name: parameter.detach().cpu().clone()
+            for name, parameter in self.named_parameters()
+            if parameter.requires_grad
+        }
 
     @torch.no_grad()
     def load_prompt_state_dict(self, state: Mapping[str, Tensor]) -> None:
         """Validate all prompt entries before atomically copying their values."""
         if not isinstance(state, Mapping):
             raise TypeError("prompt state must be a mapping of exact trainable names")
-        parameters = {name: parameter for name, parameter in self.named_parameters() if parameter.requires_grad}
+        parameters = {
+            name: parameter
+            for name, parameter in self.named_parameters()
+            if parameter.requires_grad
+        }
         if set(state) != set(parameters):
             missing = sorted(set(parameters) - set(state))
             extra = sorted(set(state) - set(parameters))

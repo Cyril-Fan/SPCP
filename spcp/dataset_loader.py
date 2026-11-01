@@ -18,11 +18,13 @@ from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence
 from PIL import Image
 from torch.utils.data import Dataset
 
-
 SceneRecord = Dict[str, Any]
 PINNED_COMMIT = "42bc4654311da9773b59979dc71fe9f60534ab84"
 PINNED_SPLITS = {
-    "patternnet": ("patternnet.json", "db971a7a485c8c1d2d2e6e962e8bbadb5ec36977b4947c42bdad3c0168db29e4"),
+    "patternnet": (
+        "patternnet.json",
+        "db971a7a485c8c1d2d2e6e962e8bbadb5ec36977b4947c42bdad3c0168db29e4",
+    ),
     "rsicd": ("rsicd.json", "9d31238de620ab89152bd9ed2897ff8b3552d7bddf88a9c00b0e342c86a96a97"),
     "nwpu": ("resisc45.json", "9458dfb3e0c5cff5bfc305398d1237f2bb6bf6adb199c09229c3df0417ec1a70"),
     "mlrsnet": ("mlrsnet.json", "057e6764291156799ba85c14bf8835918880c986a6ef33fad28e7eb3ca651f68"),
@@ -57,8 +59,9 @@ def _sha256(value: bytes) -> str:
 
 
 def _stable_hash(value: Any) -> str:
-    return _sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
-                              separators=(",", ":")).encode("utf-8"))
+    return _sha256(
+        json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    )
 
 
 def _dataset_key(value: str) -> str:
@@ -78,8 +81,12 @@ def _safe_id(value: Any) -> str:
         raise ValueError("Each image ID must be a non-empty relative path")
     # Normalize separators for overlap checks, while retaining the JSON ID below.
     path = PurePosixPath(value.replace("\\", "/"))
-    if (path.is_absolute() or PureWindowsPath(value).drive or ".." in path.parts
-            or path == PurePosixPath(".")):
+    if (
+        path.is_absolute()
+        or PureWindowsPath(value).drive
+        or ".." in path.parts
+        or path == PurePosixPath(".")
+    ):
         raise ValueError(f"Absolute or escaping image ID: {value!r}")
     return path.as_posix()
 
@@ -108,18 +115,31 @@ def _read_split(path: Path, expected_sha: Optional[str]) -> tuple:
             identifier, original_label, classname = row
             normalized_id = _safe_id(identifier)
             if normalized_id in used:
-                raise ValueError(f"Duplicate image ID in {used[normalized_id]} and {partition}: {identifier}")
+                raise ValueError(
+                    f"Duplicate image ID in {used[normalized_id]} and {partition}: {identifier}"
+                )
             used[normalized_id] = partition
-            if isinstance(original_label, bool) or not isinstance(original_label, int) or original_label < 0:
+            if (
+                isinstance(original_label, bool)
+                or not isinstance(original_label, int)
+                or original_label < 0
+            ):
                 raise ValueError("Original labels must be non-negative integers")
             if not isinstance(classname, str) or not classname.strip():
                 raise ValueError("Class names must be non-empty strings")
             if original_label in names and names[original_label] != classname:
                 raise ValueError(f"Inconsistent classname for original label {original_label}")
             names[original_label] = classname
-            records.append({"id": identifier, "relative_path": normalized_id,
-                            "original_label": original_label, "classname": classname,
-                            "split": partition, "path": None})
+            records.append(
+                {
+                    "id": identifier,
+                    "relative_path": normalized_id,
+                    "original_label": original_label,
+                    "classname": classname,
+                    "split": partition,
+                    "path": None,
+                }
+            )
         partitions[partition] = records
     if len(names) < 2 or not partitions["test"]:
         raise ValueError("Expected at least two classes and a non-empty held-out test partition")
@@ -147,7 +167,9 @@ def _sample_train(records: Sequence[SceneRecord], shot: int, seed: int) -> List[
     # after this draw, preserving the source random stream without new supports.
     for label, candidates in groups.items():
         if len(candidates) < shot:
-            raise ValueError(f"Original class {label} has {len(candidates)} train images, requires {shot}")
+            raise ValueError(
+                f"Original class {label} has {len(candidates)} train images, requires {shot}"
+            )
         result.extend(rng.sample(candidates, shot))
     return result
 
@@ -173,15 +195,23 @@ class _ImageResolver:
 
     def resolve(self, identifier: str) -> str:
         relative = PurePosixPath(_safe_id(identifier))
-        candidates = [self.root.joinpath(*relative.parts),
-                      self.root.joinpath("images", *relative.parts)]
+        candidates = [
+            self.root.joinpath(*relative.parts),
+            self.root.joinpath("images", *relative.parts),
+        ]
         if self.flat:
-            candidates.extend([self.root / relative.name,
-                               self.root / "images" / relative.name,
-                               self.root / "RSICD_images" / relative.name])
+            candidates.extend(
+                [
+                    self.root / relative.name,
+                    self.root / "images" / relative.name,
+                    self.root / "RSICD_images" / relative.name,
+                ]
+            )
         matches = {self._inside(p) for p in candidates if p.is_file()}
         if len(matches) > 1:
-            raise ValueError(f"Ambiguous image candidates for {identifier}: {sorted(map(str, matches))}")
+            raise ValueError(
+                f"Ambiguous image candidates for {identifier}: {sorted(map(str, matches))}"
+            )
         if matches:
             return str(next(iter(matches)))
         if not self.flat:
@@ -200,20 +230,34 @@ class _ImageResolver:
         return str(next(iter(matches)))
 
 
-def _remap(records: Sequence[SceneRecord], label_map: Mapping[int, int],
-           paths: Mapping[str, Optional[str]]) -> List[SceneRecord]:
-    return [dict(record, label=label_map[record["original_label"]],
-                 path=paths.get(record["relative_path"])) for record in records
-            if record["original_label"] in label_map]
+def _remap(
+    records: Sequence[SceneRecord], label_map: Mapping[int, int], paths: Mapping[str, Optional[str]]
+) -> List[SceneRecord]:
+    return [
+        dict(
+            record,
+            label=label_map[record["original_label"]],
+            path=paths.get(record["relative_path"]),
+        )
+        for record in records
+        if record["original_label"] in label_map
+    ]
 
 
 def _task_name(value: str) -> str:
     if not isinstance(value, str):
         raise ValueError("task must be a string")
     value = value.casefold().replace("-", "_")
-    aliases = {"base_to_new": "b2n", "few_shot": "fewshot", "cross_dataset": "cd",
-               "dg_v2": "dg", "domain_generalization": "dg", "eval_only": "eval",
-               "evaluation": "eval", "all": "eval"}
+    aliases = {
+        "base_to_new": "b2n",
+        "few_shot": "fewshot",
+        "cross_dataset": "cd",
+        "dg_v2": "dg",
+        "domain_generalization": "dg",
+        "eval_only": "eval",
+        "evaluation": "eval",
+        "all": "eval",
+    }
     value = aliases.get(value, value)
     if value not in ("b2n", "fewshot", "cd", "dg", "eval"):
         raise ValueError(f"Unsupported task {value!r}")
@@ -222,12 +266,20 @@ def _task_name(value: str) -> str:
 
 def _dg_inventory(data: dict, names: Mapping[int, str], dataset_name: str) -> tuple:
     if data.get("dg_verified") is not True or not dataset_name.casefold().endswith("v2"):
-        raise ValueError("DG requires verified v2 split identity; raw datasets cannot be renamed to enable DG")
+        raise ValueError(
+            "DG requires verified v2 split identity; raw datasets cannot be renamed to enable DG"
+        )
     common_names = data.get("common_classnames")
     mapping = data.get("common_class_map")
-    if (not isinstance(common_names, list) or not common_names or
-            not all(isinstance(x, str) and x.strip() for x in common_names) or not isinstance(mapping, dict)):
-        raise ValueError("DG requires common_classnames and original-label-to-common-index common_class_map")
+    if (
+        not isinstance(common_names, list)
+        or not common_names
+        or not all(isinstance(x, str) and x.strip() for x in common_names)
+        or not isinstance(mapping, dict)
+    ):
+        raise ValueError(
+            "DG requires common_classnames and original-label-to-common-index common_class_map"
+        )
     if len({x.casefold() for x in common_names}) != len(common_names):
         raise ValueError("DG common_classnames must be unique")
     label_map = {}
@@ -238,7 +290,11 @@ def _dg_inventory(data: dict, names: Mapping[int, str], dataset_name: str) -> tu
             raise ValueError("DG mapping keys must be original integer labels") from error
         if isinstance(key, bool) or str(original) != str(key) or original not in names:
             raise ValueError(f"Invalid DG original label {key!r}")
-        if isinstance(value, bool) or not isinstance(value, int) or not 0 <= value < len(common_names):
+        if (
+            isinstance(value, bool)
+            or not isinstance(value, int)
+            or not 0 <= value < len(common_names)
+        ):
             raise ValueError("DG mapping values must be valid common-vocabulary indices")
         if original in label_map:
             raise ValueError("Duplicate original labels in DG mapping")
@@ -248,8 +304,9 @@ def _dg_inventory(data: dict, names: Mapping[int, str], dataset_name: str) -> tu
     return list(common_names), label_map
 
 
-def load_dataset(config: dict, task: Optional[str] = None,
-                 seed: Optional[int] = None) -> DatasetBundle:
+def load_dataset(
+    config: dict, task: Optional[str] = None, seed: Optional[int] = None
+) -> DatasetBundle:
     """Load one source bundle, or an explicitly eval-only target bundle.
 
     Relative split/image paths use ``config['_config_dir']`` or this module's
@@ -276,13 +333,20 @@ def load_dataset(config: dict, task: Optional[str] = None,
         if actual_task == "dg" or data.get("dg_verified"):
             raise ValueError("DG requires an explicit data.split for the published v2 dataset")
         if key in PINNED_SPLITS:
-            split_value = Path(__file__).resolve().parents[1] / "assets" / "raw" / "splits" / PINNED_SPLITS[key][0]
+            split_value = (
+                Path(__file__).resolve().parents[1]
+                / "assets"
+                / "raw"
+                / "splits"
+                / PINNED_SPLITS[key][0]
+            )
     split_path = _configured_path(split_value, base, "data.split").resolve()
     if not split_path.is_file():
         raise FileNotFoundError(
-            "Split file is unavailable: " + str(split_path)
+            "Split file is unavailable: "
+            + str(split_path)
             + ". For bundled splits, run python scripts/prepare_protocol_assets.py "
-              "from the repository root; otherwise set data.split to an existing split JSON."
+            "from the repository root; otherwise set data.split to an existing split JSON."
         )
     expected_sha = data.get("split_sha256")
     if expected_sha is None and key in PINNED_SPLITS:
@@ -293,13 +357,20 @@ def load_dataset(config: dict, task: Optional[str] = None,
         raise ValueError("B2N uses ceil-half sorted integer class labels")
     cut = math.ceil(len(labels) / 2)
     base_ids, new_ids = labels[:cut], labels[cut:]
-    maps = {"all": {label: i for i, label in enumerate(labels)},
-            "base": {label: i for i, label in enumerate(base_ids)},
-            "new": {label: i for i, label in enumerate(new_ids)}}
-    vocabularies = {"all": [names[x] for x in labels], "base": [names[x] for x in base_ids],
-                    "new": [names[x] for x in new_ids]}
+    maps = {
+        "all": {label: i for i, label in enumerate(labels)},
+        "base": {label: i for i, label in enumerate(base_ids)},
+        "new": {label: i for i, label in enumerate(new_ids)},
+    }
+    vocabularies = {
+        "all": [names[x] for x in labels],
+        "base": [names[x] for x in base_ids],
+        "new": [names[x] for x in new_ids],
+    }
     train_map = maps["base"] if actual_task == "b2n" and not eval_only else maps["all"]
-    train_names = vocabularies["base"] if actual_task == "b2n" and not eval_only else vocabularies["all"]
+    train_names = (
+        vocabularies["base"] if actual_task == "b2n" and not eval_only else vocabularies["all"]
+    )
     test_map, test_names = maps["all"], vocabularies["all"]
     if actual_task == "dg" or data.get("dg_verified"):
         if split_sha in {entry[1] for entry in PINNED_SPLITS.values()}:
@@ -311,7 +382,9 @@ def load_dataset(config: dict, task: Optional[str] = None,
     if chosen_seed is None:
         configured_seeds = config.get("train", {}).get("seeds", [])
         if len(configured_seeds) != 1 and not eval_only:
-            raise ValueError("Supply an explicit seed when a multi-seed training configuration is used")
+            raise ValueError(
+                "Supply an explicit seed when a multi-seed training configuration is used"
+            )
         chosen_seed = configured_seeds[0] if configured_seeds else 1
     if isinstance(chosen_seed, bool) or not isinstance(chosen_seed, int):
         raise ValueError("seed must be an integer")
@@ -329,10 +402,15 @@ def load_dataset(config: dict, task: Optional[str] = None,
         # DG only uses the already verified common-class source split.
         if actual_task == "dg":
             support_candidates = [r for r in support_candidates if r["original_label"] in train_map]
-        supports = [r for r in _sample_train(support_candidates, shot, chosen_seed)
-                    if r["original_label"] in train_map]
+        supports = [
+            r
+            for r in _sample_train(support_candidates, shot, chosen_seed)
+            if r["original_label"] in train_map
+        ]
     use_val = bool(data.get("use_val", False)) and not eval_only
-    validation = [r for r in partitions["val"] if r["original_label"] in train_map] if use_val else []
+    validation = (
+        [r for r in partitions["val"] if r["original_label"] in train_map] if use_val else []
+    )
     used_records = supports + validation + partitions["test"]
     paths: Dict[str, Optional[str]] = {}
     if not metadata_only:
@@ -345,7 +423,10 @@ def load_dataset(config: dict, task: Optional[str] = None,
                 continue
             resolved = resolver.resolve(relative)
             if resolved in physical_ids:
-                raise ValueError(f"Different image IDs resolve to the same physical path: {physical_ids[resolved]} and {record['id']}")
+                raise ValueError(
+                    f"Different image IDs resolve to the same physical path: "
+                    f"{physical_ids[resolved]} and {record['id']}"
+                )
             physical_ids[resolved] = record["id"]
             paths[relative] = resolved
     train = _remap(supports, train_map, paths)
@@ -355,46 +436,84 @@ def load_dataset(config: dict, task: Optional[str] = None,
     test = _remap(partitions["test"], test_map, paths)
     support_ids = [r["id"] for r in train]
     metadata = {
-        "dataset": dataset_name, "task": actual_task, "role": "target" if eval_only else "source",
-        "seed": chosen_seed, "shot": shot if not eval_only else None,
-        "split_path": str(split_path), "split_sha256": split_sha,
-        "split_commit": PINNED_COMMIT if key in PINNED_SPLITS and split_sha == PINNED_SPLITS[key][1] else None,
+        "dataset": dataset_name,
+        "task": actual_task,
+        "role": "target" if eval_only else "source",
+        "seed": chosen_seed,
+        "shot": shot if not eval_only else None,
+        "split_path": str(split_path),
+        "split_sha256": split_sha,
+        "split_commit": (
+            PINNED_COMMIT if key in PINNED_SPLITS and split_sha == PINNED_SPLITS[key][1] else None
+        ),
         "metadata_only": metadata_only,
-        "image_paths_verified": not metadata_only, "image_pixels_verified": False,
+        "image_paths_verified": not metadata_only,
+        "image_pixels_verified": False,
         "image_root": str(data.get("image_root")) if data.get("image_root") is not None else None,
-        "support_ids": support_ids, "support_sha256": _stable_hash(support_ids),
-        "support_record_sha256": _stable_hash([[r["id"], r["original_label"], r["label"]] for r in train]),
-        "class_ids": {"all": labels, "base": base_ids, "new": new_ids,
-                      "train": [x for x, _ in sorted(train_map.items(), key=lambda item: item[1])],
-                      "test": [x for x, _ in sorted(test_map.items(), key=lambda item: item[1])]},
+        "support_ids": support_ids,
+        "support_sha256": _stable_hash(support_ids),
+        "support_record_sha256": _stable_hash(
+            [[r["id"], r["original_label"], r["label"]] for r in train]
+        ),
+        "class_ids": {
+            "all": labels,
+            "base": base_ids,
+            "new": new_ids,
+            "train": [x for x, _ in sorted(train_map.items(), key=lambda item: item[1])],
+            "test": [x for x, _ in sorted(test_map.items(), key=lambda item: item[1])],
+        },
         "class_maps": maps,
         "vocabularies": dict(vocabularies, train=list(train_names), test=list(test_names)),
         "original_classnames": dict(names),
         "partition_counts": {name: len(records) for name, records in partitions.items()},
-        "returned_counts": {"train": len(train), "val": len(val), "base_test": len(base_test),
-                            "new_test": len(new_test), "test": len(test)},
-        "sampling": "local random.Random(seed), JSON first-appearance classes, without replacement; sample all train classes before B2N filtering",
+        "returned_counts": {
+            "train": len(train),
+            "val": len(val),
+            "base_test": len(base_test),
+            "new_test": len(new_test),
+            "test": len(test),
+        },
+        "sampling": (
+            "local random.Random(seed), JSON first-appearance classes, without replacement; "
+            "sample all train classes before B2N filtering"
+        ),
         "base_new_split": "sorted original integer labels; first ceil(C/2) base",
-        "validation_policy": "complete original source validation partition, no selection/tuning" if use_val else "disabled",
-        "target_supports_generated": False, "target_config_consumed": False,
+        "validation_policy": (
+            "complete original source validation partition, no selection/tuning"
+            if use_val
+            else "disabled"
+        ),
+        "target_supports_generated": False,
+        "target_config_consumed": False,
         "evaluation_partition": "complete original test for the declared evaluation vocabulary",
         "dg_verified": bool(data.get("dg_verified", False)),
     }
-    return DatasetBundle(list(vocabularies["all"]), list(vocabularies["base"]),
-                         list(vocabularies["new"]), list(train_names), train, val,
-                         base_test, new_test, test, metadata, list(test_names))
+    return DatasetBundle(
+        list(vocabularies["all"]),
+        list(vocabularies["base"]),
+        list(vocabularies["new"]),
+        list(train_names),
+        train,
+        val,
+        base_test,
+        new_test,
+        test,
+        metadata,
+        list(test_names),
+    )
 
 
 class SceneDataset(Dataset):
     """Decode RGB images from a prepared record list, retaining original IDs."""
 
-    def __init__(self, records: Sequence[SceneRecord],
-                 transform: Optional[Callable] = None):
+    def __init__(self, records: Sequence[SceneRecord], transform: Optional[Callable] = None):
         self.records = list(records)
         self.transform = transform
         for record in self.records:
             if record.get("path") is None:
-                raise ValueError("Metadata-only records cannot decode images; resolve image_root first")
+                raise ValueError(
+                    "Metadata-only records cannot decode images; resolve image_root first"
+                )
             if isinstance(record.get("label"), bool) or not isinstance(record.get("label"), int):
                 raise ValueError("Each record needs a mapped integer label")
 

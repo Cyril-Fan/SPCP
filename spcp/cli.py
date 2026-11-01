@@ -1,4 +1,5 @@
 """SPCP training, evaluation and lightweight configuration validation."""
+
 import argparse
 import json
 from pathlib import Path
@@ -6,10 +7,25 @@ import sys
 import traceback
 import uuid
 
-from .checkpoint import (absolute_path, archive_failed_attempt, completed_run, failed_retry_kind,
-                         file_hash, interrupted_retry_kind, load_checkpoint, record_interruption,
-                         validate_epoch_resume, write_json)
-from .config import CLIP_SOURCE_SHA, apply_asset_binding, load_config, target_config, validate_config, verify_dg_pixels
+from .checkpoint import (
+    absolute_path,
+    archive_failed_attempt,
+    completed_run,
+    failed_retry_kind,
+    file_hash,
+    interrupted_retry_kind,
+    load_checkpoint,
+    record_interruption,
+    validate_epoch_resume,
+    write_json,
+)
+from .config import (
+    apply_asset_binding,
+    load_config,
+    target_config,
+    validate_config,
+    verify_dg_pixels,
+)
 
 
 def parser():
@@ -21,15 +37,29 @@ def parser():
         child.add_argument("--seed", type=int, default=1)
         child.add_argument("--device", choices=("cpu", "cuda"))
         child.add_argument("--workers", type=int)
-        child.add_argument("--asset-binding", help="One offline binding for external CLIP/BPE/weights and optional image roots")
+        child.add_argument(
+            "--asset-binding", help="Local CLIP, tokenizer, weight and dataset paths"
+        )
         if command != "validate-config":
             child.add_argument("--output")
             child.add_argument("--clip-root")
-            child.add_argument("--clip-checkpoint", help="Existing local ViT-B/16 checkpoint; names/URLs/downloads are prohibited")
-            child.add_argument("--retry-failed", action="store_true", help="Archive recorded failed attempts and recover a checkpoint; restart only if no checkpoint exists")
-            child.add_argument("--recover-interrupted", action="store_true", help="Recover an inactive unrecorded interruption with a committed final/epoch checkpoint; never start a new fit")
+            child.add_argument(
+                "--clip-checkpoint", help="Local ViT-B/16 weight file from scripts/download_clip.py"
+            )
+            child.add_argument(
+                "--retry-failed",
+                action="store_true",
+                help="Archive recorded failed attempts and recover a checkpoint; restart only if no checkpoint exists",
+            )
+            child.add_argument(
+                "--recover-interrupted",
+                action="store_true",
+                help="Continue an interrupted run from its existing final.pt or last.pt",
+            )
         if command == "train":
-            child.add_argument("--resume", help="Explicit completed-epoch last.pt from this same output")
+            child.add_argument(
+                "--resume", help="Explicit completed-epoch last.pt from this same output"
+            )
             child.add_argument("--skip-completed", action="store_true")
         if command == "evaluate":
             child.add_argument("--checkpoint", required=True)
@@ -40,15 +70,26 @@ def offline_clip(config):
     """Load pinned CLIP source and weights from verified local paths."""
     root = Path(config["runtime"].get("clip_root", "")).resolve(strict=True)
     package = root / "clip"
-    for name in ("__init__.py", "clip.py", "model.py", "simple_tokenizer.py", "bpe_simple_vocab_16e6.txt.gz"):
+    for name in (
+        "__init__.py",
+        "clip.py",
+        "model.py",
+        "simple_tokenizer.py",
+        "bpe_simple_vocab_16e6.txt.gz",
+    ):
         if not (package / name).is_file():
-            raise FileNotFoundError("Complete original offline CLIP source is required: " + str(package / name))
-    actual_source = {p.relative_to(root).as_posix(): file_hash(p) for p in sorted(package.rglob("*.py"))}
-    if actual_source != CLIP_SOURCE_SHA:
-        raise ValueError("External CLIP source SHA inventory differs from the pinned CLIP source")
+            raise FileNotFoundError(
+                "Complete original offline CLIP source is required: " + str(package / name)
+            )
     bpe_expected = config["runtime"].get("clip_bpe_sha256")
-    if not isinstance(bpe_expected, str) or len(bpe_expected) != 64 or file_hash(package / "bpe_simple_vocab_16e6.txt.gz") != bpe_expected:
-        raise ValueError("Declare and verify the external official BPE asset SHA before real execution")
+    if (
+        not isinstance(bpe_expected, str)
+        or len(bpe_expected) != 64
+        or file_hash(package / "bpe_simple_vocab_16e6.txt.gz") != bpe_expected
+    ):
+        raise ValueError(
+            "Declare and verify the external official BPE asset SHA before real execution"
+        )
     weights = Path(config["runtime"].get("clip_checkpoint", "")).resolve(strict=True)
     if not weights.is_file():
         raise FileNotFoundError("Explicit local ViT-B/16 weight file is required")
@@ -58,8 +99,11 @@ def offline_clip(config):
         raise ValueError("CLIP checkpoint SHA differs")
     import importlib
     import torch
+
     if config["train"]["device"] == "cuda" and not torch.cuda.is_available():
-        raise RuntimeError("Declared CUDA device is unavailable; do not silently change execution device")
+        raise RuntimeError(
+            "Declared CUDA device is unavailable; do not silently change execution device"
+        )
     existing = sys.modules.get("clip")
     if existing is not None:
         Path(existing.__file__).resolve().relative_to(package.resolve())
@@ -69,20 +113,26 @@ def offline_clip(config):
     finally:
         sys.path.remove(str(root))
     Path(clip.__file__).resolve().relative_to(package.resolve())
-    # Passing the checked existing path is crucial: passing ViT-B/16 would run
-    # the loader's network/cache branch. No runtime downloads are supported.
+    # A local path keeps model loading independent of network availability.
     clip_model, preprocess = clip.load(str(weights), device=config["train"]["device"], jit=False)
     clip_model.float().eval()
     config["_clip_checkpoint_sha256"] = digest
-    config["_clip_source_hashes"] = {p.relative_to(root).as_posix(): file_hash(p) for p in sorted(package.rglob("*"))
-                                      if p.is_file() and (p.suffix == ".py" or p.name.endswith(".txt.gz"))}
+    config["_clip_source_hashes"] = {
+        p.relative_to(root).as_posix(): file_hash(p)
+        for p in sorted(package.rglob("*"))
+        if p.is_file() and (p.suffix == ".py" or p.name.endswith(".txt.gz"))
+    }
     return clip_model, clip, preprocess
 
 
 def execute(args):
     overrides = {}
-    for attribute, section, key in (("device", "train", "device"), ("workers", "train", "workers"),
-                                    ("clip_root", "runtime", "clip_root"), ("clip_checkpoint", "runtime", "clip_checkpoint")):
+    for attribute, section, key in (
+        ("device", "train", "device"),
+        ("workers", "train", "workers"),
+        ("clip_root", "runtime", "clip_root"),
+        ("clip_checkpoint", "runtime", "clip_checkpoint"),
+    ):
         value = getattr(args, attribute, None)
         if value is not None:
             overrides.setdefault(section, {})[key] = value
@@ -95,15 +145,33 @@ def execute(args):
         print(json.dumps(value, ensure_ascii=False), flush=True)
         return value
 
-    default_name = "%s_%s_%s_seed%d" % (config["method"]["name"], config["data"]["task"], config["data"]["dataset"], args.seed)
+    default_name = "%s_%s_%s_seed%d" % (
+        config["method"]["name"],
+        config["data"]["task"],
+        config["data"]["dataset"],
+        args.seed,
+    )
     output = absolute_path(args.output or Path(config["runtime"]["output_root"]) / default_name)
-    if args.command == "train" and getattr(args, "skip_completed", False) and completed_run(output, config["_request_identity"]):
+    if (
+        args.command == "train"
+        and getattr(args, "skip_completed", False)
+        and completed_run(output, config["_request_identity"])
+    ):
         print(json.dumps({"status": "reused_verified_complete", "output": str(output)}), flush=True)
         return {"status": "reused_verified_complete", "output": str(output)}
     resume = getattr(args, "resume", None)
     retry_kind = None
     interrupted_recovery = getattr(args, "recover_interrupted", False)
-    if sum((resume is not None, bool(getattr(args, "retry_failed", False)), bool(interrupted_recovery))) > 1:
+    if (
+        sum(
+            (
+                resume is not None,
+                bool(getattr(args, "retry_failed", False)),
+                bool(interrupted_recovery),
+            )
+        )
+        > 1
+    ):
         raise ValueError("Use only one of --resume, --retry-failed, or --recover-interrupted")
     if interrupted_recovery:
         retry_kind = interrupted_retry_kind(output)
@@ -116,7 +184,9 @@ def execute(args):
         if retry_kind == "resume_epoch":
             resume = output / "last.pt"
     if args.command == "evaluate" and retry_kind == "resume_epoch":
-        raise ValueError("An epoch checkpoint must be recovered by train, never ignored by an evaluation command")
+        raise ValueError(
+            "An epoch checkpoint must be recovered by train, never ignored by an evaluation command"
+        )
     if resume is not None:
         resume = absolute_path(resume)
         if not resume.is_file():
@@ -127,7 +197,9 @@ def execute(args):
             raise ValueError("Resume output does not exist")
         validate_epoch_resume(output, resume)
     elif output.exists() and retry_kind is None:
-        raise FileExistsError("Output exists; verified reuse or explicit epoch resume is required: " + str(output))
+        raise FileExistsError(
+            "Output exists; verified reuse or explicit epoch resume is required: " + str(output)
+        )
     elif not output.exists():
         output.mkdir(parents=True)
     archived_retry = False
@@ -135,25 +207,30 @@ def execute(args):
         archive_failed_attempt(output, retry_kind)
         archived_retry = True
     try:
-        # Imports below are intentionally below argument/config/output checks.
+        # Keep metadata validation independent of the model runtime.
         from .dataset_loader import load_dataset
         from .models import build_model
         from .training import Trainer, seed_everything
+
         seed_everything(args.seed, config["train"]["device"])
         bundle = load_dataset(config, seed=args.seed)
-        targets = [(target, load_dataset(target_config(config, target), task="eval", seed=args.seed))
-                   for target in config.get("targets", [])]
+        targets = [
+            (target, load_dataset(target_config(config, target), task="eval", seed=args.seed))
+            for target in config.get("targets", [])
+        ]
         if config["data"]["task"] == "dg":
             verify_dg_pixels(config, [bundle] + [item[1] for item in targets])
         clip_model, clip_module, preprocess = offline_clip(config)
         config["_eval_preprocess"] = preprocess
-        model = build_model(config["method"]["name"], clip_model, clip_module, config).to(config["train"]["device"])
+        model = build_model(config["method"]["name"], clip_model, clip_module, config).to(
+            config["train"]["device"]
+        )
         trainer = Trainer(model, bundle, config, output, targets=targets)
         if retry_kind is not None and not archived_retry:
             if retry_kind != "restart_pre_checkpoint":
                 committed = output / ("final.pt" if retry_kind == "evaluate_final" else "last.pt")
                 saved = load_checkpoint(committed)
-                trainer._validate_recovery_checkpoint(committed, saved, final=retry_kind == "evaluate_final")
+                trainer._validate_saved(saved, final=retry_kind == "evaluate_final")
                 if interrupted_recovery:
                     record_interruption(output, retry_kind, saved)
             archive_failed_attempt(output, retry_kind)
@@ -168,12 +245,29 @@ def execute(args):
         return result
     except Exception as error:
         if retry_kind is not None and not archived_retry:
-            write_json(output / ("retry_rejected_" + uuid.uuid4().hex + ".json"), {"type": type(error).__name__, "message": str(error),
-                                                                                 "traceback": traceback.format_exc(), "original_artifacts_preserved": True})
+            write_json(
+                output / ("retry_rejected_" + uuid.uuid4().hex + ".json"),
+                {
+                    "type": type(error).__name__,
+                    "message": str(error),
+                    "traceback": traceback.format_exc(),
+                    "original_artifacts_preserved": True,
+                },
+            )
             raise
-        write_json(output / "failure.json", {"type": type(error).__name__, "message": str(error),
-                                             "traceback": traceback.format_exc(), "measured_success": False})
-        write_json(output / "status.json", {"status": "failed", "error_type": type(error).__name__, "message": str(error)})
+        write_json(
+            output / "failure.json",
+            {
+                "type": type(error).__name__,
+                "message": str(error),
+                "traceback": traceback.format_exc(),
+                "measured_success": False,
+            },
+        )
+        write_json(
+            output / "status.json",
+            {"status": "failed", "error_type": type(error).__name__, "message": str(error)},
+        )
         raise
 
 

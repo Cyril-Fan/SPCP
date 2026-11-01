@@ -1,4 +1,5 @@
 """SPCP model construction."""
+
 from .spcp import SPCPModel
 
 
