@@ -48,8 +48,6 @@ Full-method per-seed results and summaries are in `results/`. The command-line i
 
 HM 先按数据集和 seed 计算再汇总，CD/DG 的目标域均值不包含源域。`results/` 提供完整方法的逐 seed 结果及汇总。
 
-η=0.5 was selected using exploratory DG target-domain evaluation ([parameter provenance](../assets/admissions/spcp_eta050.json)).
-
 ## Checkpoints and data / 检查点与数据
 
 Preserve the whole output directory when backing up a run, including `metadata.json`, checkpoint and completion/audit records. Replays and resume operations enforce the same configuration, source tree, seed and data identities. Original archive checkpoints may be rejected after a source-tree change even when the mathematical kernels are unchanged. This code release is intended for fresh reproducible runs and does not remove those guards.
