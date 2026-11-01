@@ -44,9 +44,11 @@ All use 16-shot source supports, seeds 1/2/3, CLIP ViT-B/16, 16 prompt tokens, 1
 
 Compute B2N HM for each dataset and seed, then average the four datasets within a seed and finally average the three seed aggregates. CD/DG target averages exclude PatternNet/PatternNetv2 source accuracy. Sample SD uses `ddof=1`. Do not reconstruct HM from already rounded mean Base/New values.
 
-Full-method per-seed results and summaries are in `results/`. We selected η = 0.5 based on exploratory evaluation on the DG target domains. The command-line interface supports full-method training and evaluation for B2N, CD and DG.
+Full-method per-seed results and summaries are in `results/`. The command-line interface supports full-method training and evaluation for B2N, CD and DG.
 
-HM 先按数据集和 seed 计算再汇总，CD/DG 的目标域均值不包含源域。`results/` 提供完整方法的逐 seed 结果及汇总。我们基于 DG 目标域的探索性评估选择 η=0.5。
+HM 先按数据集和 seed 计算再汇总，CD/DG 的目标域均值不包含源域。`results/` 提供完整方法的逐 seed 结果及汇总。
+
+η=0.5 was selected using exploratory DG target-domain evaluation ([parameter provenance](../assets/admissions/spcp_eta050.json)).
 
 ## Checkpoints and data / 检查点与数据
 
