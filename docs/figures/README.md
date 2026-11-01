@@ -1,65 +1,15 @@
 # Paper figures / 论文图件
 
-PNG files provide previews, SVG files retain editable sources, and PDFs provide
-publication exports. Both architecture schematics retain vector geometry and
-embedded fonts in their PDFs; PNGs are screen previews. Filenames identify the figure assets.
+The six manuscript figures are available in PDF, SVG and PNG formats.
+PDFs are publication exports, SVGs are vector-format copies, and PNGs are previews.
 
-| Content | Files |
-|---|---|
-| Motivation / 语义保持动机 | [PNG](SPCP_introduction_motivation.png) · [SVG](SPCP_introduction_motivation.svg) · [PDF](SPCP_introduction_motivation.pdf) |
-| SPCP framework / 总体框架 | [PNG](SPCP_overall.png) · [SVG](SPCP_overall.svg) · [PDF](SPCP_overall.pdf) |
-| Text semantic constraint / 文本语义约束 | [PNG](SPCP_core.png) · [SVG](SPCP_core.svg) · [PDF](SPCP_core.pdf) |
-| Directional distortion / 方向畸变 | [PNG](Fig3_direction_distortion.png) · [SVG](Fig3_direction_distortion.svg) · [PDF](Fig3_direction_distortion.pdf) |
-| Length distortion / 长度畸变 | [PNG](Fig4_length_distortion.png) · [SVG](Fig4_length_distortion.svg) · [PDF](Fig4_length_distortion.pdf) |
-| Class-wise recognition changes / 类别识别变化 | [PNG](Fig5_classwise_errors.png) · [SVG](Fig5_classwise_errors.svg) · [PDF](Fig5_classwise_errors.pdf) |
+本目录提供论文六张图的 PDF、SVG、PNG 文件。下表按论文图号排列。
 
-## Structure diagrams
-
-![SPCP framework](SPCP_overall.png)
-
-![Text semantic constraint](SPCP_core.png)
-
-Both diagrams are 160 mm wide. The PDFs preserve vector geometry and embedded
-fonts; PNGs are previews. The semantic diagram compares prompted and reference
-differences for the same class pair on fixed source-class neighborhoods.
-Mathematical labels use NewTX calligraphic losses and bold-italic vectors.
-Layer indices are superscripts and modality indices are subscripts. The full-layer
-prompt labels include both native and projected prompts.
-
-See [the export instructions](source/README.md) for the self-contained
-figure-building code and its separate optional authoring dependencies.
-
-## Motivation
-
-![Motivation for semantic preservation](SPCP_introduction_motivation.png)
-
-Frozen CLIP encodes fixed LLM-assisted descriptions into class references.
-Open circles show these references; filled circles show prompted text features.
-The panels illustrate semantic drift and the SPCP preservation objective using
-conceptual coordinates, not measured embeddings. The supplied figure is 160 × 64 mm.
-Its ordinary text has embedded fonts in the PDF; mathematical symbols are outlines.
-
-## Analysis figures
-
-The three analysis figures are provided as SVG/PDF exports and PNG previews.
-The scripts in `source/` export the two structure diagrams and their mathematical
-labels; they do not regenerate the analysis plots from experimental data.
-
-The `Fig3`, `Fig4` and `Fig5` prefixes are stable asset identifiers. Match figures
-to the paper by the content names in the table above.
-
-![Directional distortion on base and new classes](Fig3_direction_distortion.png)
-
-![Length distortion on base and new classes](Fig4_length_distortion.png)
-
-![Class-wise recognition changes on NWPU-RESISC45 and PatternNet](Fig5_classwise_errors.png)
-
-Full and w/o S differ jointly in the absolute
-and interclass text losses. New-class graphs are used solely for analysis, not training.
-Closer reference geometry does not imply uniform recognition gains: Full increases
-NWPU-RESISC45 new-class accuracy by 5.30 percentage points and decreases PatternNet
-new-class accuracy by 3.67 points relative to w/o S.
-
-本目录按图件内容组织。动机图是概念示意，不是实验嵌入结果；
-Full 与 w/o S 同时涉及两项文本损失，
-不能把 HM 差异直接归因于某一种畸变的变化。
+| Figure / 图号 | Content / 内容 | Files / 文件 |
+|---|---|---|
+| 1 | Motivation / 语义保持动机 | [PDF](SPCP_introduction_motivation.pdf) · [SVG](SPCP_introduction_motivation.svg) · [PNG](SPCP_introduction_motivation.png) |
+| 2 | SPCP framework / 总体框架 | [PDF](SPCP_overall.pdf) · [SVG](SPCP_overall.svg) · [PNG](SPCP_overall.png) |
+| 3 | Text semantic constraint / 文本语义约束 | [PDF](SPCP_core.pdf) · [SVG](SPCP_core.svg) · [PNG](SPCP_core.png) |
+| 4 | Directional distortion / 方向畸变 | [PDF](Fig3_direction_distortion.pdf) · [SVG](Fig3_direction_distortion.svg) · [PNG](Fig3_direction_distortion.png) |
+| 5 | Length distortion / 长度畸变 | [PDF](Fig4_length_distortion.pdf) · [SVG](Fig4_length_distortion.svg) · [PNG](Fig4_length_distortion.png) |
+| 6 | Class-wise recognition changes / 类别识别变化 | [PDF](Fig5_classwise_errors.pdf) · [SVG](Fig5_classwise_errors.svg) · [PNG](Fig5_classwise_errors.png) |
