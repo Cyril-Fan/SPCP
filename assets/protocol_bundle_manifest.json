@@ -4,23 +4,23 @@
   "files": [
     {
       "path": "assets/dg_v2/pixel_provenance/MLRSNetv2.images.jsonl",
-      "bytes": 12623796,
-      "sha256": "68d83afd0091d590bf9438347e29a35a93c4229a707237aa32c871f6446e966c"
+      "bytes": 8738180,
+      "sha256": "21893e5172168cd6167d7138282caa933f39a89cc434294e90a5d8afb35b4de9"
     },
     {
       "path": "assets/dg_v2/pixel_provenance/NWPU-RESISC45v2.images.jsonl",
-      "bytes": 3646421,
-      "sha256": "19d08ef44337683c495912cd6c0aba756ce2949d1af51267be2b43a995917dac"
+      "bytes": 2485821,
+      "sha256": "59803fc4378559a4747e49dd1e014b4f557e133175e7e325a77987b201813b3a"
     },
     {
       "path": "assets/dg_v2/pixel_provenance/PatternNetv2.images.jsonl",
-      "bytes": 4130690,
-      "sha256": "1b236794134df64f48a1809c156e00961a02f24626268c208f6ae218153b741a"
+      "bytes": 2842690,
+      "sha256": "9f2e2aa189717ab59b6eb500a7e2c208939fd206a66f332196f016e9434fe2c2"
     },
     {
       "path": "assets/dg_v2/pixel_provenance/RSICDv2.images.jsonl",
-      "bytes": 1698224,
-      "sha256": "f306204beaa8315089eb51255e3b3de5423e2bd900861f88922b66a17211db54"
+      "bytes": 1188032,
+      "sha256": "38c33f7ce4f74855d2a083f605ad31b8875937c66c1959d971f8b5a782c79c54"
     },
     {
       "path": "assets/dg_v2/splits/mlrsnetv2.json",
@@ -63,5 +63,5 @@
       "sha256": "9d31238de620ab89152bd9ed2897ff8b3552d7bddf88a9c00b0e342c86a96a97"
     }
   ],
-  "archive_sha256": "23f3544780f4df992a1ba7d61cee3d121e59eb35c1b4cedf257ae903a62f76ad"
+  "archive_sha256": "bc687318b783f46bbf89833d6b4ac7ddaefd684070359d5fed2e710ee91afc0b"
 }

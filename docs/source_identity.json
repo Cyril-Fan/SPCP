@@ -29,7 +29,7 @@
     },
     {
       "path": "spcp/dataset_loader.py",
-      "sha256": "eec4af6693deffc5b8b8f284f79b340f716d518a762c5f7930c71dbc17f1cf7f"
+      "sha256": "82c01efa8b25e651f9b65d399005b8e02cccc61f821d5b75dbb98e01b12ca007"
     },
     {
       "path": "spcp/evaluation.py",
@@ -118,6 +118,10 @@
     {
       "path": "configs/SPCP_dg_patternnetv2.yaml",
       "sha256": "499d06f5af3edee7672b6d0bd5be4b30365ca05bf61e7f4911aae186ac95743a"
+    },
+    {
+      "path": "tests/test_protocol_assets.py",
+      "sha256": "7f43270f6d63ba57994db6b862e3611604eda97114dc9efeb639a8efa06cc1bc"
     }
   ]
 }

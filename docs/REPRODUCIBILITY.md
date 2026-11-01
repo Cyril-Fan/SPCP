@@ -47,7 +47,8 @@ Back up each complete run directory, including checkpoints, `metadata.json` and 
 ## Metadata fields / 元数据字段
 
 - `split_sha256` and `split_commit` identify the split file and its pinned upstream revision.
-- `paper_exact_split_identity_confirmed` is a compatibility field that currently always contains `false`. It is not the result of the split-file hash check and does not control training.
 - `runtime.phase` and `runtime.require_source_selection` are retained configuration fields, not objective coefficients. The published configurations use their existing fixed values.
 
-`paper_exact_split_identity_confirmed` 当前始终为 `false`，不能用来判断划分哈希校验是否成功。数据身份应查看实际校验及 `split_sha256`、`split_commit` 等字段；兼容字段不应手动改为 `true` 来表示“通过”。
+Bundled image ledgers use relative image IDs; local paths are resolved from the asset binding. The preparation receipt preserves image-verification provenance, and its ledger hashes identify the portable public copies.
+
+随附图像清单使用相对图像 ID，本机路径由资产绑定解析。准备记录保留图像核验来源，其中的清单哈希对应公开的可移植副本。

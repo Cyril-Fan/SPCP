@@ -55,7 +55,7 @@
         "beach"
       ],
       "ledger_path": "PatternNetv2.images.jsonl",
-      "ledger_sha256": "1b236794134df64f48a1809c156e00961a02f24626268c208f6ae218153b741a",
+      "ledger_sha256": "9f2e2aa189717ab59b6eb500a7e2c208939fd206a66f332196f016e9434fe2c2",
       "rgb_decode_complete": true,
       "official_published_json_coverage_verified": true
     },
@@ -108,7 +108,7 @@
         "beach"
       ],
       "ledger_path": "RSICDv2.images.jsonl",
-      "ledger_sha256": "f306204beaa8315089eb51255e3b3de5423e2bd900861f88922b66a17211db54",
+      "ledger_sha256": "38c33f7ce4f74855d2a083f605ad31b8875937c66c1959d971f8b5a782c79c54",
       "rgb_decode_complete": true,
       "official_published_json_coverage_verified": true
     },
@@ -161,7 +161,7 @@
         "beach"
       ],
       "ledger_path": "NWPU-RESISC45v2.images.jsonl",
-      "ledger_sha256": "19d08ef44337683c495912cd6c0aba756ce2949d1af51267be2b43a995917dac",
+      "ledger_sha256": "59803fc4378559a4747e49dd1e014b4f557e133175e7e325a77987b201813b3a",
       "rgb_decode_complete": true,
       "official_published_json_coverage_verified": true
     },
@@ -214,12 +214,11 @@
         "beach"
       ],
       "ledger_path": "MLRSNetv2.images.jsonl",
-      "ledger_sha256": "68d83afd0091d590bf9438347e29a35a93c4229a707237aa32c871f6446e966c",
+      "ledger_sha256": "21893e5172168cd6167d7138282caa933f39a89cc434294e90a5d8afb35b4de9",
       "rgb_decode_complete": true,
       "official_published_json_coverage_verified": true
     }
   ],
   "full_dg_images_prepared": true,
-  "paper_exact_image_identity_confirmed": false,
   "cookies_used": false
 }
